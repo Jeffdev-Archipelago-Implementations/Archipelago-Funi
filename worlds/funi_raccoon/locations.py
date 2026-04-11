@@ -1,0 +1,195 @@
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
+from BaseClasses import Location
+
+from . import items
+
+if TYPE_CHECKING:
+    from .world import FuniRaccoonWorld
+
+LOCATION_NAME_TO_ID = {
+    "Store Moai": 1001,
+    "Store Street Lamp": 1002,
+    "Store Funbells": 1003,
+    "Store Lama/Alpaca Maybe?": 1004,
+    "Store Gym": 1005,
+    "Store Kei Truck": 1006,
+    "Store Vending Machine (accepts doubloons)": 1007,
+    "Store DOUBLOONS": 1008,
+    "Store Radio": 1009,
+    "Store unregistered firearm": 1011,
+    "Store Under Construction": 1016,
+    "Store Chicken": 1017,
+    "Store Washing Machine": 1018,
+    "Store Michelle": 1019,
+    "Store Brob Energy": 1020,
+    "Store Buisness Man": 1021,
+    "Store Concrete": 1022,
+    "Store Gizmo": 1023,
+    "Store Keksz": 1024,
+    "Store Michi": 1025,
+    "Store boingler": 1026,
+    "Store Paracetamol 650mg": 1027,
+    "Store Heavy Stone Torch": 1028,
+    "Store Computer Monitor (60hz)": 1031,
+    "Store Sign": 1037,
+    "Store Crack Head": 1038,
+    "Store Crayon": 1039,
+    "Store Cricket Bat": 1040,
+    "Store Pirate": 1042,
+    "Store Pirate 2": 1043,
+    "Store Pirate 3": 1044,
+    "Store UNDER CONSTRUCTION": 1045,
+    "Store Microwave": 1048,
+    "Store Toaster": 1049,
+    "Store Logan Left": 1050,
+    "Store Logan Right": 1051,
+    "Store Evil Fish": 1052,
+    "Store Feral Dog": 1053,
+    "Store Windmill": 1054,
+    "Store Marketable Plushie Box": 1055,
+    "Store Goo": 1056,
+    "Store Beenie the Birthday Boy": 1057,
+    "Store Fan": 1059,
+    "Store Letter B": 1061,
+    "Store Beenie, Our Savior": 1062,
+    "Store Candle": 1063,
+    "Store Funi Marketable Plushie": 1064,
+    "Store Patrick O'Hara": 1065,
+    "Store Toastie": 1066,
+    "Store Crisp": 1067,
+    "Store Flower": 1068,
+    "Store Divider": 1069,
+    "Store Office Chair": 1070,
+    "Store Desk": 1071,
+    "Store My Favourite Chair": 1073,
+    "Store Cricket": 1074,
+    "Store Crisps Undying Love": 1075,
+    "Store Blimbo Village Sign": 1076,
+    "Store Ougham Stone": 1077,
+    'Store "Cow"': 1078,
+    "Store Old Ass Rusty Ass Key": 1080,
+    "Store Plimbo": 1081,
+    "Store Fridge Key": 1082,
+    "Store Orphan Tyre": 1084,
+    "Store Papa Tyre": 1085,
+    "Store Smoker": 1086,
+    "Store Broken Truck": 1087,
+    "Store CHEESE": 1088,
+    "Store Gas Drum": 1089,
+    "Store Coffee Shop (closed)": 1090,
+    "Store Trolley": 1091,
+    "Store Folding Chair": 1093,
+    "Store Warning": 1095,
+    "Store Pickaxe": 1096,
+    "Store Broken Wall": 1097,
+    "Store Fone": 1098,
+    "Store Coffee Cup": 1099,
+    "Store Kettle": 1100,
+    "Store Radiator": 1101,
+    "Store Flower Blimbo": 1102,
+    "Store Bench": 1104,
+    "Store Evil Raccoon": 1105,
+    "Store Naked Fella": 1106,
+    "Store Bin": 1107,
+    "Store Knifedog": 1109,
+    "Store Suitcase": 1110,
+    "Store Cheeky Pint": 1111,
+    "Store Flowian": 1112,
+    "Store Bomb": 1113,
+    "Store Bell Boy": 1114,
+    "Store Demon Core": 1115,
+    "Store Apple": 1116,
+    "Store Gas Pumpo": 1117,
+    "Store CD Player": 1118,
+    "Store Radio Blimbo": 1119,
+    "Store Binocublo": 1120,
+    "Store Police Car": 1121,
+    "Store Hazelnut": 1122,
+    "Store Anti Sads": 1123,
+    'Store "TV Remote"': 1124,
+    "Store Synthesizer": 1125,
+    "Store Brick": 1126,
+    "Store Lloyd": 1127,
+    "Store Manhole Cover": 1128,
+    "Store Old Sign": 1129,
+    "Store Warning Sign": 1130,
+    "Store Area Sign": 1131,
+    "Store Orb": 1132,
+    "Store Ms. Heel": 1134,
+    "Store Mr. Heel": 1135,
+    "Store Belgium Waffle": 1136,
+    "Store GREENISH ABOMINATION": 1137,
+    "Store Priestess": 1138,
+    "Store Beenie Saves The Orphans": 1140,
+    "Store Eel Can": 1141,
+    "Store Barrel": 1142,
+    "Store BookBlo": 1143,
+    "Store Fridge": 1144,
+    "Store Fridgling": 1145,
+    "Store Snowball": 1146,
+    "Store Leeches!": 1147,
+    "Store Beach Ball": 1150,
+    "Store Milk Klubnika": 1151,
+    "Store Chairapist": 1154,
+    "Store Digital Polaroid Camera": 1155,
+    "Store Yolky": 1156,
+    "Store Pawn": 1157,
+    "Store Rook": 1158,
+    "Store Bishop": 1159,
+    "Store Queen": 1160,
+    "Store King": 1161,
+    "Store Real Gym": 1162,
+    "Store Spoonsweet": 1163,
+    "Store Wriks Celler": 1164,
+    "Store Door": 1165,
+    "Store Funi Raccoon Game Deluxe": 1166,
+    "Store Patrice": 1167,
+    "Store Goo Container": 1168,
+    "Store Butterfly": 1169,
+    "Store Patrick O Bobble": 1170,
+    "Store Dice": 1171,
+    "Store Lughling": 1172,
+    "Store Book Stack": 1173,
+    "Store Average Canadian": 1174,
+    "Store Cheese Wife": 1175,
+    "Get 1000 Score with Kei Truck": 2001,
+    "Get 2000 Score with Kei Truck": 2002,
+    "Shop Item 1": 3001,
+    "Shop Item 2": 3002,
+    "Shop Item 3": 3003,
+    "Shop Item 4": 3004,
+    "Shop Item 5": 3005,
+    "Shop Item 6": 3006,
+    "Shop Item 7": 3007,
+    "Shop Item 8": 3008,
+    "Shop Item 9": 3009,
+    "Shop Item 10": 3010,
+}
+
+
+class FuniRaccoonLocation(Location):
+    game = "Funi Raccoon Game"
+
+
+def get_location_names_with_ids(location_names: list[str]) -> dict[str, int | None]:
+    return {location_name: LOCATION_NAME_TO_ID[location_name] for location_name in location_names}
+
+
+def create_all_locations(world: FuniRaccoonWorld) -> None:
+    create_regular_locations(world)
+    create_events(world)
+
+
+def create_regular_locations(world: FuniRaccoonWorld) -> None:
+    overworld = world.get_region("Overworld")
+    overworld.add_locations(LOCATION_NAME_TO_ID, FuniRaccoonLocation)
+
+
+def create_events(world: FuniRaccoonWorld) -> None:
+    overworld = world.get_region("Overworld")
+    overworld.add_event(
+        "Victory", "Victory", location_type=FuniRaccoonLocation, item_type=items.FuniRaccoonItem
+    )
