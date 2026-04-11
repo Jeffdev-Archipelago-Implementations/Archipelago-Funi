@@ -28,18 +28,6 @@ class FuniRaccoonWebWorld(WebWorld):
         "setup/en",
         ["Jeffdev"],
     )
-    # Let's have our setup guide in German as well.
-    # Do not translate the title and description!
-    # WebHost needs them to be the same to identify that it is the same tutorial.
-    # This lets it display the tutorials more compactly.
-    setup_de = Tutorial(
-        "Multiworld Setup Guide",
-        "A guide to setting up Funi Raccoon Game for MultiWorld.",
-        "German",
-        "setup_de.md",
-        "setup/de",
-        ["Jeffdev"],
-    )
 
     # We add these tutorials to our WebWorld by overriding the "tutorials" field.
     tutorials = [setup_en]
