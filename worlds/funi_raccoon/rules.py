@@ -147,4 +147,4 @@ def set_all_location_rules(world: FuniRaccoonWorld) -> None:
 
 
 def set_completion_condition(world: FuniRaccoonWorld) -> None:
-    world.set_completion_rule(Has("Progressive Cooling Rod", 3) & Has("Orb"))
+    world.set_completion_rule(Has("Progressive Cooling Rod", 3) & Has("Orb") & Has("Kei Truck") & items(50))
