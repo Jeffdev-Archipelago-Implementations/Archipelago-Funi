@@ -1,4 +1,4 @@
-# Skul: The Hero Slayer Randomizer Setup Guide
+# Funi Raccoon Game Randomizer Setup Guide
 
 ## Required Software
 
