@@ -81,6 +81,7 @@ ITEM_NAME_TO_ID = {
     "Coffee Shop (closed)": 90,
     "Trolley": 91,
     "Folding Chair": 93,
+    "Progressive Cooling Rod": 94,
     "Warning": 95,
     "Pickaxe": 96,
     "Broken Wall": 97,
@@ -156,8 +157,22 @@ ITEM_NAME_TO_ID = {
     "Cheese Wife": 175,
     "Kei Truck Radio": 201,
     "Kei Truck Toaster": 202,
+    "Kei Truck Boost": 203,
     "10 Euro": 300,
     "100 Euro": 301,
+    "Progressive Mystical Dumbbell": 400,
+    "Sun Hat":          501,
+    "Sombrero":         502,
+    "Top Hat":          503,
+    "Jester Hat":       504,
+    "Raccoon Hat":      505,
+    "Media Player Hat": 506,
+    "Fridge Crown":     507,
+    "Patty Hat":        508,
+    "Green Mystical Jewel":  601,
+    "Blue Mystical Jewel":   602,
+    "Purple Mystical Jewel": 603,
+    "Red Mystical Jewel":    604,
 }
 
 # Items should have a defined default classification.
@@ -232,6 +247,7 @@ DEFAULT_ITEM_CLASSIFICATIONS = {
     "Coffee Shop (closed)": ItemClassification.progression,
     "Trolley": ItemClassification.progression,
     "Folding Chair": ItemClassification.progression,
+    "Progressive Cooling Rod": ItemClassification.progression,
     "Warning": ItemClassification.progression,
     "Pickaxe": ItemClassification.progression,
     "Broken Wall": ItemClassification.progression,
@@ -310,8 +326,22 @@ DEFAULT_ITEM_CLASSIFICATIONS = {
     "Logan Right": ItemClassification.progression,
     "Kei Truck Radio": ItemClassification.progression,
     "Kei Truck Toaster": ItemClassification.progression,
+    "Kei Truck Boost": ItemClassification.progression,
+    "Progressive Mystical Dumbbell": ItemClassification.progression,
+    "Sun Hat":          ItemClassification.filler,
+    "Sombrero":         ItemClassification.filler,
+    "Top Hat":          ItemClassification.filler,
+    "Jester Hat":       ItemClassification.filler,
+    "Raccoon Hat":      ItemClassification.filler,
+    "Media Player Hat": ItemClassification.filler,
+    "Fridge Crown":     ItemClassification.filler,
+    "Patty Hat":        ItemClassification.filler,
+    "Green Mystical Jewel":  ItemClassification.filler,
+    "Blue Mystical Jewel":   ItemClassification.filler,
+    "Purple Mystical Jewel": ItemClassification.filler,
+    "Red Mystical Jewel":    ItemClassification.filler,
     "100 Euro": ItemClassification.useful,
-    "10 Euro": ItemClassification.filler
+    "10 Euro": ItemClassification.filler,
 }
 
 
@@ -340,6 +370,14 @@ def create_all_items(world: FuniRaccoonWorld) -> None:
         for name, classification in DEFAULT_ITEM_CLASSIFICATIONS.items()
         if classification == ItemClassification.progression
     ]
+
+    # Progressive Cooling Rod needs 3 copies total (Victory requires all 3).
+    # The loop above already created 1, so add 2 more.
+    itempool += [world.create_item("Progressive Cooling Rod") for _ in range(2)]
+
+    # Progressive Mystical Dumbbell needs 4 copies total (SMALL needs 1, MEDIUM 2, HEAVY 3; 4th is extra).
+    # The loop above already created 1, so add 3 more.
+    itempool += [world.create_item("Progressive Mystical Dumbbell") for _ in range(3)]
 
     # Fill remaining location slots with filler (10 Euro / 100 Euro).
     number_of_unfilled_locations = len(world.multiworld.get_unfilled_locations(world.player))
