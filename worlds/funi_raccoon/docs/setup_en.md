@@ -6,7 +6,7 @@
 
 ### Setup
 1. Download the latest release of Funi Raccoon AP on Github:
-    - [BepInEx Skul](https://thunderstore.io/c/skul-the-hero-slayer/p/BepInEx/BepInExPack_Skul/)
+    - [Funi Raccoon AP](https://github.com/Jeffdev-Archipelago-Implementations/FuniRaccoonAP/releases/latest)
 2. Open your Funi Raccoon Game installation directory. On Steam, you can find it easily by right-clicking the game and clicking `Manage` > `Browse local files`.
 3. Extract the contents of the Funi Raccoon AP mod into the main directory, so that **mod_boot.gd**, **mods.pck**, and **override.cfg** are added in the root.
 4. Open the properties for Funi Raccoon Game. On Steam, right click the game and click `properties`.
