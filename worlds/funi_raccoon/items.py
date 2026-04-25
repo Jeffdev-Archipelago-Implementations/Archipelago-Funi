@@ -345,15 +345,10 @@ DEFAULT_ITEM_CLASSIFICATIONS = {
 }
 
 
-# Each Item instance must correctly report the "game" it belongs to.
-# To make this simple, it is common practice to subclass the basic Item class and override the "game" field.
 class FuniRaccoonItem(Item):
     game = "Funi Raccoon Game"
 
 
-# Ontop of our regular itempool, our world must be able to create arbitrary amounts of filler as requested by core.
-# To do this, it must define a function called world.get_filler_item_name(), which we will define in world.py later.
-# For now, let's make a function that returns the name of a random filler item here in items.py.
 def get_random_filler_item_name(world: FuniRaccoonWorld) -> str:
     return "100 Euro" if world.random.randint(0, 9) == 0 else "10 Euro"
 
