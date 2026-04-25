@@ -18,6 +18,6 @@ All Dumpster items, hats, gems, cats, dumbbell increases, and progressive coolin
 
 There are currently no options for this game. There are planned to be some in the future.
 
-### Disclaimer
+## Disclaimer
 
 This mod was made in part with help from Claude. I am not a pro Godot programmer, and I needed a lot of help figuring out how to set this up and make it work. That being said, **all code has been vetted to ensure that its at least fairly quality, and I will always make sure I am understanding what is written when it writes things.** I welcome any and all PRs to improve the code on both the Godot mod, and this APWorld, and I make a full commitment to ensuring this project is well made and well put together.
