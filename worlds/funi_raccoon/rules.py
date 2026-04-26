@@ -65,10 +65,7 @@ _DUMBBELL_REQUIREMENTS: dict[str, int] = {
     "Store Door":                                1,
     "Store Goo Container":                       1,
     # MEDIUM (weight 3) — requires 2 dumbbells
-    "Store Crack Head":                          2,
     "Store Microwave":                           2,
-    "Store Logan Left":                          2,
-    "Store Logan Right":                         2,
     "Store Crisps Undying Love":                 2,
     'Store "Cow"':                               2,
     "Store Gas Drum":                            2,
@@ -136,8 +133,10 @@ def set_all_location_rules(world: FuniRaccoonWorld) -> None:
     # Folding Chair requires the Priestess (in addition to the dumbbell weight rule)
     rule("Store Folding Chair", Has("Progressive Mystical Dumbbell", 1) & Has("Priestess"))
 
-    # Blue Mystical Jewel requires 1 dumbbell (found in Howth, Act 2)
-    rule("Find Blue Mystical Jewel", Has("Progressive Mystical Dumbbell", 1))
+    # Green, Blue, and Red Mystical Jewels require 1 dumbbell
+    rule("Eat Green Mystical Jewel", Has("Progressive Mystical Dumbbell", 1))
+    rule("Eat Blue Mystical Jewel",  Has("Progressive Mystical Dumbbell", 1))
+    rule("Eat Red Mystical Jewel",   Has("Progressive Mystical Dumbbell", 1))
 
     # Higher Kei Truck scores require at least one truck upgrade
     _truck_upgrade = HasFromList("Kei Truck Boost", "Kei Truck Toaster", count=1)

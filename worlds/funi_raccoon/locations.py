@@ -184,10 +184,10 @@ LOCATION_NAME_TO_ID = {
     "Find Media Player Hat": 6006,
     "Find Fridge Crown":     6007,
     "Find Patty Hat":        6008,
-    "Find Green Mystical Jewel":  7001,
-    "Find Blue Mystical Jewel":   7002,
-    "Find Purple Mystical Jewel": 7003,
-    "Find Red Mystical Jewel":    7004,
+    "Eat Green Mystical Jewel":  7001,
+    "Eat Blue Mystical Jewel":   7002,
+    "Eat Purple Mystical Jewel": 7003,
+    "Eat Red Mystical Jewel":    7004,
 }
 
 
@@ -362,9 +362,9 @@ LOCATION_REGION: dict[str, str] = {
 
     # --- Mystical Jewels ---
     # Green Jewel is in Da Water Zone / Act 1 (Overworld, default — no entry needed)
-    "Find Blue Mystical Jewel":   "Beenie Cluster",   # Howth (rule in rules.py)
-    "Find Purple Mystical Jewel": "Blimbo Village",
-    "Find Red Mystical Jewel":    "Act 4",
+    "Eat Blue Mystical Jewel":   "Beenie Cluster",   # Howth (rule in rules.py)
+    "Eat Purple Mystical Jewel": "Blimbo Village",
+    "Eat Red Mystical Jewel":    "Act 4",
 }
 
 
