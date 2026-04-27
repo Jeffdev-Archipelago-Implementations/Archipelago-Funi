@@ -63,7 +63,7 @@ def create_and_connect_regions(world: FuniRaccoonWorld) -> None:
     # --- Parking Lot (25 items, no truck needed via Goo Office shortcut) ---
     connect("Overworld", "Parking Lot", items(25))
     connect("Parking Lot", "Parking Lot (Truck)", Has("Kei Truck"))
-    connect("Parking Lot", "Trasco", Has("Fridge Key"))
+    connect("Parking Lot", "Trasco")
     connect("Trasco", "Fridge World")
 
     # --- Act 3 (third floor, 30 items) ---

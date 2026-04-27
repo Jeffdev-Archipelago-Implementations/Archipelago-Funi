@@ -126,12 +126,13 @@ def set_all_location_rules(world: FuniRaccoonWorld) -> None:
         rule(loc_name, Has("Progressive Mystical Dumbbell", count))
 
     # Within Billdal Mines, Michi and Broken Wall also require the Pickaxe
-    rule("Store Michi",       Has("Pickaxe"))
-    rule("Store Broken Wall", Has("Pickaxe"))
-    rule("Find Michi Cat",    Has("Pickaxe"))
+    # rule("Store Michi",       Has("Pickaxe"))
+    # rule("Store Broken Wall", Has("Pickaxe"))
+    # rule("Find Michi Cat",    Has("Pickaxe"))
 
     # Folding Chair requires the Priestess (in addition to the dumbbell weight rule)
-    rule("Store Folding Chair", Has("Progressive Mystical Dumbbell", 1) & Has("Priestess"))
+    rule("Store Folding Chair",        Has("Progressive Mystical Dumbbell", 1) & Has("Priestess"))
+    rule("Store GREENISH ABOMINATION", Has("Priestess"))
 
     # Green, Blue, and Red Mystical Jewels require 1 dumbbell
     rule("Eat Green Mystical Jewel", Has("Progressive Mystical Dumbbell", 1))
