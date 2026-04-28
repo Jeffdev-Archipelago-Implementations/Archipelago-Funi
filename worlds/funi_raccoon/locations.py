@@ -41,7 +41,7 @@ LOCATION_NAME_TO_ID = {
     "Store Pirate": 1042,
     "Store Pirate 2": 1043,
     "Store Pirate 3": 1044,
-    "Store UNDER CONSTRUCTION": 1045,
+    "Store ROAD NOT DONE": 1045,
     "Store Microwave": 1048,
     "Store Toaster": 1049,
     "Store Logan Left": 1050,
@@ -184,10 +184,58 @@ LOCATION_NAME_TO_ID = {
     "Find Media Player Hat": 6006,
     "Find Fridge Crown":     6007,
     "Find Patty Hat":        6008,
-    "Eat Green Mystical Jewel":  7001,
-    "Eat Blue Mystical Jewel":   7002,
-    "Eat Purple Mystical Jewel": 7003,
-    "Eat Red Mystical Jewel":    7004,
+    "Eat Green Mystical Gem":  7001,
+    "Eat Blue Mystical Gem":   7002,
+    "Eat Purple Mystical Gem": 7003,
+    "Eat Red Mystical Gem":    7004,
+    
+    # --- Euro collectibles ---
+    "Norwich: Euro at train station":               8001,
+    "Norwich: Euro at chicken farm island":         8002,
+    "Chicken Farm: Euro on pillar":                 8003,
+    "Gym: Euro on roof with vending machine":       8004,
+    "Gym: Euro behind building":                    8005,
+    "Gym: Euro at end of train tracks":             8006,
+    "Gym: Euro on bee sign under clouds":           8007,
+    "Tyre: Euro on roof of entrance":               8008,
+    "Water Zone: Euro under stairs underwater":     8009,
+    "Beenie Death: Euro behind cross":              8010,
+    "Canyon: Euro on edge of canyon":               8011,
+    "Trasco: Euro on edge wall 1":                  8012,
+    "Trasco: Euro on edge wall 2":                  8013,
+    "Trasco: Euro on edge wall 3":                  8014,
+    "City: Euro on watertower":                     8015,
+    "City: Euro near boat on edge of city":         8016,
+    "City: Euro at Robin P. Bobin Store":           8017,
+    "City: Euro next to Robin P. Bobin Store":      8018,
+    "City: Euro near Guns stands":                  8019,
+    "City: Euro under city on girders 1":           8020,
+    "City: Euro under city on girders 2":           8021,
+    "City: Euro under city on girders 3":           8022,
+    "City: Euro under city on girders 4":           8023,
+    "City: Euro near cheese wheel":                 8024,
+    "Village: Euro on castle":                      8025,
+    "Village: Euro near furnace":                   8026,
+    "Wastes: Euro on top of breakfast building":    8027,
+    "Wastes: Euro on top of chinese building":      8028,
+    "Wastes: Euro on lower end of chinese building": 8029,
+    "Wastes: Euro on sad therapy sign building":    8030,
+    "Wastes: Euro nearby mystical dumbbell in flowers": 8031,
+    "Wastes: Euro on road edge":                    8032,
+    "Wastes: Euro on dead blimbos building":        8033,
+    "Desert: Euro on tilted building":              8034,
+    "Desert: Euro in moai head pool 1":             8035,
+    "Desert: Euro in moai head pool 2":             8036,
+    "Desert: Euro in moai head pool 3":             8037,
+    "Desert: Euro in moai head pool 4":             8038,
+    "Desert: Euro in moai head pool 5":             8039,
+    "Desert: Euro in moai head pool 6":             8040,
+    "Desert: Euro on pillar near MFC":              8041,
+    "Desert: Euro on yellow house roof in fridge land": 8042,
+    "Desert: Euro in New Buisness HQ":              8043,
+    "Desert: Euro on top of fridge land skull":     8044,
+    "Desert: Euro on blue house roof in fridge land": 8045,
+    "Desert: Euro in BLMB nuclear reactor":         8046,
 }
 
 
@@ -361,16 +409,76 @@ LOCATION_REGION: dict[str, str] = {
     "Find Fridge Crown":     "Act 4",
     "Find Patty Hat":        "Act 3 Blimbo",     # Blimbo City
 
-    # --- Mystical Jewels ---
+    # --- Mystical Gems ---
     # Green Jewel is in Da Water Zone / Act 1 (Overworld, default — no entry needed)
-    "Eat Blue Mystical Jewel":   "Beenie Cluster",   # Howth (rule in rules.py)
-    "Eat Purple Mystical Jewel": "Blimbo Village",
-    "Eat Red Mystical Jewel":    "Act 4",
+    "Eat Blue Mystical Gem":   "Beenie Cluster",   # Howth (rule in rules.py)
+    "Eat Purple Mystical Gem": "Blimbo Village",
+    "Eat Red Mystical Gem":    "Act 4",
+
+    # --- Euro collectibles ---
+    # Norwich and Gym/Tyre/Water Zone are Act 1 (Overworld, default — no entry needed)
+    "Chicken Farm: Euro on pillar":                     "Chicken Farm",
+    "Beenie Death: Euro behind cross":                  "Beenie Cluster",
+    "Trasco: Euro on edge wall 1":                      "Trasco",
+    "Trasco: Euro on edge wall 2":                      "Trasco",
+    "Trasco: Euro on edge wall 3":                      "Trasco",
+    "City: Euro on watertower":                         "Act 3 Blimbo",
+    "City: Euro near boat on edge of city":             "Act 3 Blimbo",
+    "City: Euro at Robin P. Bobin Store":               "Act 3 Blimbo",
+    "City: Euro next to Robin P. Bobin Store":          "Act 3 Blimbo",
+    "City: Euro near Guns stands":                      "Act 3 Blimbo",
+    "City: Euro under city on girders 1":               "Act 3 Blimbo",
+    "City: Euro under city on girders 2":               "Act 3 Blimbo",
+    "City: Euro under city on girders 3":               "Act 3 Blimbo",
+    "City: Euro under city on girders 4":               "Act 3 Blimbo",
+    "City: Euro near cheese wheel":                     "Act 3 Blimbo",
+    "Village: Euro on castle":                          "Blimbo Village",
+    "Village: Euro near furnace":                       "Blimbo Village",
+    "Canyon: Euro on edge of canyon":                   "Act 4",
+    "Wastes: Euro on top of breakfast building":        "Act 4",
+    "Wastes: Euro on top of chinese building":          "Act 4",
+    "Wastes: Euro on lower end of chinese building":    "Act 4",
+    "Wastes: Euro on sad therapy sign building":        "Act 4",
+    "Wastes: Euro nearby mystical dumbbell in flowers": "Act 4",
+    "Wastes: Euro on road edge":                        "Act 4",
+    "Wastes: Euro on dead blimbos building":            "Act 4",
+    "Desert: Euro on tilted building":                  "Act 4",
+    "Desert: Euro in moai head pool 1":                 "Act 4",
+    "Desert: Euro in moai head pool 2":                 "Act 4",
+    "Desert: Euro in moai head pool 3":                 "Act 4",
+    "Desert: Euro in moai head pool 4":                 "Act 4",
+    "Desert: Euro in moai head pool 5":                 "Act 4",
+    "Desert: Euro in moai head pool 6":                 "Act 4",
+    "Desert: Euro on pillar near MFC":                  "Act 4",
+    "Desert: Euro on yellow house roof in fridge land": "Act 4",
+    "Desert: Euro in New Buisness HQ":                  "Act 4",
+    "Desert: Euro on top of fridge land skull":         "Act 4",
+    "Desert: Euro on blue house roof in fridge land":   "Act 4",
+    "Desert: Euro in BLMB nuclear reactor":             "Act 4",
 }
 
 
 def get_location_names_with_ids(location_names: list[str]) -> dict[str, int | None]:
     return {location_name: LOCATION_NAME_TO_ID[location_name] for location_name in location_names}
+
+
+_EURO_LOCATIONS  = {n for n, i in LOCATION_NAME_TO_ID.items() if 8001 <= i <= 8999}
+_GEM_LOCATIONS   = {n for n, i in LOCATION_NAME_TO_ID.items() if 7001 <= i <= 7999}
+_CAT_LOCATIONS   = {n for n, i in LOCATION_NAME_TO_ID.items() if 5001 <= i <= 5999}
+_HAT_LOCATIONS   = {n for n, i in LOCATION_NAME_TO_ID.items() if 6001 <= i <= 6999}
+
+
+def get_excluded_locations(world: FuniRaccoonWorld) -> set[str]:
+    excluded: set[str] = set()
+    if not world.options.eurosanity:
+        excluded |= _EURO_LOCATIONS
+    if not world.options.gemsanity:
+        excluded |= _GEM_LOCATIONS
+    if not world.options.catsanity:
+        excluded |= _CAT_LOCATIONS
+    if not world.options.hatsanity:
+        excluded |= _HAT_LOCATIONS
+    return excluded
 
 
 def create_all_locations(world: FuniRaccoonWorld) -> None:
@@ -379,7 +487,10 @@ def create_all_locations(world: FuniRaccoonWorld) -> None:
 
 
 def create_regular_locations(world: FuniRaccoonWorld) -> None:
+    excluded = get_excluded_locations(world)
     for loc_name, loc_id in LOCATION_NAME_TO_ID.items():
+        if loc_name in excluded:
+            continue
         region_name = LOCATION_REGION.get(loc_name, "Overworld")
         region = world.get_region(region_name)
         region.add_locations({loc_name: loc_id}, FuniRaccoonLocation)

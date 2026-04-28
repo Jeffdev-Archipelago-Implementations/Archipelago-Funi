@@ -40,7 +40,7 @@ ITEM_NAME_TO_ID = {
     "Pirate": 42,
     "Pirate 2": 43,
     "Pirate 3": 44,
-    "UNDER CONSTRUCTION": 45,
+    "ROAD NOT DONE": 45,
     "Microwave": 48,
     "Toaster": 49,
     "Logan Left": 50,
@@ -169,10 +169,10 @@ ITEM_NAME_TO_ID = {
     "Media Player Hat": 506,
     "Fridge Crown":     507,
     "Patty Hat":        508,
-    "Green Mystical Jewel":  601,
-    "Blue Mystical Jewel":   602,
-    "Purple Mystical Jewel": 603,
-    "Red Mystical Jewel":    604,
+    "Green Mystical Gem":  601,
+    "Blue Mystical Gem":   602,
+    "Purple Mystical Gem": 603,
+    "Red Mystical Gem":    604,
 }
 
 # Items should have a defined default classification.
@@ -207,7 +207,7 @@ DEFAULT_ITEM_CLASSIFICATIONS = {
     "Crack Head": ItemClassification.progression,
     "Crayon": ItemClassification.progression,
     "Cricket Bat": ItemClassification.progression,
-    "UNDER CONSTRUCTION": ItemClassification.progression,
+    "ROAD NOT DONE": ItemClassification.progression,
     "Microwave": ItemClassification.progression,
     "Toaster": ItemClassification.progression,
     "Logan Left": ItemClassification.progression,
@@ -336,11 +336,11 @@ DEFAULT_ITEM_CLASSIFICATIONS = {
     "Media Player Hat": ItemClassification.filler,
     "Fridge Crown":     ItemClassification.filler,
     "Patty Hat":        ItemClassification.filler,
-    "Green Mystical Jewel":  ItemClassification.filler,
-    "Blue Mystical Jewel":   ItemClassification.filler,
-    "Purple Mystical Jewel": ItemClassification.filler,
-    "Red Mystical Jewel":    ItemClassification.filler,
-    "100 Euro": ItemClassification.useful,
+    "Green Mystical Gem":  ItemClassification.filler,
+    "Blue Mystical Gem":   ItemClassification.filler,
+    "Purple Mystical Gem": ItemClassification.filler,
+    "Red Mystical Gem":    ItemClassification.filler,
+    "100 Euro": ItemClassification.filler,
     "10 Euro": ItemClassification.filler,
 }
 
@@ -373,6 +373,16 @@ def create_all_items(world: FuniRaccoonWorld) -> None:
     # Progressive Mystical Dumbbell needs 4 copies total (SMALL needs 1, MEDIUM 2, HEAVY 3; 4th is extra).
     # The loop above already created 1, so add 3 more.
     itempool += [world.create_item("Progressive Mystical Dumbbell") for _ in range(3)]
+
+    # Always include one of each hat/gem when their sanity option is on.
+    _HATS = ["Sun Hat", "Sombrero", "Top Hat", "Jester Hat",
+             "Raccoon Hat", "Media Player Hat", "Fridge Crown", "Patty Hat"]
+    _GEMS = ["Green Mystical Gem", "Blue Mystical Gem",
+             "Purple Mystical Gem", "Red Mystical Gem"]
+    if world.options.hatsanity:
+        itempool += [world.create_item(name) for name in _HATS]
+    if world.options.gemsanity:
+        itempool += [world.create_item(name) for name in _GEMS]
 
     # Fill remaining location slots with filler (10 Euro / 100 Euro).
     number_of_unfilled_locations = len(world.multiworld.get_unfilled_locations(world.player))

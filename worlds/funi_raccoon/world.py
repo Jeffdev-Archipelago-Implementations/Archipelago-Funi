@@ -39,7 +39,15 @@ class FuniRaccoonWorld(World):
         return items.get_random_filler_item_name(self)
 
     def fill_slot_data(self) -> Mapping[str, Any]:
-        return {}
+        return {
+            "eurosanity": self.options.eurosanity.value,
+            "gemsanity":  self.options.gemsanity.value,
+            "catsanity":  self.options.catsanity.value,
+            "hatsanity":  self.options.hatsanity.value,
+        }
 
     def interpret_slot_data(self, slot_data: dict) -> dict:
+        for option_name in ("eurosanity", "gemsanity", "catsanity", "hatsanity"):
+            if option_name in slot_data:
+                getattr(self.options, option_name).value = slot_data[option_name]
         return slot_data

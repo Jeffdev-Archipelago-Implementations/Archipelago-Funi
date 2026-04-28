@@ -130,14 +130,10 @@ def set_all_location_rules(world: FuniRaccoonWorld) -> None:
     # rule("Store Broken Wall", Has("Pickaxe"))
     # rule("Find Michi Cat",    Has("Pickaxe"))
 
-    # Folding Chair requires the Priestess (in addition to the dumbbell weight rule)
-    rule("Store Folding Chair",        Has("Progressive Mystical Dumbbell", 1) & Has("Priestess"))
-    rule("Store GREENISH ABOMINATION", Has("Priestess"))
-
-    # Green, Blue, and Red Mystical Jewels require 1 dumbbell
-    rule("Eat Green Mystical Jewel", Has("Progressive Mystical Dumbbell", 1))
-    rule("Eat Blue Mystical Jewel",  Has("Progressive Mystical Dumbbell", 1))
-    rule("Eat Red Mystical Jewel",   Has("Progressive Mystical Dumbbell", 1))
+    # Green, Blue, and Red Mystical Gems require 1 dumbbell
+    rule("Eat Green Mystical Gem", Has("Progressive Mystical Dumbbell", 1))
+    rule("Eat Blue Mystical Gem",  Has("Progressive Mystical Dumbbell", 1))
+    rule("Eat Red Mystical Gem",   Has("Progressive Mystical Dumbbell", 1))
 
     # Higher Kei Truck scores require at least one truck upgrade
     _truck_upgrade = HasFromList("Kei Truck Boost", "Kei Truck Toaster", count=1)
