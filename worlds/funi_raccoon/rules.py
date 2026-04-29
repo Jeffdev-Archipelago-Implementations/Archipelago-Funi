@@ -126,9 +126,21 @@ def set_all_location_rules(world: FuniRaccoonWorld) -> None:
         rule(loc_name, Has("Progressive Mystical Dumbbell", count))
 
     # Within Billdal Mines, Michi and Broken Wall also require the Pickaxe
-    # rule("Store Michi",       Has("Pickaxe"))
-    # rule("Store Broken Wall", Has("Pickaxe"))
-    # rule("Find Michi Cat",    Has("Pickaxe"))
+    rule("Store Michi",       Has("Pickaxe"))
+    rule("Store Broken Wall", Has("Pickaxe"))
+    rule("Find Michi Cat",    Has("Pickaxe"))
+
+    # Vending Machine is required for Brob Energy
+    rule("Store Brob Energy", Has("Vending Machine (accepts doubloons)"))
+
+    # Chicken must already be available to float before going back to Norwich with it
+    rule("Store Chicken", Has("Chicken"))
+
+    # Crisp is required for the Crisps undying love location
+    rule("Store Crisps Undying Love", Has("Crisp"))
+
+    # Flowian is required for the Lughling location
+    rule("Store Lughling", Has("Flowian"))
 
     # Green, Blue, and Red Mystical Gems require 1 dumbbell
     rule("Eat Green Mystical Gem", Has("Progressive Mystical Dumbbell", 1))

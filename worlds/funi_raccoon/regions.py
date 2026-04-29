@@ -12,29 +12,63 @@ if TYPE_CHECKING:
 
 # Item-count thresholds that unlock floors/clusters (based on dumpster score):
 #   15  - Museum opens
-#   25  - Beenie Cluster (Beenie HQ, Goo Office, Parking Lot) unlocks
-#   30  - Third floor (act3) opens
-#   35  - Blimbo City cluster unlocks (also requires Kei Truck)
-#   50  - Post-apocalypse areas (act4) accessible (also requires Kei Truck)
-#   100 - Gully Special Island / Belgium Waffle (also requires Kei Truck)
+#   25  - Beenie HQ (Act 2 cluster); Trasco Carpark via Goo Office shortcut
+#   30  - Driving Test (Act 3 entry, contains Kei Truck)
+#   35  - Blimbo City cluster opens (also requires Kei Truck)
+#   50  - Post-apocalypse areas (Act 4) accessible (also requires Kei Truck)
+#   100 - The Gully accessible (also requires Kei Truck)
 
 ALL_REGIONS = [
+    # Act 1 (Norwich starting area)
     "Overworld",
+    "Behrman Gymnasium",
+    "Tyre World",
     "Chicken Farm",
+    "HAT STORE",
+    "Cleaners",
+    "Da Waaaater Zoooone",
     "Museum",
-    "Beenie Cluster",
+    # Act 2 (Beenie cluster)
+    "Beenie HQ",
+    "Chamber",
+    "Beenie Factory",
+    "The Process",
+    "THE MACHINE",
+    "Fish Vore",
+    "Goo Office",
     "Underground Metro",
-    "Parking Lot",
-    "Parking Lot (Truck)",
+    "Beenies Ascension",
+    "Fields",
+    "Fellowship",
+    "Howth",
+    # Act 3
+    "Driving Test",
+    "Cricket",
+    "Garden World",
+    "The Forest",
+    "Trasco Carpark",
+    "Trasco Carpark (Truck)",
     "Trasco",
     "Fridge World",
-    "Act 3",
     "Blimbo Village",
-    "Billdal Mines",
-    "Act 3 Blimbo",
-    "RBMK",
-    "Act 4",
-    "Gully Special Island",
+    "Petrol Station",
+    "Bildal Mines",
+    "Purgatory",
+    # Act 3 Blimbo City cluster
+    "Blimbo City",
+    "Pub",
+    "BLMB Reactor Core",
+    # Act 4 (post-apocalypse)
+    "Messed Up Canyon",
+    "Pharmacy",
+    "The Desert",
+    "The Well of Knowledge",
+    "Cliffs of Nowher",
+    "Da Dryyyy Zoooone",
+    "Municipal Wastes",
+    "The Gully",
+    # Raccoon Central Station
+    "Raccoon Central Station",
 ]
 
 
@@ -46,39 +80,63 @@ def create_and_connect_regions(world: FuniRaccoonWorld) -> None:
     def connect(from_name: str, to_name: str, rule=None) -> None:
         world.create_entrance(regions[from_name], regions[to_name], rule)
 
-    # --- Act 1 special ---
-    connect("Overworld", "Chicken Farm")
+    # --- Act 1 ---
+    connect("Overworld", "Behrman Gymnasium")
+    connect("Overworld", "Tyre World")
+    connect("Overworld", "Chicken Farm", Has("Vending Machine (accepts doubloons)"))
+    connect("Overworld", "HAT STORE")
+    connect("Overworld", "Cleaners")
+    connect("Overworld", "Da Waaaater Zoooone", Has("unregistered firearm"))
+    connect("Overworld", "Raccoon Central Station")
 
     # --- Museum (15 items) ---
     connect("Overworld", "Museum", items(15))
 
-    # --- Beenie Cluster (act2, 25 items) ---
-    # Covers Beenie HQ, Beenie Factory, The Proccess, THE MACHINE,
-    # Fish Vore, Fields, Patrick's Secret Place, Goo Office, and Howth
-    connect("Overworld", "Beenie Cluster", items(25))
+    # --- Act 2 (25 items) — Beenie HQ is the entry hub ---
+    connect("Overworld", "Beenie HQ", items(25))
+    connect("Beenie HQ", "Chamber")
+    connect("Beenie HQ", "Beenie Factory")
+    connect("Beenie HQ", "The Process", Has("Goo"))
+    connect("Beenie HQ", "THE MACHINE", Has("Goo"))
+    connect("Beenie HQ", "Fish Vore")
+    connect("Beenie HQ", "Goo Office", Has("Goo"))
+    connect("Beenie HQ", "Beenies Ascension")
+    connect("Beenie HQ", "Fields")
+    connect("Beenie HQ", "Fellowship", Has("Priestess"))
+    connect("Beenie HQ", "Howth", Has("Funi Marketable Plushie"))
+    # Underground Metro opens after THE MACHINE
+    connect("THE MACHINE", "Underground Metro")
 
-    # Underground Metro only accessible after Beenie is replaced in THE MACHINE
-    connect("Beenie Cluster", "Underground Metro")
+    # --- Trasco Carpark via Goo Office shortcut (25 items, no truck needed) ---
+    connect("Goo Office", "Trasco Carpark")
+    connect("Trasco Carpark", "Trasco Carpark (Truck)", Has("Kei Truck"))
+    connect("Trasco Carpark", "Trasco")
+    connect("Trasco", "Fridge World", Has("Fridge Key"))
 
-    # --- Parking Lot (25 items, no truck needed via Goo Office shortcut) ---
-    connect("Overworld", "Parking Lot", items(25))
-    connect("Parking Lot", "Parking Lot (Truck)", Has("Kei Truck"))
-    connect("Parking Lot", "Trasco")
-    connect("Trasco", "Fridge World")
+    # --- Act 3 (30 items) — Driving Test is the entry, contains Kei Truck ---
+    connect("Overworld", "Driving Test", items(30))
+    connect("Driving Test", "Blimbo Village", Has("Kei Truck"))
+    connect("Blimbo Village", "Cricket")
+    connect("Blimbo Village", "Garden World", Has("Pickaxe"))
+    connect("Blimbo Village", "The Forest")
+    connect("Blimbo Village", "Purgatory")
+    connect("Blimbo Village", "Trasco Carpark")  # also reachable from Act 3
+    connect("Blimbo Village", "Petrol Station")
+    connect("Blimbo Village", "Bildal Mines", Has("Old Ass Rusty Ass Key"))
 
-    # --- Act 3 (third floor, 30 items) ---
-    # Kei Truck is findable in Act 3; Blimbo Village requires the truck
-    connect("Overworld", "Act 3", items(30))
-    connect("Act 3", "Blimbo Village", Has("Kei Truck"))
-    connect("Blimbo Village", "Billdal Mines")
+    # --- Blimbo City cluster (35 items + Kei Truck) ---
+    connect("Overworld", "Blimbo City", items(35) & Has("Kei Truck"))
+    connect("Blimbo City", "Pub")
+    connect("Blimbo City", "BLMB Reactor Core", Has("Kei Truck"))
 
-    # --- Act 3 Blimbo / Blimbo City (35 items + Kei Truck) ---
-    connect("Overworld", "Act 3 Blimbo", items(35) & Has("Kei Truck"))
-    connect("Act 3 Blimbo", "RBMK", Has("Kei Truck"))
+    # --- Act 4 (50 items + Kei Truck) ---
+    connect("Overworld", "Messed Up Canyon", items(50) & Has("Kei Truck"))
+    connect("Messed Up Canyon", "Pharmacy")
+    connect("Messed Up Canyon", "The Desert")
+    connect("Messed Up Canyon", "The Well of Knowledge")
+    connect("Messed Up Canyon", "Cliffs of Nowher")
+    connect("Messed Up Canyon", "Da Dryyyy Zoooone", Has("Anti Sads"))
+    connect("Messed Up Canyon", "Municipal Wastes")
 
-    # --- Act 4 (post-apocalypse, 50 items + Kei Truck) ---
-    connect("Overworld", "Act 4", items(50) & Has("Kei Truck"))
-
-    # --- Gully Special Island (100 items + Kei Truck) ---
-    # This is basically entirely just for the Belgian Waffle lol
-    connect("Overworld", "Gully Special Island", items(100) & Has("Kei Truck"))
+    # --- The Gully (100 items + Kei Truck) ---
+    connect("Overworld", "The Gully", items(100) & Has("Kei Truck") & Has("Progressive Cooling Rods", 3))

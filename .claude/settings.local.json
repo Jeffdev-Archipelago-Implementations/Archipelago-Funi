@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c \"import ast; ast.parse\\(open\\('worlds/funi_raccoon/regions.py'\\).read\\(\\)\\); ast.parse\\(open\\('worlds/funi_raccoon/locations.py'\\).read\\(\\)\\); print\\('OK'\\)\")",
+      "Bash(python -c ' *)"
+    ]
+  }
+}

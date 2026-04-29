@@ -243,218 +243,305 @@ class FuniRaccoonLocation(Location):
     game = "Funi Raccoon Game"
 
 
-# Maps each location to the region it belongs in. Anything not listed defaults to Overworld.
+# Maps each location to the region it belongs in based on the item's first
+# in-game appearance. Items that first appear in Norwich (the starting area)
+# are not listed and default to "Overworld".
 LOCATION_REGION: dict[str, str] = {
-    # --- Chicken Farm ---
-    "Store Chicken": "Chicken Farm",
+    # --- Act 1 ---
+    # Behrman Gymnasium
+    "Store Radio":                                "Behrman Gymnasium",
+    "Store Concrete":                             "Behrman Gymnasium",
+    "Store Moai":                                 "Behrman Gymnasium",
+    "Store Paracetamol 650mg":                    "Behrman Gymnasium",
+    "Store Digital Polaroid Camera":              "Behrman Gymnasium",
+    "Find Concrete Cat":                          "Behrman Gymnasium",
+    "Gym: Euro on roof with vending machine":     "Behrman Gymnasium",
+    "Gym: Euro behind building":                  "Behrman Gymnasium",
+    "Gym: Euro at end of train tracks":           "Behrman Gymnasium",
+    "Gym: Euro on bee sign under clouds":         "Behrman Gymnasium",
 
-    # --- Museum (3 items) ---
-    "Store Spoonsweet":     "Museum",
-    "Store Wriks Celler":   "Museum",
-    "Store Logan Left":     "Museum",   # also Beenie HQ; Museum is earlier
-    "Store Logan Right":    "Museum",
-    "Store Pawn":           "Museum",   # also Garden World; Museum is earlier
-    "Store Rook":           "Museum",
-    "Store Bishop":         "Museum",
-    "Store King":           "Museum",
-    "Store Queen":          "Museum",
-    "Store Barrel":         "Museum",   # also Blimbo Forest / Canyon; Museum is earlier
+    # Tyre World
+    "Store Orphan Tyre":                          "Tyre World",
+    "Store Papa Tyre":                            "Tyre World",
+    "Store Smoker":                               "Tyre World",
+    "Store Broken Truck":                         "Tyre World",
+    "Tyre: Euro on roof of entrance":             "Tyre World",
 
-    # --- Beenie Cluster (act2, 25 items) ---
-    # Beenie HQ, Beenie Factory, The Proccess, THE MACHINE,
-    # Fish Vore, Fields, Patrick's Secret Place, Goo Office, Howth
-    "Store Buisness Man":               "Beenie Cluster",
-    "Store Pirate":                     "Beenie Cluster",
-    "Store Pirate 2":                   "Beenie Cluster",
-    "Store Pirate 3":                   "Beenie Cluster",
-    "Store Microwave":                  "Beenie Cluster",
-    "Store Evil Fish":                  "Beenie Cluster",
-    "Store Feral Dog":                  "Beenie Cluster",
-    "Store Windmill":                   "Beenie Cluster",
-    "Store Marketable Plushie Box":     "Beenie Cluster",
-    "Store Goo":                        "Beenie Cluster",
-    "Store Beenie the Birthday Boy":    "Beenie Cluster",
-    "Store Letter B":                   "Beenie Cluster",
-    "Store Candle":                     "Beenie Cluster",
-    "Store Funi Marketable Plushie":    "Beenie Cluster",
-    "Store Patrick O'Hara":             "Beenie Cluster",
-    "Store Crisp":                      "Beenie Cluster",
-    "Store Flower":                     "Beenie Cluster",
-    "Store Divider":                    "Beenie Cluster",
-    "Store Office Chair":               "Beenie Cluster",
-    "Store Desk":                       "Beenie Cluster",
-    "Store Beach Ball":                 "Beenie Cluster",
-    "Store Beenie Saves The Orphans":   "Beenie Cluster",
-    "Store Plimbo":                     "Beenie Cluster",
-    "Store Goo Container":              "Beenie Cluster",
-    "Store Kettle":                     "Beenie Cluster",   # via Howth
-    "Store Street Lamp":                "Beenie Cluster",   # via Howth / Parking Lot
+    # Chicken Farm
+    "Store Chicken":                              "Chicken Farm",
+    "Find Sombrero":                              "Chicken Farm",
+    "Chicken Farm: Euro on pillar":               "Chicken Farm",
 
-    # --- Underground Metro (Funi Marketable Plushie, within Beenie Cluster) ---
-    "Store Keksz": "Underground Metro",
-    "Find Keksz Cat": "Underground Metro",
+    # HAT STORE
+    "Store Mr. Heel":                             "HAT STORE",
+    "Store Ms. Heel":                             "HAT STORE",
 
-    # --- Parking Lot (25 items, no truck, via Goo Office shortcut) ---
-    "Store Ougham Stone":           "Parking Lot",
-    "Store Coffee Shop (closed)":   "Parking Lot",
-    "Store Trolley":                "Parking Lot",
-    "Store Fridge Key":             "Parking Lot",
-    "Store CHEESE":                 "Parking Lot",
+    # Cleaners
+    "Store Washing Machine":                      "Cleaners",
 
-    # --- Parking Lot (Truck) ---
-    "Store CD Player":                  "Parking Lot (Truck)",
-    "Store Patrice":                    "Parking Lot (Truck)",
-    "Get 1000 Score with Kei Truck":    "Parking Lot (Truck)",
-    "Get 2000 Score with Kei Truck":    "Parking Lot (Truck)",
-    "Get 3000 Score with Kei Truck":    "Parking Lot (Truck)",
-    "Get 4000 Score with Kei Truck":    "Parking Lot (Truck)",
-    "Get 5000 Score with Kei Truck":    "Parking Lot (Truck)",
-    "Purchase Kei Truck Radio":         "Parking Lot (Truck)",
-    "Purchase Kei Truck Toaster":       "Parking Lot (Truck)",
-    "Purchase Kei Truck Boost":         "Parking Lot (Truck)",
+    # Da Waaaater Zoooone
+    "Store Gizmo":                                "Da Waaaater Zoooone",
+    "Store Fan":                                  "Da Waaaater Zoooone",
+    "Find Gizmo Cat":                             "Da Waaaater Zoooone",
+    "Eat Green Mystical Gem":                     "Da Waaaater Zoooone",
+    "Water Zone: Euro under stairs underwater":   "Da Waaaater Zoooone",
 
-    # --- Trasco ---
-    "Store Fridge": "Trasco",
+    # Museum (15 items)
+    "Store Logan Left":                           "Museum",
+    "Store Logan Right":                          "Museum",
+    "Store Pawn":                                 "Museum",
+    "Store Rook":                                 "Museum",
+    "Store Bishop":                               "Museum",
+    "Store King":                                 "Museum",
+    "Store Queen":                                "Museum",
+    "Store Spoonsweet":                           "Museum",
+    "Store Wriks Celler":                         "Museum",
+    "Store Barrel":                               "Museum",
+    "Eat Mystical Dumbbell 2":                    "Museum",
+    "Find Top Hat":                               "Museum",
 
-    # --- Fridge World ---
-    "Store Milk Klubnika":             "Fridge World",
-    "Store Fridge King's Cooling Rod": "Fridge World",
+    # --- Act 2 (25 items) ---
+    # Beenie HQ
+    "Store Buisness Man":                         "Beenie HQ",
+    "Store Evil Fish":                            "Beenie HQ",
+    "Store Toaster":                              "Beenie HQ",
+    "Store Beenie the Birthday Boy":              "Beenie HQ",
+    "Store Letter B":                             "Beenie HQ",
+    "Store Patrick O'Hara":                       "Beenie HQ",
+    "Store Goo":                                  "Beenie HQ",
+    "Store Beach Ball":                           "Beenie HQ",
+    "Store Brick":                                "Beenie HQ",
+    "Store Book Stack":                           "Beenie HQ",
+    "Store Crayon":                               "Beenie HQ",
+    "Beenie Death: Euro behind cross":            "Beenie HQ",
 
-    # --- Act 3 (third floor, 30 items) — Kei Truck findable here ---
-    "Store Kei Truck": "Act 3",
+    # Chamber (Cat 4 first appearance)
+    "Store Michi":                                "Chamber",
+    "Find Michi Cat":                             "Chamber",
 
-    # --- Blimbo Village (within Act 3, requires Kei Truck) ---
-    "Store Cricket Bat":            "Blimbo Village",
-    "Store Cricket":                "Blimbo Village",
-    "Store Blimbo Village Sign":    "Blimbo Village",
-    'Store "Cow"':                  "Blimbo Village",
-    "Store Old Ass Rusty Ass Key":  "Blimbo Village",
-    "Store Gas Drum":               "Blimbo Village",
-    "Store Flowian":                "Blimbo Village",
-    "Store Eel Can":                "Blimbo Village",
-    "Store Binocublo":              "Blimbo Village",
-    "Store Gas Pumpo":              "Blimbo Village",
-    "Store Police Car":             "Blimbo Village",
-    "Store Bomb":                   "Blimbo Village",
-    "Store Knifedog":               "Blimbo Village",
-    "Store Radio Blimbo":           "Blimbo Village",
-    "Store Fone":                   "Blimbo Village",
-    "Store Door":                   "Blimbo Village",
-    "Store UNDER CONSTRUCTION":     "Blimbo Village",
-    "Store Under Construction":     "Blimbo Village",
-    "Purchase Kei Truck Radio":     "Blimbo Village",
-    "Purchase Kei Truck Boost":     "Blimbo Village",
-    "Purchase Kei Truck Toaster":   "Blimbo Village",
+    # Beenie Factory
+    "Store Marketable Plushie Box":               "Beenie Factory",
+    "Store Funi Marketable Plushie":              "Beenie Factory",
+    "Store Plimbo":                               "Beenie Factory",
 
-    # --- Billdal Mines (Old Ass Rusty Ass Key, within Blimbo Village) ---
-    "Store Pickaxe":               "Billdal Mines",
-    "Store boingler":              "Billdal Mines",
-    "Find boingler Cat":           "Billdal Mines",
-    "Store Broken Wall":           "Billdal Mines",  # also needs Pickaxe (location rule in rules.py)
-    "Store Michi":                 "Billdal Mines",  # also needs Pickaxe (location rule in rules.py)
-    "Find Michi Cat":              "Billdal Mines",  # also needs Pickaxe (location rule in rules.py)
-    "Store Plimbo's Cooling Rod":  "Billdal Mines",
+    # The Process
+    "Store Microwave":                            "The Process",
+    "Find Jester Hat":                            "The Process",
 
-    # --- Act 3 Blimbo (35 items) ---
-    "Store Coffee Cup":         "Act 3 Blimbo",
-    "Store Evil Raccoon":       "Act 3 Blimbo",
-    "Store Naked Fella":        "Act 3 Blimbo",
-    "Store Bin":                "Act 3 Blimbo",
-    "Store Suitcase":           "Act 3 Blimbo",
-    "Store Bell Boy":           "Act 3 Blimbo",
-    "Store Yolky":              "Act 3 Blimbo",
-    "Store Crayon":             "Act 3 Blimbo",
-    "Store Dice":               "Act 3 Blimbo",
-    "Store Average Canadian":   "Act 3 Blimbo",
-    "Store Patrick O Bobble":   "Act 3 Blimbo",
-    "Store Cheeky Pint":        "Act 3 Blimbo",   # Pub, connected from Blimbo City
-    "Store Radiator":           "Act 3 Blimbo",
+    # THE MACHINE
+    "Store Beenie, Our Savior":                   "THE MACHINE",
+    "Store Candle":                               "THE MACHINE",
+    "Store Beenie Saves The Orphans":             "THE MACHINE",
 
-    # --- RBMK (Kei Truck, within Act 3 Blimbo) ---
-    "Store Warning":      "RBMK",
-    "Store Demon Core":   "RBMK",
-    "Store Cooling Rod":  "RBMK",
+    # Fish Vore
+    "Store Pirate":                               "Fish Vore",
+    "Store Pirate 2":                             "Fish Vore",
+    "Store Pirate 3":                             "Fish Vore",
 
-    # --- Act 4 (post-apocalypse, 50 items) ---
-    "Store Anti Sads":      "Act 4",
-    "Store Leeches!":       "Act 4",
-    "Store Hazelnut":       "Act 4",
-    "Store BookBlo":        "Act 4",
-    "Store Cheese Wife":    "Act 4",
-    "Store Snowball":       "Act 4",
-    "Store Fridgling":      "Act 4",
-    "Store Chairapist":     "Act 4",
-    "Store Synthesizer":    "Act 4",
-    "Store Real Gym":       "Act 4",
-    "Store Butterfly":      "Act 4",
-    "Store Lughling":               "Act 4",
-    "Store Orb":                    "Act 4",
-    "Store Funi Raccoon Game Deluxe": "Act 4",
+    # Goo Office
+    "Store Divider":                              "Goo Office",
+    "Store Office Chair":                         "Goo Office",
+    "Store Desk":                                 "Goo Office",
+    "Store Goo Container":                        "Goo Office",
 
-    # --- Gully Special Island (100 items) ---
-    "Store Belgium Waffle": "Gully Special Island",
+    # Underground Metro
+    "Store Keksz":                                "Underground Metro",
+    "Find Keksz Cat":                             "Underground Metro",
+    "Store Bench":                                "Underground Metro",
 
-    # --- Mystical Dumbbells ---
-    "Eat Mystical Dumbbell 2": "Museum",    # Beenie Museum, Act 2
-    "Eat Mystical Dumbbell 3": "Trasco",    # Trasco parking lot, Act 3
-    "Eat Mystical Dumbbell 4": "Act 4",     # Municipal Wastes
+    # Beenies Ascension
+    "Store Priestess":                            "Beenies Ascension",
 
-    # --- Hats ---
-    # Sun Hat is in Norwich / Act 1 (Overworld, default — no entry needed)
-    "Find Sombrero":         "Chicken Farm",
-    "Find Top Hat":          "Museum",
-    "Find Jester Hat":       "Beenie Cluster",   # The Process
-    "Find Raccoon Hat":      "Blimbo Village",
-    "Find Media Player Hat": "Blimbo Village",
-    "Find Fridge Crown":     "Act 4",
-    "Find Patty Hat":        "Act 3 Blimbo",     # Blimbo City
+    # Fields
+    "Store Feral Dog":                            "Fields",
+    "Store Windmill":                             "Fields",
+    "Store Crisp":                                "Fields",
+    "Store Crisps Undying Love":                  "Fields",
 
-    # --- Mystical Gems ---
-    # Green Jewel is in Da Water Zone / Act 1 (Overworld, default — no entry needed)
-    "Eat Blue Mystical Gem":   "Beenie Cluster",   # Howth (rule in rules.py)
-    "Eat Purple Mystical Gem": "Blimbo Village",
-    "Eat Red Mystical Gem":    "Act 4",
+    # Fellowship of the Church of the Beenie
+    "Store Folding Chair":                        "Fellowship",
+    "Store GREENISH ABOMINATION":                 "Fellowship",
 
-    # --- Euro collectibles ---
-    # Norwich and Gym/Tyre/Water Zone are Act 1 (Overworld, default — no entry needed)
-    "Chicken Farm: Euro on pillar":                     "Chicken Farm",
-    "Beenie Death: Euro behind cross":                  "Beenie Cluster",
-    "Trasco: Euro on edge wall 1":                      "Trasco",
-    "Trasco: Euro on edge wall 2":                      "Trasco",
-    "Trasco: Euro on edge wall 3":                      "Trasco",
-    "City: Euro on watertower":                         "Act 3 Blimbo",
-    "City: Euro near boat on edge of city":             "Act 3 Blimbo",
-    "City: Euro at Robin P. Bobin Store":               "Act 3 Blimbo",
-    "City: Euro next to Robin P. Bobin Store":          "Act 3 Blimbo",
-    "City: Euro near Guns stands":                      "Act 3 Blimbo",
-    "City: Euro under city on girders 1":               "Act 3 Blimbo",
-    "City: Euro under city on girders 2":               "Act 3 Blimbo",
-    "City: Euro under city on girders 3":               "Act 3 Blimbo",
-    "City: Euro under city on girders 4":               "Act 3 Blimbo",
-    "City: Euro near cheese wheel":                     "Act 3 Blimbo",
-    "Village: Euro on castle":                          "Blimbo Village",
-    "Village: Euro near furnace":                       "Blimbo Village",
-    "Canyon: Euro on edge of canyon":                   "Act 4",
-    "Wastes: Euro on top of breakfast building":        "Act 4",
-    "Wastes: Euro on top of chinese building":          "Act 4",
-    "Wastes: Euro on lower end of chinese building":    "Act 4",
-    "Wastes: Euro on sad therapy sign building":        "Act 4",
-    "Wastes: Euro nearby mystical dumbbell in flowers": "Act 4",
-    "Wastes: Euro on road edge":                        "Act 4",
-    "Wastes: Euro on dead blimbos building":            "Act 4",
-    "Desert: Euro on tilted building":                  "Act 4",
-    "Desert: Euro in moai head pool 1":                 "Act 4",
-    "Desert: Euro in moai head pool 2":                 "Act 4",
-    "Desert: Euro in moai head pool 3":                 "Act 4",
-    "Desert: Euro in moai head pool 4":                 "Act 4",
-    "Desert: Euro in moai head pool 5":                 "Act 4",
-    "Desert: Euro in moai head pool 6":                 "Act 4",
-    "Desert: Euro on pillar near MFC":                  "Act 4",
-    "Desert: Euro on yellow house roof in fridge land": "Act 4",
-    "Desert: Euro in New Buisness HQ":                  "Act 4",
-    "Desert: Euro on top of fridge land skull":         "Act 4",
-    "Desert: Euro on blue house roof in fridge land":   "Act 4",
-    "Desert: Euro in BLMB nuclear reactor":             "Act 4",
+    # Howth
+    "Store Street Lamp":                          "Howth",
+    "Store Kettle":                               "Howth",
+    "Eat Blue Mystical Gem":                      "Howth",
+
+    # --- Act 3 (30 items) ---
+    # Driving Test (Act 3 entry, contains Kei Truck)
+    "Store Kei Truck":                            "Driving Test",
+
+    # Cricket
+    "Store Cricket Bat":                          "Cricket",
+    "Store Cricket":                              "Cricket",
+
+    # Garden World
+    "Store Flowian":                              "Garden World",
+    "Store Radio Blimbo":                         "Garden World",
+
+    # The Forest
+    "Store Eel Can":                              "The Forest",
+
+    # Trasco Carpark (25 items via Goo Office shortcut, no truck needed)
+    "Store Coffee Shop (closed)":                 "Trasco Carpark",
+    "Store Trolley":                              "Trasco Carpark",
+    "Store Fridge Key":                           "Trasco Carpark",
+    "Eat Mystical Dumbbell 3":                    "Trasco Carpark",
+    "Trasco: Euro on edge wall 1":                "Trasco Carpark",
+    "Trasco: Euro on edge wall 2":                "Trasco Carpark",
+    "Trasco: Euro on edge wall 3":                "Trasco Carpark",
+
+    # Trasco Carpark (Truck) — requires Kei Truck
+    "Store CD Player":                            "Trasco Carpark (Truck)",
+    "Store Patrice":                              "Trasco Carpark (Truck)",
+    "Get 1000 Score with Kei Truck":              "Trasco Carpark (Truck)",
+    "Get 2000 Score with Kei Truck":              "Trasco Carpark (Truck)",
+    "Get 3000 Score with Kei Truck":              "Trasco Carpark (Truck)",
+    "Get 4000 Score with Kei Truck":              "Trasco Carpark (Truck)",
+    "Get 5000 Score with Kei Truck":              "Trasco Carpark (Truck)",
+    "Purchase Kei Truck Radio":                   "Trasco Carpark (Truck)",
+    "Purchase Kei Truck Toaster":                 "Trasco Carpark (Truck)",
+    "Purchase Kei Truck Boost":                   "Trasco Carpark (Truck)",
+
+    # Trasco
+    "Store Fridge":                               "Trasco",
+
+    # Fridge World
+    "Store Milk Klubnika":                        "Fridge World",
+
+    # Blimbo Village (requires Kei Truck)
+    "Store Blimbo Village Sign":                  "Blimbo Village",
+    "Store Gas Drum":                             "Blimbo Village",
+    "Store Ougham Stone":                         "Blimbo Village",
+    'Store "Cow"':                                "Blimbo Village",
+    "Store CHEESE":                               "Blimbo Village",
+    "Store Door":                                 "Blimbo Village",
+    "Store Under Construction":                   "Blimbo Village",
+    "Store ROAD NOT DONE":                        "Blimbo Village",
+    "Store Old Ass Rusty Ass Key":                "Blimbo Village",
+    "Store Fone":                                 "Blimbo Village",
+    "Find Raccoon Hat":                           "Blimbo Village",
+    "Find Media Player Hat":                      "Blimbo Village",
+    "Eat Purple Mystical Gem":                    "Blimbo Village",
+    "Village: Euro on castle":                    "Blimbo Village",
+    "Village: Euro near furnace":                 "Blimbo Village",
+
+    # Petrol Station (within the Blimbo Village area)
+    "Store Gas Pumpo":                            "Petrol Station",
+    "Store Binocublo":                            "Petrol Station",
+    "Store Police Car":                           "Petrol Station",
+    "Store Knifedog":                             "Petrol Station",
+    "Store Bomb":                                 "Petrol Station",
+
+    # Bildal Mines (from Blimbo Village)
+    "Store Pickaxe":                              "Bildal Mines",
+    "Store boingler":                             "Bildal Mines",
+    "Find boingler Cat":                          "Bildal Mines",
+    "Store Broken Wall":                          "Bildal Mines",
+
+    # Purgatory
+    "Store My Favourite Chair":                   "Purgatory",
+
+    # --- Blimbo City cluster (35 items + Kei Truck) ---
+    "Store Coffee Cup":                           "Blimbo City",
+    "Store Radiator":                             "Blimbo City",
+    "Store Evil Raccoon":                         "Blimbo City",
+    "Store Naked Fella":                          "Blimbo City",
+    "Store Bin":                                  "Blimbo City",
+    "Store Suitcase":                             "Blimbo City",
+    "Store Bell Boy":                             "Blimbo City",
+    "Store Yolky":                                "Blimbo City",
+    "Store Patrick O Bobble":                     "Blimbo City",
+    "Store Dice":                                 "Blimbo City",
+    'Store "TV Remote"':                          "Blimbo City",
+    "Store Average Canadian":                     "Blimbo City",
+    "Store Apple":                                "Blimbo City",
+    "Store Flower Blimbo":                        "Blimbo City",
+    "Find Patty Hat":                             "Blimbo City",
+    "City: Euro on watertower":                   "Blimbo City",
+    "City: Euro near boat on edge of city":       "Blimbo City",
+    "City: Euro at Robin P. Bobin Store":         "Blimbo City",
+    "City: Euro next to Robin P. Bobin Store":    "Blimbo City",
+    "City: Euro near Guns stands":                "Blimbo City",
+    "City: Euro under city on girders 1":         "Blimbo City",
+    "City: Euro under city on girders 2":         "Blimbo City",
+    "City: Euro under city on girders 3":         "Blimbo City",
+    "City: Euro under city on girders 4":         "Blimbo City",
+    "City: Euro near cheese wheel":               "Blimbo City",
+
+    # Pub (from Blimbo City)
+    "Store Cheeky Pint":                          "Pub",
+
+    # BLMB Reactor Core (from Blimbo City + Kei Truck)
+    "Store Cooling Rod":                          "BLMB Reactor Core",
+    "Store Demon Core":                           "BLMB Reactor Core",
+    "Store Warning":                              "BLMB Reactor Core",
+
+    # --- Act 4 (50 items + Kei Truck) ---
+    # Messed Up Canyon
+    "Store BookBlo":                              "Messed Up Canyon",
+    "Store Cheese Wife":                          "Messed Up Canyon",
+    "Canyon: Euro on edge of canyon":             "Messed Up Canyon",
+
+    # Pharmacy
+    "Store Anti Sads":                            "Pharmacy",
+    "Store Leeches!":                             "Pharmacy",
+
+    # The Desert
+    "Store Snowball":                             "The Desert",
+    "Store Fridgling":                            "The Desert",
+    "Store Fridge King's Cooling Rod":            "The Desert",
+    "Find Fridge Crown":                          "The Desert",
+    "Desert: Euro on tilted building":            "The Desert",
+    "Desert: Euro in moai head pool 1":           "The Desert",
+    "Desert: Euro in moai head pool 2":           "The Desert",
+    "Desert: Euro in moai head pool 3":           "The Desert",
+    "Desert: Euro in moai head pool 4":           "The Desert",
+    "Desert: Euro in moai head pool 5":           "The Desert",
+    "Desert: Euro in moai head pool 6":           "The Desert",
+    "Desert: Euro on pillar near MFC":            "The Desert",
+    "Desert: Euro on yellow house roof in fridge land": "The Desert",
+    "Desert: Euro in New Buisness HQ":            "The Desert",
+    "Desert: Euro on top of fridge land skull":   "The Desert",
+    "Desert: Euro on blue house roof in fridge land":   "The Desert",
+    "Desert: Euro in BLMB nuclear reactor":       "The Desert",
+
+    # The Well of Knowledge
+    "Store Hazelnut":                             "The Well of Knowledge",
+
+    # Cliffs of Nowher
+    "Store Butterfly":                            "Cliffs of Nowher",
+    "Store Lughling":                             "Cliffs of Nowher",
+
+    # Da Dryyyy Zoooone
+    "Eat Red Mystical Gem":                       "Da Dryyyy Zoooone",
+
+    # Municipal Wastes
+    "Store Chairapist":                           "Municipal Wastes",
+    "Store Synthesizer":                          "Municipal Wastes",
+    "Store Real Gym":                             "Municipal Wastes",
+    "Store Funbells":                             "Municipal Wastes",
+    "Store Plimbo's Cooling Rod":                 "Municipal Wastes",
+    "Store Lloyd":                                "Municipal Wastes",
+    "Eat Mystical Dumbbell 4":                    "Municipal Wastes",
+    "Wastes: Euro on top of breakfast building":  "Municipal Wastes",
+    "Wastes: Euro on top of chinese building":    "Municipal Wastes",
+    "Wastes: Euro on lower end of chinese building": "Municipal Wastes",
+    "Wastes: Euro on sad therapy sign building":  "Municipal Wastes",
+    "Wastes: Euro nearby mystical dumbbell in flowers": "Municipal Wastes",
+    "Wastes: Euro on road edge":                  "Municipal Wastes",
+    "Wastes: Euro on dead blimbos building":      "Municipal Wastes",
+
+    # The Gully (100 items + Kei Truck)
+    "Store Belgium Waffle":                       "The Gully",
+    "Store Orb":                                  "The Gully",
+
+    # Raccoon Central Station
+    "Store Manhole Cover":                        "Raccoon Central Station",
+    "Store Old Sign":                             "Raccoon Central Station",
+    "Store Warning Sign":                         "Raccoon Central Station",
+    "Store Area Sign":                            "Raccoon Central Station",
+    "Store Funi Raccoon Game Deluxe":             "Raccoon Central Station",
 }
 
 
