@@ -6,7 +6,7 @@ Funi Raccoon Game is a silly 3D collectathon about a Raccoon stealing things and
 
 ## What does randomization do to this game?
 
-- All collectible types, including: Gems, Cats, Hats, Mystical Dumbbells and purchaseable upgrades for the Kei Truck are randomized and send checks.
+- All collectible types, including: Gems, Cats, Hats, Mystical Dumbbells, Euros (if enabled) and purchaseable upgrades for the Kei Truck are randomized and send checks.
 - Getting specific amounts of points sends checks
 - Throwing items into the dumpster will send a check.
 
@@ -16,7 +16,7 @@ All Dumpster items, hats, gems, cats, dumbbell increases, and progressive coolin
 
 ## Where is the options page?
 
-There are currently no options for this game. There are planned to be some in the future.
+The options yaml can be made via the Options Creator in the Archipelago launcher. It requires Archipelago v0.6.7 to run.
 
 ## Disclaimer
 

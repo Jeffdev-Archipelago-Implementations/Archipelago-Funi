@@ -29,6 +29,7 @@ ALL_REGIONS = [
     "Cleaners",
     "Da Waaaater Zoooone",
     "Museum",
+    "Raccoon Central Station",
     # Act 2 (Beenie cluster)
     "Beenie HQ",
     "Chamber",
@@ -68,8 +69,6 @@ ALL_REGIONS = [
     "Da Dryyyy Zoooone",
     "Municipal Wastes",
     "The Gully",
-    # Raccoon Central Station
-    "Raccoon Central Station",
 ]
 
 

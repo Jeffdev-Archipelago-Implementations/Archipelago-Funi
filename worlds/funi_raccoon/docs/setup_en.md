@@ -21,4 +21,4 @@
 5. If you want to rejoin a game, open the same slot **before connecting** and then while in game, press F5, type in info, and connect. If done properly, you should be sent to the dumpster (or canyon, if you are in Act 4)
  
 ## Troubleshooting
-- This mod is **unstable**. This means there can and probably will be bugs! Please report bugs in the [Archipelago Discord Server](https://discord.gg/8Z65BR2), by going to [the Funi Raccoon Game thread](https://discord.com/channels/731205301247803413/1482650071987130379) and pinging Jeffdev.
+- Please report bugs in the [Archipelago Discord Server](https://discord.gg/8Z65BR2), by going to [the Funi Raccoon Game thread](https://discord.com/channels/731205301247803413/1482650071987130379) and pinging Jeffdev.

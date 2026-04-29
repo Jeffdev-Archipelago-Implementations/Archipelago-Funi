@@ -321,7 +321,7 @@ LOCATION_REGION: dict[str, str] = {
     "Store Crayon":                               "Beenie HQ",
     "Beenie Death: Euro behind cross":            "Beenie HQ",
 
-    # Chamber (Cat 4 first appearance)
+    # Chamber
     "Store Michi":                                "Chamber",
     "Find Michi Cat":                             "Chamber",
 
@@ -397,7 +397,7 @@ LOCATION_REGION: dict[str, str] = {
     "Trasco: Euro on edge wall 2":                "Trasco Carpark",
     "Trasco: Euro on edge wall 3":                "Trasco Carpark",
 
-    # Trasco Carpark (Truck) — requires Kei Truck
+    # Trasco Carpark (Truck) - requires Kei Truck
     "Store CD Player":                            "Trasco Carpark (Truck)",
     "Store Patrice":                              "Trasco Carpark (Truck)",
     "Get 1000 Score with Kei Truck":              "Trasco Carpark (Truck)",

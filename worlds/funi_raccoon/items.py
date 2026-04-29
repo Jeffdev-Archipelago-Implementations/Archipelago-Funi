@@ -401,7 +401,7 @@ def create_all_items(world: FuniRaccoonWorld) -> None:
     if world.options.gemsanity and world.options.goal.value != Goal.option_lugh:
         itempool += [world.create_item(name) for name in _GEMS]
 
-    # Fill remaining location slots with filler (10 Euro / 100 Euro).
+    # Fill remaining location slots with filler.
     number_of_unfilled_locations = len(world.multiworld.get_unfilled_locations(world.player))
     needed_filler = number_of_unfilled_locations - len(itempool)
     itempool += [world.create_filler() for _ in range(needed_filler)]
