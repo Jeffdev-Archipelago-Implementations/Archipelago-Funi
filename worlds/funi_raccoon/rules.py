@@ -6,6 +6,7 @@ from rule_builder.rules import Has, HasFromList
 
 from .items import ITEM_NAME_TO_ID
 from .locations import LOCATION_NAME_TO_ID
+from .options import Goal
 
 if TYPE_CHECKING:
     from .world import FuniRaccoonWorld
@@ -116,7 +117,10 @@ def set_all_rules(world: FuniRaccoonWorld) -> None:
 
 def set_all_location_rules(world: FuniRaccoonWorld) -> None:
     def rule(name: str, r) -> None:
-        world.set_rule(world.get_location(name), r)
+        try:
+            world.set_rule(world.get_location(name), r)
+        except KeyError:
+            return
 
     # Victory requires all 3 Progressive Cooling Rods, Orb, Kei Truck, and 50 items received
     rule("Victory", Has("Progressive Cooling Rod", 3) & Has("Orb") & Has("Kei Truck") & items(50))
@@ -155,4 +159,19 @@ def set_all_location_rules(world: FuniRaccoonWorld) -> None:
 
 
 def set_completion_condition(world: FuniRaccoonWorld) -> None:
-    world.set_completion_rule(Has("Progressive Cooling Rod", 3) & Has("Orb") & Has("Kei Truck") & items(50))
+    if world.options.goal.value == Goal.option_museum:
+        world.set_completion_rule(
+            Has("Progressive Cooling Rod", 3) & Has("Belgium Waffle") & Has("Kei Truck") & items(100)
+        )
+    elif world.options.goal.value == Goal.option_fellowship:
+        world.set_completion_rule(
+            Has("Priestess") & Has("GREENISH ABOMINATION") & items(25)
+        )
+    elif world.options.goal.value == Goal.option_lugh:
+        world.set_completion_rule(
+            Has("Green Mystical Gem") & Has("Blue Mystical Gem") & Has("Purple Mystical Gem") & Has("Red Mystical Gem") & Has("Kei Truck") & items(50)
+        )
+    else:
+        world.set_completion_rule(
+            Has("Progressive Cooling Rod", 3) & Has("Orb") & Has("Kei Truck") & items(50)
+        )

@@ -3,6 +3,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from BaseClasses import Item, ItemClassification
+from .options import Goal
 
 if TYPE_CHECKING:
     from .world import FuniRaccoonWorld
@@ -344,6 +345,19 @@ DEFAULT_ITEM_CLASSIFICATIONS = {
     "10 Euro": ItemClassification.filler,
 }
 
+_GEMS = {
+    "Green Mystical Gem",
+    "Blue Mystical Gem",
+    "Purple Mystical Gem",
+    "Red Mystical Gem",
+}
+
+
+def is_progression_item(world: FuniRaccoonWorld, name: str) -> bool:
+    if name in _GEMS:
+        return world.options.gemsanity and world.options.goal.value == Goal.option_lugh
+    return DEFAULT_ITEM_CLASSIFICATIONS[name] == ItemClassification.progression
+
 
 class FuniRaccoonItem(Item):
     game = "Funi Raccoon Game"
@@ -354,7 +368,9 @@ def get_random_filler_item_name(world: FuniRaccoonWorld) -> str:
 
 
 def create_item_with_correct_classification(world: FuniRaccoonWorld, name: str) -> FuniRaccoonItem:
-    classification = DEFAULT_ITEM_CLASSIFICATIONS[name]
+    classification = ItemClassification.progression if (
+        world.options.goal.value == Goal.option_lugh and name in _GEMS
+    ) else DEFAULT_ITEM_CLASSIFICATIONS[name]
     return FuniRaccoonItem(name, classification, ITEM_NAME_TO_ID[name], world.player)
 
 
@@ -362,8 +378,8 @@ def create_all_items(world: FuniRaccoonWorld) -> None:
     # Create one of every progression item.
     itempool: list[Item] = [
         world.create_item(name)
-        for name, classification in DEFAULT_ITEM_CLASSIFICATIONS.items()
-        if classification == ItemClassification.progression
+        for name in DEFAULT_ITEM_CLASSIFICATIONS
+        if is_progression_item(world, name)
     ]
 
     # Progressive Cooling Rod needs 3 copies total (Victory requires all 3).
@@ -374,14 +390,15 @@ def create_all_items(world: FuniRaccoonWorld) -> None:
     # The loop above already created 1, so add 3 more.
     itempool += [world.create_item("Progressive Mystical Dumbbell") for _ in range(3)]
 
-    # Always include one of each hat/gem when their sanity option is on.
+    # Always include one of each hat when hat sanity is on.
     _HATS = ["Sun Hat", "Sombrero", "Top Hat", "Jester Hat",
              "Raccoon Hat", "Media Player Hat", "Fridge Crown", "Patty Hat"]
-    _GEMS = ["Green Mystical Gem", "Blue Mystical Gem",
-             "Purple Mystical Gem", "Red Mystical Gem"]
     if world.options.hatsanity:
         itempool += [world.create_item(name) for name in _HATS]
-    if world.options.gemsanity:
+
+    # Mystical gems are included as progression items for Lugh,
+    # otherwise only when gem sanity is on.
+    if world.options.gemsanity and world.options.goal.value != Goal.option_lugh:
         itempool += [world.create_item(name) for name in _GEMS]
 
     # Fill remaining location slots with filler (10 Euro / 100 Euro).

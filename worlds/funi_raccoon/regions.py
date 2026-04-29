@@ -141,4 +141,4 @@ def create_and_connect_regions(world: FuniRaccoonWorld) -> None:
     connect("Messed Up Canyon", "Municipal Wastes")
 
     # --- The Gully (100 items + Kei Truck) ---
-    connect("Overworld", "The Gully", items(100) & Has("Kei Truck") & Has("Progressive Cooling Rods", 3))
+    connect("Overworld", "The Gully", items(100) & Has("Kei Truck") & Has("Progressive Cooling Rod", 3))
