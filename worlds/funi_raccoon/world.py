@@ -22,17 +22,31 @@ class FuniRaccoonWorld(World):
 
     origin_region_name = "Overworld"
 
+    ut_can_gen_without_yaml = True
+
+    def generate_early(self) -> None:
+        if self.options.goal.value == FuniRaccoon_options.Goal.option_lugh:
+            self.options.gemsanity.value = True
+
+        re_gen_passthrough = getattr(self.multiworld, "re_gen_passthrough", {})
+        if re_gen_passthrough and self.game in re_gen_passthrough:
+            # Get the passed through slot data from the real generation
+            slot_data: dict[str, Any] = re_gen_passthrough[self.game]
+
+            slot_options: dict[str, Any] = slot_data.get("options", {})
+            for key, value in slot_options.items():
+                opt = getattr(self.options, key, None)
+                if opt is not None:
+                    setattr(self.options, key, opt.from_any(value))
+
     def create_regions(self) -> None:
-        self._enforce_lugh_gemsanity()
         regions.create_and_connect_regions(self)
         locations.create_all_locations(self)
 
     def set_rules(self) -> None:
-        self._enforce_lugh_gemsanity()
         rules.set_all_rules(self)
 
     def create_items(self) -> None:
-        self._enforce_lugh_gemsanity()
         items.create_all_items(self)
 
     def create_item(self, name: str) -> items.FuniRaccoonItem:
@@ -41,26 +55,17 @@ class FuniRaccoonWorld(World):
     def get_filler_item_name(self) -> str:
         return items.get_random_filler_item_name(self)
 
-    def _enforce_lugh_gemsanity(self) -> None:
-        if self.options.goal.value == FuniRaccoon_options.Goal.option_lugh:
-            self.options.gemsanity.value = True
-
     def fill_slot_data(self) -> Mapping[str, Any]:
-        self._enforce_lugh_gemsanity()
         return {
             "eurosanity": self.options.eurosanity.value,
             "gemsanity":  self.options.gemsanity.value,
             "catsanity":  self.options.catsanity.value,
             "hatsanity":  self.options.hatsanity.value,
             "goal":       self.options.goal.value,
-            "DeathLink":  bool(self.options.death_link.value),
+            "deathlink":  bool(self.options.death_link.value),
+            "options": self.options.as_dict("eurosanity", "gemsanity", "catsanity", "hatsanity", "goal"),
         }
 
-    def interpret_slot_data(self, slot_data: dict) -> dict:
-        for option_name in ("eurosanity", "gemsanity", "catsanity", "hatsanity", "goal"):
-            if option_name in slot_data:
-                getattr(self.options, option_name).value = slot_data[option_name]
-        if "DeathLink" in slot_data:
-            self.options.death_link.value = slot_data["DeathLink"]
-        self._enforce_lugh_gemsanity()
+    @staticmethod
+    def interpret_slot_data(slot_data: dict[str, Any]) -> dict[str, Any]:
         return slot_data
