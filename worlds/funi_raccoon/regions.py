@@ -22,6 +22,7 @@ ALL_REGIONS = [
     # Act 1 (Norwich starting area)
     "Overworld",
     "Behrman Gymnasium",
+    "Behrman Speedway",
     "Tyre World",
     "Chicken Farm",
     "HAT STORE",
@@ -82,6 +83,7 @@ def create_and_connect_regions(world: FuniRaccoonWorld) -> None:
 
     # --- Act 1 ---
     connect("Overworld", "Behrman Gymnasium")
+    connect("Overworld", "Behrman Speedway", Has("Vending Machine (accepts doubloons)") & Has("Progressive Mystical Dumbbell", 4))
     connect("Overworld", "Tyre World")
     connect("Overworld", "Chicken Farm", Has("Vending Machine (accepts doubloons)"))
     connect("Overworld", "HAT STORE")

@@ -163,10 +163,10 @@ LOCATION_NAME_TO_ID = {
     "Get 3000 Score with Kei Truck": 2003,
     "Get 4000 Score with Kei Truck": 2004,
     "Get 5000 Score with Kei Truck": 2005,
-    "Eat Mystical Dumbbell 1": 3001,
-    "Eat Mystical Dumbbell 2": 3002,
-    "Eat Mystical Dumbbell 3": 3003,
-    "Eat Mystical Dumbbell 4": 3004,
+    "Eat Mystical Dumbbell - Act 1": 3001,
+    "Eat Mystical Dumbbell - Act 2": 3002,
+    "Eat Mystical Dumbbell - Act 3": 3003,
+    "Eat Mystical Dumbbell - Act 4": 3004,
     "Purchase Kei Truck Radio":   4001,
     "Purchase Kei Truck Toaster": 4002,
     "Purchase Kei Truck Boost":   4003,
@@ -236,6 +236,9 @@ LOCATION_NAME_TO_ID = {
     "Desert: Euro on top of fridge land skull":     8044,
     "Desert: Euro on blue house roof in fridge land": 8045,
     "Desert: Euro in BLMB nuclear reactor":         8046,
+
+    # --- Random Extras ---
+    "Complete Behrman Speedway in under 1 minute": 9001,
 }
 
 
@@ -259,6 +262,9 @@ LOCATION_REGION: dict[str, str] = {
     "Gym: Euro behind building":                  "Behrman Gymnasium",
     "Gym: Euro at end of train tracks":           "Behrman Gymnasium",
     "Gym: Euro on bee sign under clouds":         "Behrman Gymnasium",
+
+    # Behrman Speedway
+    "Complete Behrman Speedway in under 1 minute":"Behrman Speedway",
 
     # Tyre World
     "Store Orphan Tyre":                          "Tyre World",
