@@ -13,8 +13,7 @@ if TYPE_CHECKING:
 # Item-count thresholds that unlock floors/clusters (based on dumpster score):
 #   15  - Museum opens
 #   25  - Beenie HQ (Act 2 cluster); Trasco Carpark via Goo Office shortcut
-#   30  - Driving Test (Act 3 entry, contains Kei Truck)
-#   35  - Blimbo City cluster opens (also requires Kei Truck)
+#   35  - Driving Test/Blimbo City (Act 3 entry, contains Kei Truck)
 #   50  - Post-apocalypse areas (Act 4) accessible (also requires Kei Truck)
 #   100 - The Gully accessible (also requires Kei Truck)
 
@@ -82,9 +81,9 @@ def create_and_connect_regions(world: FuniRaccoonWorld) -> None:
 
     # --- Act 1 ---
     connect("Overworld", "Behrman Gymnasium")
-    connect("Overworld", "Behrman Speedway", Has("Vending Machine (accepts doubloons)") & Has("Progressive Mystical Dumbbell", 4))
+    connect("Overworld", "Behrman Speedway", Has("Vending Machine (accepts doubloons)") & Has("Brob Energy") & Has("Progressive Mystical Dumbbell", 4))
     connect("Overworld", "Tyre World")
-    connect("Overworld", "Chicken Farm", Has("Vending Machine (accepts doubloons)"))
+    connect("Overworld", "Chicken Farm", Has("Vending Machine (accepts doubloons)") & Has("Brob Energy"))
     connect("Overworld", "HAT STORE")
     connect("Overworld", "Cleaners")
     connect("Overworld", "Da Waaaater Zoooone", Has("unregistered firearm"))
@@ -114,8 +113,8 @@ def create_and_connect_regions(world: FuniRaccoonWorld) -> None:
     connect("Trasco Carpark", "Trasco")
     connect("Trasco", "Fridge World", Has("Fridge Key"))
 
-    # --- Act 3 (30 items) — Driving Test is the entry, contains Kei Truck ---
-    connect("Overworld", "Driving Test", items(30))
+    # --- Act 3 (35 items) — Driving Test is the entry, contains Kei Truck ---
+    connect("Overworld", "Driving Test", items(35))
     connect("Driving Test", "Blimbo Village", Has("Kei Truck"))
     connect("Blimbo Village", "Cricket")
     connect("Blimbo Village", "Garden World", Has("Pickaxe"))

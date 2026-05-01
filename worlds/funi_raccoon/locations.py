@@ -15,7 +15,6 @@ LOCATION_NAME_TO_ID = {
     "Store Funbells": 1003,
     "Store Lama/Alpaca Maybe?": 1004,
     "Store Gym": 1005,
-    "Store Kei Truck": 1006,
     "Store Vending Machine (accepts doubloons)": 1007,
     "Store DOUBLOONS": 1008,
     "Store Radio": 1009,
@@ -264,7 +263,7 @@ LOCATION_REGION: dict[str, str] = {
     "Gym: Euro on bee sign under clouds":         "Behrman Gymnasium",
 
     # Behrman Speedway
-    "Complete Behrman Speedway in under 1 minute":"Behrman Speedway",
+    "Complete Behrman Speedway in 1 minute":      "Behrman Speedway",
 
     # Tyre World
     "Store Orphan Tyre":                          "Tyre World",
@@ -276,6 +275,7 @@ LOCATION_REGION: dict[str, str] = {
     # Chicken Farm
     "Store Chicken":                              "Chicken Farm",
     "Find Sombrero":                              "Chicken Farm",
+    "Norwich: Euro at chicken farm island":       "Chicken Farm",
     "Chicken Farm: Euro on pillar":               "Chicken Farm",
 
     # HAT STORE
@@ -303,7 +303,7 @@ LOCATION_REGION: dict[str, str] = {
     "Store Spoonsweet":                           "Museum",
     "Store Wriks Celler":                         "Museum",
     "Store Barrel":                               "Museum",
-    "Eat Mystical Dumbbell 2":                    "Museum",
+    "Eat Mystical Dumbbell - Act 2":              "Museum",
     "Find Top Hat":                               "Museum",
 
     # --- Act 2 (25 items) ---
@@ -373,7 +373,7 @@ LOCATION_REGION: dict[str, str] = {
     "Store Kettle":                               "Howth",
     "Eat Blue Mystical Gem":                      "Howth",
 
-    # --- Act 3 (30 items) ---
+    # --- Act 3 (35 items) ---
     # Driving Test (Act 3 entry, contains Kei Truck)
     "Store Kei Truck":                            "Driving Test",
 
@@ -392,7 +392,7 @@ LOCATION_REGION: dict[str, str] = {
     "Store Coffee Shop (closed)":                 "Trasco Carpark",
     "Store Trolley":                              "Trasco Carpark",
     "Store Fridge Key":                           "Trasco Carpark",
-    "Eat Mystical Dumbbell 3":                    "Trasco Carpark",
+    "Eat Mystical Dumbbell - Act 3":              "Trasco Carpark",
     "Trasco: Euro on edge wall 1":                "Trasco Carpark",
     "Trasco: Euro on edge wall 2":                "Trasco Carpark",
     "Trasco: Euro on edge wall 3":                "Trasco Carpark",
@@ -529,7 +529,7 @@ LOCATION_REGION: dict[str, str] = {
     "Store Funbells":                             "Municipal Wastes",
     "Store Plimbo's Cooling Rod":                 "Municipal Wastes",
     "Store Lloyd":                                "Municipal Wastes",
-    "Eat Mystical Dumbbell 4":                    "Municipal Wastes",
+    "Eat Mystical Dumbbell - Act 4":              "Municipal Wastes",
     "Wastes: Euro on top of breakfast building":  "Municipal Wastes",
     "Wastes: Euro on top of chinese building":    "Municipal Wastes",
     "Wastes: Euro on lower end of chinese building": "Municipal Wastes",

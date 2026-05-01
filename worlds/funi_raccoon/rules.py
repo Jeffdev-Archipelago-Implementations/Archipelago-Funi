@@ -110,6 +110,17 @@ def items(count: int) -> HasFromList:
     return HasFromList(*DUMPSTER_ITEMS, count=count)
 
 
+def _goal_rule(world: FuniRaccoonWorld):
+    goal = world.options.goal.value
+    if goal == Goal.option_museum:
+        return Has("Progressive Cooling Rod", 3) & Has("Belgium Waffle") & Has("Kei Truck") & items(100)
+    if goal == Goal.option_fellowship:
+        return Has("Priestess") & Has("GREENISH ABOMINATION") & items(25)
+    if goal == Goal.option_lugh:
+        return Has("Green Mystical Gem") & Has("Blue Mystical Gem") & Has("Purple Mystical Gem") & Has("Red Mystical Gem") & Has("Kei Truck") & items(50)
+    return Has("Progressive Cooling Rod", 3) & Has("Orb") & Has("Kei Truck") & items(50)
+
+
 def set_all_rules(world: FuniRaccoonWorld) -> None:
     set_all_location_rules(world)
     set_completion_condition(world)
@@ -122,8 +133,7 @@ def set_all_location_rules(world: FuniRaccoonWorld) -> None:
         except KeyError:
             return
 
-    # Victory requires all 3 Progressive Cooling Rods, Orb, Kei Truck, and 50 items received
-    rule("Victory", Has("Progressive Cooling Rod", 3) & Has("Orb") & Has("Kei Truck") & items(50))
+    rule("Victory", _goal_rule(world))
 
     # Dumbbell size rules for store locations (TINY items have no requirement)
     for loc_name, count in _DUMBBELL_REQUIREMENTS.items():
@@ -145,6 +155,9 @@ def set_all_location_rules(world: FuniRaccoonWorld) -> None:
 
     # Flowian is required for the Lughling location
     rule("Store Lughling", Has("Flowian"))
+    
+    # Act 4 is required for Funi Raccoon Game Deluxe
+    rule("Store Funi Raccoon Game Deluxe", Has("Kei Truck") & items(50))
 
     # Green, Blue, and Red Mystical Gems require 1 dumbbell
     rule("Eat Green Mystical Gem", Has("Progressive Mystical Dumbbell", 1))
@@ -159,19 +172,4 @@ def set_all_location_rules(world: FuniRaccoonWorld) -> None:
 
 
 def set_completion_condition(world: FuniRaccoonWorld) -> None:
-    if world.options.goal.value == Goal.option_museum:
-        world.set_completion_rule(
-            Has("Progressive Cooling Rod", 3) & Has("Belgium Waffle") & Has("Kei Truck") & items(100)
-        )
-    elif world.options.goal.value == Goal.option_fellowship:
-        world.set_completion_rule(
-            Has("Priestess") & Has("GREENISH ABOMINATION") & items(25)
-        )
-    elif world.options.goal.value == Goal.option_lugh:
-        world.set_completion_rule(
-            Has("Green Mystical Gem") & Has("Blue Mystical Gem") & Has("Purple Mystical Gem") & Has("Red Mystical Gem") & Has("Kei Truck") & items(50)
-        )
-    else:
-        world.set_completion_rule(
-            Has("Progressive Cooling Rod", 3) & Has("Orb") & Has("Kei Truck") & items(50)
-        )
+    world.set_completion_rule(_goal_rule(world))

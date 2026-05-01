@@ -62,7 +62,6 @@ class FuniRaccoonWorld(World):
             "catsanity":  self.options.catsanity.value,
             "hatsanity":  self.options.hatsanity.value,
             "goal":       self.options.goal.value,
-            "deathlink":  bool(self.options.death_link.value),
             "options": self.options.as_dict("eurosanity", "gemsanity", "catsanity", "hatsanity", "goal"),
         }
 

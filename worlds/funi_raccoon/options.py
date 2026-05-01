@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from Options import DeathLink, PerGameCommonOptions, Toggle, DefaultOnToggle, Choice
+from Options import PerGameCommonOptions, Toggle, DefaultOnToggle, Choice
 
 class Goal(Choice):
     """
@@ -53,4 +53,3 @@ class FuniRaccoonOptions(PerGameCommonOptions):
     catsanity: Catsanity
     hatsanity: Hatsanity
     goal: Goal
-    death_link: DeathLink
