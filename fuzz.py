@@ -22,7 +22,7 @@ from Options import (
     LocationSet,
     NumericOption,
     OptionSet,
-    FreeText,
+    FreeText,$4
     PlandoConnections,
     OptionCounter,
     OptionList,

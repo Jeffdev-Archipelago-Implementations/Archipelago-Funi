@@ -117,7 +117,7 @@ def _goal_rule(world: FuniRaccoonWorld):
     if goal == Goal.option_fellowship:
         return Has("Priestess") & Has("GREENISH ABOMINATION") & items(25)
     if goal == Goal.option_lugh:
-        return Has("Green Mystical Gem") & Has("Blue Mystical Gem") & Has("Purple Mystical Gem") & Has("Red Mystical Gem") & Has("Kei Truck") & items(50)
+        return Has("Green Mystical Gem") & Has("Blue Mystical Gem") & Has("Purple Mystical Gem") & Has("Red Mystical Gem") & Has("Kei Truck") & items(50) & Has("unregistered firearm")
     return Has("Progressive Cooling Rod", 3) & Has("Orb") & Has("Kei Truck") & items(50)
 
 
