@@ -59,7 +59,7 @@ LOCATION_NAME_TO_ID = {
     "Store Patrick O'Hara": 1065,
     "Store Toastie": 1066,
     "Store Crisp": 1067,
-    "Store Flower": 1068,
+    "Store Beautiful Flower": 1068,
     "Store Divider": 1069,
     "Store Office Chair": 1070,
     "Store Desk": 1071,
@@ -332,6 +332,7 @@ LOCATION_REGION: dict[str, str] = {
 
     # The Process
     "Store Microwave":                            "The Process",
+    "Store Beautiful Flower":                     "The Process",
     "Find Jester Hat":                            "The Process",
 
     # THE MACHINE
@@ -462,7 +463,6 @@ LOCATION_REGION: dict[str, str] = {
     'Store "TV Remote"':                          "Blimbo City",
     "Store Average Canadian":                     "Blimbo City",
     "Store Apple":                                "Blimbo City",
-    "Store Flower Blimbo":                        "Blimbo City",
     "Find Patty Hat":                             "Blimbo City",
     "City: Euro on watertower":                   "Blimbo City",
     "City: Euro near boat on edge of city":       "Blimbo City",

@@ -51,7 +51,6 @@ _DUMBBELL_REQUIREMENTS: dict[str, int] = {
     "Store Fone":                                1,
     "Store Coffee Cup":                          1,
     "Store Kettle":                              1,
-    "Store Flower Blimbo":                       1,
     "Store Cheeky Pint":                         1,
     "Store CD Player":                           1,
     "Store Anti Sads":                           1,
@@ -146,6 +145,14 @@ def set_all_location_rules(world: FuniRaccoonWorld) -> None:
 
     # Vending Machine is required for Brob Energy
     rule("Store Brob Energy", Has("Vending Machine (accepts doubloons)"))
+
+    # Gym Euro at end of train tracks requires Vending Machine and Brob Energy
+    rule("Gym: Euro at end of train tracks",
+         Has("Vending Machine (accepts doubloons)") & Has("Brob Energy"))
+
+    # Behrman Speedway under 1 min requires Vending Machine, Brob Energy, and all 4 dumbbells
+    rule("Complete Behrman Speedway in under 1 minute",
+         Has("Vending Machine (accepts doubloons)") & Has("Brob Energy") & Has("Progressive Mystical Dumbbell", 4))
 
     # Chicken must already be available to float before going back to Norwich with it
     rule("Store Chicken", Has("Chicken"))
