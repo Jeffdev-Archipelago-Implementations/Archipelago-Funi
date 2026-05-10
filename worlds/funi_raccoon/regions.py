@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING
 from BaseClasses import Region
 from rule_builder.rules import Has
 
-from .rules import items
+from .rules import OutOfLogic, items
 
 if TYPE_CHECKING:
     from .world import FuniRaccoonWorld
@@ -81,9 +81,9 @@ def create_and_connect_regions(world: FuniRaccoonWorld) -> None:
 
     # --- Act 1 ---
     connect("Overworld", "Behrman Gymnasium")
-    connect("Overworld", "Behrman Speedway", Has("Vending Machine (accepts doubloons)") & Has("Brob Energy") & Has("Progressive Mystical Dumbbell", 4))
+    connect("Overworld", "Behrman Speedway", Has("Brob Energy") | OutOfLogic("Speedway accessible without items"))
     connect("Overworld", "Tyre World")
-    connect("Overworld", "Chicken Farm", Has("Vending Machine (accepts doubloons)") & Has("Brob Energy"))
+    connect("Overworld", "Chicken Farm", (Has("Vending Machine (accepts doubloons)") & Has("Brob Energy")) | OutOfLogic("Chicken Farm accessible without items"))
     connect("Overworld", "HAT STORE")
     connect("Overworld", "Cleaners")
     connect("Overworld", "Da Waaaater Zoooone", Has("unregistered firearm"))

@@ -1,8 +1,11 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+from dataclasses import dataclass
+from typing import TYPE_CHECKING, override
 
-from rule_builder.rules import Has, HasFromList
+from BaseClasses import CollectionState
+from NetUtils import JSONMessagePart
+from rule_builder.rules import Has, HasFromList, Rule
 
 from .items import ITEM_NAME_TO_ID
 from .locations import LOCATION_NAME_TO_ID
@@ -10,6 +13,41 @@ from .options import Goal
 
 if TYPE_CHECKING:
     from .world import FuniRaccoonWorld
+
+
+@dataclass
+class OutOfLogic(Rule["FuniRaccoonWorld"], game="Funi Raccoon Game"):
+    description: str
+
+    class Resolved(Rule.Resolved):
+        glitches_item_name: str
+        player: int
+        description: str
+        skip_cache = True
+
+        @override
+        def _evaluate(self, state: CollectionState) -> bool:
+            return state.has(self.glitches_item_name, self.player)
+
+        @override
+        def item_dependencies(self):
+            yield self.glitches_item_name, self.player
+
+        @override
+        def explain_json(self) -> list[JSONMessagePart]:
+            return [{"text": f"Glitch: {self.description}", "color": "magenta"}]
+
+        @override
+        def explain_str(self) -> str:
+            return f"Glitch: {self.description}"
+
+    @override
+    def _instantiate(self, world: "FuniRaccoonWorld") -> "OutOfLogic.Resolved":
+        return OutOfLogic.Resolved(
+            glitches_item_name=world.glitches_item_name,
+            player=world.player,
+            description=self.description,
+        )
 
 # Items that have a "Store X" dumpster location. Store location IDs follow the pattern
 # location_id == item_id + 1000, so this excludes Euros, strength upgrades, truck
@@ -19,6 +57,48 @@ DUMPSTER_ITEMS = [
     name for name, item_id in ITEM_NAME_TO_ID.items()
     if (item_id + 1000) in _STORE_LOCATION_IDS
 ]
+
+# Store locations in regions where the Kei Truck is accessible — weight requirements
+# don't apply OOL because the truck can carry heavy items.
+_KT_DUMBBELL_LOCATIONS: frozenset[str] = frozenset({
+    # Trasco Carpark (reachable via Blimbo Village with truck)
+    "Store Trolley", "Store Coffee Shop (closed)",
+    # Trasco Carpark (Truck)
+    "Store CD Player", "Store Patrice",
+    # Trasco
+    "Store Fridge",
+    # Fridge World
+    "Store Milk Klubnika",
+    # Blimbo Village
+    "Store Blimbo Village Sign", "Store Gas Drum", 'Store "Cow"',
+    "Store CHEESE", "Store Door", "Store Fone", "Store Ougham Stone",
+    # Petrol Station
+    "Store Gas Pumpo", "Store Police Car", "Store Knifedog",
+    # Bildal Mines
+    "Store Pickaxe",
+    # Purgatory
+    "Store My Favourite Chair",
+    # Blimbo City
+    "Store Coffee Cup", "Store Radiator", "Store Bin", "Store Suitcase", "Store Bell Boy",
+    # Pub
+    "Store Cheeky Pint",
+    # BLMB Reactor Core
+    "Store Demon Core",
+    # Garden World
+    "Store Radio Blimbo", "Store Flowian",
+    # The Forest
+    "Store Eel Can",
+    # Messed Up Canyon
+    "Store BookBlo",
+    # Pharmacy
+    "Store Leeches!", "Store Anti Sads",
+    # The Desert
+    "Store Fridgling",
+    # Municipal Wastes
+    "Store Chairapist", "Store Real Gym", "Store Funbells",
+    # The Gully
+    "Store Belgium Waffle",
+})
 
 # Progressive Mystical Dumbbell requirements per store location.
 # TINY (weight 1) items have no requirement and are omitted.
@@ -135,27 +215,41 @@ def set_all_location_rules(world: FuniRaccoonWorld) -> None:
     rule("Victory", _goal_rule(world))
 
     # Dumbbell size rules for store locations (TINY items have no requirement)
+    _kt_ool = OutOfLogic("Kei Truck can carry heavy items in this region")
     for loc_name, count in _DUMBBELL_REQUIREMENTS.items():
-        rule(loc_name, Has("Progressive Mystical Dumbbell", count))
+        r = Has("Progressive Mystical Dumbbell", count)
+        if loc_name in _KT_DUMBBELL_LOCATIONS:
+            r |= _kt_ool
+        rule(loc_name, r)
 
     # Within Billdal Mines, Michi and Broken Wall also require the Pickaxe
-    rule("Store Michi",       Has("Pickaxe"))
+    rule("Store Michi Cat",   Has("Pickaxe"))
     rule("Store Broken Wall", Has("Pickaxe"))
-    rule("Find Michi Cat",    Has("Pickaxe"))
 
-    # Vending Machine is required for Brob Energy
-    rule("Store Brob Energy", Has("Vending Machine (accepts doubloons)"))
+    # Cats with region locks are moved to Overworld so the full path is encoded here.
+    # Normal logic: full region path. OOL: cat can be picked up from the dumpster once the cat item is received.
+    _cat_ool = OutOfLogic("Cat can be picked up from dumpster once received")
+    rule("Find Michi Cat",    (items(25) & Has("Pickaxe"))                                    | (Has("Michi")   & _cat_ool))
+    rule("Find Gizmo Cat",    Has("unregistered firearm")                                     | (Has("Gizmo")   & _cat_ool))
+    rule("Find Keksz Cat",    (items(25) & Has("Goo"))                                        | (Has("Keksz")   & _cat_ool))
+    rule("Find boingler Cat", (items(35) & Has("Kei Truck") & Has("Old Ass Rusty Ass Key"))   | (Has("boingler") & _cat_ool))
 
-    # Gym Euro at end of train tracks requires Vending Machine and Brob Energy
+    # Vending Machine is required for Brob Energy; OOL the speedway skip gives sphere-1 access
+    rule("Store Brob Energy",
+         Has("Vending Machine (accepts doubloons)") | OutOfLogic("Speedway accessible without items gives early Brob Energy"))
+
+    # Gym Euro at end of train tracks requires Vending Machine and Brob Energy; OOL sphere 1
     rule("Gym: Euro at end of train tracks",
-         Has("Vending Machine (accepts doubloons)") & Has("Brob Energy"))
+         (Has("Vending Machine (accepts doubloons)") & Has("Brob Energy")) | OutOfLogic("Accessible without items"))
 
-    # Behrman Speedway under 1 min requires Vending Machine, Brob Energy, and all 4 dumbbells
+    # Behrman Speedway: normal logic needs VM + Brob Energy + 4 dumbbells; OOL just needs Brob Energy
     rule("Complete Behrman Speedway in under 1 minute",
-         Has("Vending Machine (accepts doubloons)") & Has("Brob Energy") & Has("Progressive Mystical Dumbbell", 4))
+         (Has("Vending Machine (accepts doubloons)") & Has("Brob Energy") & Has("Progressive Mystical Dumbbell", 4))
+         | (Has("Brob Energy") & OutOfLogic("Speedway accessible with only Brob Energy")))
 
     # Chicken must already be available to float before going back to Norwich with it
-    rule("Store Chicken", Has("Chicken"))
+    rule("Store Chicken",
+         Has("Chicken") | OutOfLogic("Chicken Farm accessible without items"))
 
     # Crisp is required for the Crisps undying love location
     rule("Store Crisps Undying Love", Has("Crisp"))

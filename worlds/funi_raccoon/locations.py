@@ -22,14 +22,14 @@ LOCATION_NAME_TO_ID = {
     "Store Under Construction": 1016,
     "Store Chicken": 1017,
     "Store Washing Machine": 1018,
-    "Store Michelle": 1019,
+    "Store Michelle Cat": 1019,
     "Store Brob Energy": 1020,
     "Store Buisness Man": 1021,
-    "Store Concrete": 1022,
-    "Store Gizmo": 1023,
-    "Store Keksz": 1024,
-    "Store Michi": 1025,
-    "Store boingler": 1026,
+    "Store Concrete Cat": 1022,
+    "Store Gizmo Cat": 1023,
+    "Store Keksz Cat": 1024,
+    "Store Michi Cat": 1025,
+    "Store boingler Cat": 1026,
     "Store Paracetamol 650mg": 1027,
     "Store Heavy Stone Torch": 1028,
     "Store Computer Monitor (60hz)": 1031,
@@ -252,7 +252,7 @@ LOCATION_REGION: dict[str, str] = {
     # --- Act 1 ---
     # Behrman Gymnasium
     "Store Radio":                                "Behrman Gymnasium",
-    "Store Concrete":                             "Behrman Gymnasium",
+    "Store Concrete Cat":                         "Behrman Gymnasium",
     "Store Moai":                                 "Behrman Gymnasium",
     "Store Paracetamol 650mg":                    "Behrman Gymnasium",
     "Store Digital Polaroid Camera":              "Behrman Gymnasium",
@@ -286,9 +286,8 @@ LOCATION_REGION: dict[str, str] = {
     "Store Washing Machine":                      "Cleaners",
 
     # Da Waaaater Zoooone
-    "Store Gizmo":                                "Da Waaaater Zoooone",
+    "Store Gizmo Cat":                            "Da Waaaater Zoooone",
     "Store Fan":                                  "Da Waaaater Zoooone",
-    "Find Gizmo Cat":                             "Da Waaaater Zoooone",
     "Eat Green Mystical Gem":                     "Da Waaaater Zoooone",
     "Water Zone: Euro under stairs underwater":   "Da Waaaater Zoooone",
 
@@ -322,8 +321,7 @@ LOCATION_REGION: dict[str, str] = {
     "Beenie Death: Euro behind cross":            "Beenie HQ",
 
     # Chamber
-    "Store Michi":                                "Chamber",
-    "Find Michi Cat":                             "Chamber",
+    "Store Michi Cat":                            "Chamber",
 
     # Beenie Factory
     "Store Marketable Plushie Box":               "Beenie Factory",
@@ -352,8 +350,7 @@ LOCATION_REGION: dict[str, str] = {
     "Store Goo Container":                        "Goo Office",
 
     # Underground Metro
-    "Store Keksz":                                "Underground Metro",
-    "Find Keksz Cat":                             "Underground Metro",
+    "Store Keksz Cat":                            "Underground Metro",
     "Store Bench":                                "Underground Metro",
 
     # Beenies Ascension
@@ -442,8 +439,7 @@ LOCATION_REGION: dict[str, str] = {
 
     # Bildal Mines (from Blimbo Village)
     "Store Pickaxe":                              "Bildal Mines",
-    "Store boingler":                             "Bildal Mines",
-    "Find boingler Cat":                          "Bildal Mines",
+    "Store boingler Cat":                         "Bildal Mines",
     "Store Broken Wall":                          "Bildal Mines",
 
     # Purgatory

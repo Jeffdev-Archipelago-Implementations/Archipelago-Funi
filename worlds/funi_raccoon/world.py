@@ -1,10 +1,11 @@
 from collections.abc import Mapping
 from typing import Any
 
+from BaseClasses import ItemClassification
 from worlds.AutoWorld import World
 
 from . import items, locations, regions, rules, web_world
-from . import options as FuniRaccoon_options  
+from . import options as FuniRaccoon_options
 
 class FuniRaccoonWorld(World):
     """
@@ -23,6 +24,7 @@ class FuniRaccoonWorld(World):
     origin_region_name = "Overworld"
 
     ut_can_gen_without_yaml = True
+    glitches_item_name: str = "out_of_logic"
 
     def generate_early(self) -> None:
         if self.options.goal.value == FuniRaccoon_options.Goal.option_lugh:
@@ -50,6 +52,8 @@ class FuniRaccoonWorld(World):
         items.create_all_items(self)
 
     def create_item(self, name: str) -> items.FuniRaccoonItem:
+        if name == self.glitches_item_name:
+            return items.FuniRaccoonItem(name, ItemClassification.progression, None, self.player)
         return items.create_item_with_correct_classification(self, name)
 
     def get_filler_item_name(self) -> str:
