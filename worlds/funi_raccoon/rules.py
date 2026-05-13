@@ -226,37 +226,27 @@ def set_all_location_rules(world: FuniRaccoonWorld) -> None:
     rule("Store Michi Cat",   Has("Pickaxe"))
     rule("Store Broken Wall", Has("Pickaxe"))
 
-    # Cats with region locks are moved to Overworld so the full path is encoded here.
-    # Normal logic: full region path. OOL: cat can be picked up from the dumpster once the cat item is received.
-    _cat_ool = OutOfLogic("Cat can be picked up from dumpster once received")
-    rule("Find Michi Cat",    (items(25) & Has("Pickaxe"))                                    | (Has("Michi")   & _cat_ool))
-    rule("Find Gizmo Cat",    Has("unregistered firearm")                                     | (Has("Gizmo")   & _cat_ool))
-    rule("Find Keksz Cat",    (items(25) & Has("Goo"))                                        | (Has("Keksz")   & _cat_ool))
-    rule("Find boingler Cat", (items(35) & Has("Kei Truck") & Has("Old Ass Rusty Ass Key"))   | (Has("boingler") & _cat_ool))
+    # Cat find locations — moved to Overworld so region path is encoded in the location rule
+    rule("Find Michi Cat",    items(25) & Has("Pickaxe"))
+    rule("Find Keksz Cat",    items(25) & Has("Goo"))
+    rule("Find boingler Cat", items(35) & Has("Kei Truck") & Has("Old Ass Rusty Ass Key"))
 
-    # Vending Machine is required for Brob Energy; OOL the speedway skip gives sphere-1 access
-    rule("Store Brob Energy",
-         Has("Vending Machine (accepts doubloons)") | OutOfLogic("Speedway accessible without items gives early Brob Energy"))
-
-    # Gym Euro at end of train tracks requires Vending Machine and Brob Energy; OOL sphere 1
+    # Gym Euro at end of train tracks requires Brob Energy; OOL sphere 1
     rule("Gym: Euro at end of train tracks",
-         (Has("Vending Machine (accepts doubloons)") & Has("Brob Energy")) | OutOfLogic("Accessible without items"))
+         (Has("Brob Energy")) | OutOfLogic("Accessible without items"))
 
-    # Behrman Speedway: normal logic needs VM + Brob Energy + 4 dumbbells; OOL just needs Brob Energy
+    # Behrman Speedway: normal logic needs Brob Energy + 4 dumbbells; OOL just needs Brob Energy
     rule("Complete Behrman Speedway in under 1 minute",
-         (Has("Vending Machine (accepts doubloons)") & Has("Brob Energy") & Has("Progressive Mystical Dumbbell", 4))
+         (Has("Brob Energy") & Has("Progressive Mystical Dumbbell", 4))
          | (Has("Brob Energy") & OutOfLogic("Speedway accessible with only Brob Energy")))
-
-    # Chicken must already be available to float before going back to Norwich with it
-    rule("Store Chicken",
-         Has("Chicken") | OutOfLogic("Chicken Farm accessible without items"))
-
-    # Crisp is required for the Crisps undying love location
-    rule("Store Crisps Undying Love", Has("Crisp"))
-
-    # Flowian is required for the Lughling location
-    rule("Store Lughling", Has("Flowian"))
     
+    # Patrick O'Hara requires Goo (inner Beenie HQ path) or Kei Truck + Blimbo Village access
+    rule("Store Patrick O'Hara",
+         Has("Progressive Mystical Dumbbell", 1) & (Has("Goo") | (items(35) & Has("Kei Truck"))))
+
+    # Funi Marketable Plushie requires Goo to reach
+    rule("Store Funi Marketable Plushie", Has("Goo"))
+
     # Act 4 is required for Funi Raccoon Game Deluxe
     rule("Store Funi Raccoon Game Deluxe", Has("Kei Truck") & items(50))
 
@@ -266,7 +256,7 @@ def set_all_location_rules(world: FuniRaccoonWorld) -> None:
     rule("Eat Red Mystical Gem",   Has("Progressive Mystical Dumbbell", 1))
 
     # Higher Kei Truck scores require at least one truck upgrade
-    _truck_upgrade = HasFromList("Kei Truck Boost", "Kei Truck Toaster", count=1)
+    _truck_upgrade = HasFromList("Kei Truck Boost", "Kei Truck Toaster", count=1) & Has("Kei Truck")
     for score_check in ("Get 2000 Score with Kei Truck", "Get 3000 Score with Kei Truck",
                         "Get 4000 Score with Kei Truck", "Get 5000 Score with Kei Truck"):
         rule(score_check, _truck_upgrade)

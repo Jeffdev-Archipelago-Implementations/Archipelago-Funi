@@ -86,7 +86,7 @@ def create_and_connect_regions(world: FuniRaccoonWorld) -> None:
     connect("Overworld", "Chicken Farm", (Has("Vending Machine (accepts doubloons)") & Has("Brob Energy")) | OutOfLogic("Chicken Farm accessible without items"))
     connect("Overworld", "HAT STORE")
     connect("Overworld", "Cleaners")
-    connect("Overworld", "Da Waaaater Zoooone", Has("unregistered firearm"))
+    connect("Overworld", "Da Waaaater Zoooone")
     connect("Overworld", "Raccoon Central Station")
 
     # --- Museum (15 items) ---
@@ -96,16 +96,15 @@ def create_and_connect_regions(world: FuniRaccoonWorld) -> None:
     connect("Overworld", "Beenie HQ", items(25))
     connect("Beenie HQ", "Chamber")
     connect("Beenie HQ", "Beenie Factory")
-    connect("Beenie HQ", "The Process", Has("Goo"))
-    connect("Beenie HQ", "THE MACHINE", Has("Goo"))
-    connect("Beenie HQ", "Fish Vore")
-    connect("Beenie HQ", "Goo Office", Has("Goo"))
-    connect("Beenie HQ", "Beenies Ascension")
-    connect("Beenie HQ", "Fields")
-    connect("Beenie HQ", "Fellowship", Has("Priestess"))
-    connect("Beenie HQ", "Howth", Has("Funi Marketable Plushie"))
-    # Underground Metro opens after THE MACHINE
-    connect("THE MACHINE", "Underground Metro")
+    connect("Beenie Factory", "The Process", Has("Goo"))
+    connect("The Process", "THE MACHINE", Has("Goo"))
+    connect("Beenie HQ", "Fish Vore", Has("Goo") | OutOfLogic("Fish Vore accessible without Goo"))
+    connect("The Process", "Goo Office", Has("Goo"))
+    connect("THE MACHINE", "Beenies Ascension", Has("Goo"))
+    connect("Beenie HQ", "Fields", Has("Goo") | OutOfLogic("Fields accessible without Goo"))
+    connect("Norwich", "Fellowship", Has("Goo") & items(25))
+    connect("Beenie HQ", "Howth", Has("Goo"))
+    connect("Beenie HQ", "Underground Metro", Has("Goo") | OutOfLogic("Underground Metro accessible without Goo"))
 
     # --- Trasco Carpark via Goo Office shortcut (25 items, no truck needed) ---
     connect("Goo Office", "Trasco Carpark")
@@ -120,14 +119,14 @@ def create_and_connect_regions(world: FuniRaccoonWorld) -> None:
     connect("Blimbo Village", "Garden World", Has("Pickaxe"))
     connect("Blimbo Village", "The Forest")
     connect("Blimbo Village", "Purgatory")
-    connect("Blimbo Village", "Trasco Carpark")  # also reachable from Act 3
+    connect("Blimbo Village", "Trasco Carpark")
     connect("Blimbo Village", "Petrol Station")
     connect("Blimbo Village", "Bildal Mines", Has("Old Ass Rusty Ass Key"))
 
     # --- Blimbo City cluster (35 items + Kei Truck) ---
     connect("Overworld", "Blimbo City", items(35) & Has("Kei Truck"))
     connect("Blimbo City", "Pub")
-    connect("Blimbo City", "BLMB Reactor Core", Has("Kei Truck"))
+    connect("Blimbo City", "BLMB Reactor Core")
 
     # --- Act 4 (50 items + Kei Truck) ---
     connect("Overworld", "Messed Up Canyon", items(50) & Has("Kei Truck"))
@@ -135,7 +134,7 @@ def create_and_connect_regions(world: FuniRaccoonWorld) -> None:
     connect("Messed Up Canyon", "The Desert")
     connect("Messed Up Canyon", "The Well of Knowledge")
     connect("Messed Up Canyon", "Cliffs of Nowher")
-    connect("Messed Up Canyon", "Da Dryyyy Zoooone", Has("Anti Sads"))
+    connect("Messed Up Canyon", "Da Dryyyy Zoooone")
     connect("Messed Up Canyon", "Municipal Wastes")
 
     # --- The Gully (100 items + Kei Truck) ---

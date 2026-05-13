@@ -307,7 +307,6 @@ LOCATION_REGION: dict[str, str] = {
 
     # --- Act 2 (25 items) ---
     # Beenie HQ
-    "Store Buisness Man":                         "Beenie HQ",
     "Store Evil Fish":                            "Beenie HQ",
     "Store Toaster":                              "Beenie HQ",
     "Store Beenie the Birthday Boy":              "Beenie HQ",
@@ -318,19 +317,19 @@ LOCATION_REGION: dict[str, str] = {
     "Store Brick":                                "Beenie HQ",
     "Store Book Stack":                           "Beenie HQ",
     "Store Crayon":                               "Beenie HQ",
-    "Beenie Death: Euro behind cross":            "Beenie HQ",
+    "Store Funi Marketable Plushie":              "Beenie HQ",
 
     # Chamber
     "Store Michi Cat":                            "Chamber",
 
     # Beenie Factory
     "Store Marketable Plushie Box":               "Beenie Factory",
-    "Store Funi Marketable Plushie":              "Beenie Factory",
     "Store Plimbo":                               "Beenie Factory",
 
     # The Process
     "Store Microwave":                            "The Process",
     "Store Beautiful Flower":                     "The Process",
+    "Store Buisness Man":                         "The Process",
     "Find Jester Hat":                            "The Process",
 
     # THE MACHINE
@@ -355,6 +354,7 @@ LOCATION_REGION: dict[str, str] = {
 
     # Beenies Ascension
     "Store Priestess":                            "Beenies Ascension",
+    "Beenie Death: Euro behind cross":            "Beenies Ascension",
 
     # Fields
     "Store Feral Dog":                            "Fields",
