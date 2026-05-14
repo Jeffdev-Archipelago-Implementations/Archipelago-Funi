@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 #   100 - The Gully accessible (also requires Kei Truck)
 
 ALL_REGIONS = [
-    # Act 1 (Norwich starting area)
+    # Act 1 (Norwich/Rackheath starting area)
     "Overworld",
     "Behrman Gymnasium",
     "Behrman Speedway",
@@ -102,7 +102,7 @@ def create_and_connect_regions(world: FuniRaccoonWorld) -> None:
     connect("The Process", "Goo Office", Has("Goo"))
     connect("THE MACHINE", "Beenies Ascension", Has("Goo"))
     connect("Beenie HQ", "Fields", Has("Goo") | OutOfLogic("Fields accessible without Goo"))
-    connect("Norwich", "Fellowship", Has("Goo") & items(25))
+    connect("Overworld", "Fellowship", Has("Goo") & items(25))
     connect("Beenie HQ", "Howth", Has("Goo"))
     connect("Beenie HQ", "Underground Metro", Has("Goo") | OutOfLogic("Underground Metro accessible without Goo"))
 

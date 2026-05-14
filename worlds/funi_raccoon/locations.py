@@ -253,7 +253,6 @@ LOCATION_REGION: dict[str, str] = {
     # Behrman Gymnasium
     "Store Radio":                                "Behrman Gymnasium",
     "Store Concrete Cat":                         "Behrman Gymnasium",
-    "Store Moai":                                 "Behrman Gymnasium",
     "Store Paracetamol 650mg":                    "Behrman Gymnasium",
     "Store Digital Polaroid Camera":              "Behrman Gymnasium",
     "Find Concrete Cat":                          "Behrman Gymnasium",
@@ -308,14 +307,11 @@ LOCATION_REGION: dict[str, str] = {
     # --- Act 2 (25 items) ---
     # Beenie HQ
     "Store Evil Fish":                            "Beenie HQ",
-    "Store Toaster":                              "Beenie HQ",
     "Store Beenie the Birthday Boy":              "Beenie HQ",
     "Store Letter B":                             "Beenie HQ",
     "Store Patrick O'Hara":                       "Beenie HQ",
     "Store Goo":                                  "Beenie HQ",
     "Store Beach Ball":                           "Beenie HQ",
-    "Store Brick":                                "Beenie HQ",
-    "Store Book Stack":                           "Beenie HQ",
     "Store Crayon":                               "Beenie HQ",
     "Store Funi Marketable Plushie":              "Beenie HQ",
 
@@ -456,7 +452,6 @@ LOCATION_REGION: dict[str, str] = {
     "Store Yolky":                                "Blimbo City",
     "Store Patrick O Bobble":                     "Blimbo City",
     "Store Dice":                                 "Blimbo City",
-    'Store "TV Remote"':                          "Blimbo City",
     "Store Average Canadian":                     "Blimbo City",
     "Store Apple":                                "Blimbo City",
     "Find Patty Hat":                             "Blimbo City",
