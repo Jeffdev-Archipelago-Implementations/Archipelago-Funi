@@ -8,7 +8,7 @@ class Goal(Choice):
     Orb: The orb ending, achieved by getting 50 dumpster items, the orb, 3 progressive cooling rods, and the kei truck. (default)
     Museum: The museum ending, achieved by getting 100 dumpster items, the belgium waffle, 3 progressive cooling rods, and the kei truck.
     Fellowship: The fellowship ending, achieved by getting 25 dumpster items, the priestess, and the GREENISH ABOMINATION.
-    Lugh: The Lugh ending, achieved by getting 50 dumpster items, all 4 mystical jewels, the kei truck, and the unregistered firearm.
+    Lugh: The Lugh ending, achieved by getting 50 dumpster items, all 4 mystical jewels, and the kei truck.
     """
     display_name = "Goal"
     option_orb = 0
