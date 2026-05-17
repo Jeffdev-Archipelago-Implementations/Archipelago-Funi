@@ -61,11 +61,12 @@ class FuniRaccoonWorld(World):
 
     def fill_slot_data(self) -> Mapping[str, Any]:
         return {
-            "eurosanity": self.options.eurosanity.value,
-            "gemsanity":  self.options.gemsanity.value,
-            "catsanity":  self.options.catsanity.value,
-            "hatsanity":  self.options.hatsanity.value,
-            "goal":       self.options.goal.value,
+            "eurosanity":  self.options.eurosanity.value,
+            "gemsanity":   self.options.gemsanity.value,
+            "catsanity":   self.options.catsanity.value,
+            "hatsanity":   self.options.hatsanity.value,
+            "goal":        self.options.goal.value,
+            "current_map": self.origin_region_name,
             "options": self.options.as_dict("eurosanity", "gemsanity", "catsanity", "hatsanity", "goal"),
         }
 

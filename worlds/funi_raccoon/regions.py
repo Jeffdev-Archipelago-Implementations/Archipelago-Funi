@@ -45,15 +45,14 @@ ALL_REGIONS = [
     # Act 3
     "Driving Test",
     "Cricket",
-    "Garden World",
     "The Forest",
     "Trasco Carpark",
-    "Trasco Carpark (Truck)",
-    "Trasco",
     "Fridge World",
     "Blimbo Village",
     "Petrol Station",
     "Bildal Mines",
+    "Mikk Barge",
+    "Garden World",
     "Purgatory",
     # Act 3 Blimbo City cluster
     "Blimbo City",
@@ -83,7 +82,7 @@ def create_and_connect_regions(world: FuniRaccoonWorld) -> None:
     connect("Overworld", "Behrman Gymnasium")
     connect("Overworld", "Behrman Speedway", Has("Brob Energy") | OutOfLogic("Speedway accessible without items"))
     connect("Overworld", "Tyre World")
-    connect("Overworld", "Chicken Farm", (Has("Vending Machine (accepts doubloons)") & Has("Brob Energy")) | OutOfLogic("Chicken Farm accessible without items"))
+    connect("Overworld", "Chicken Farm", (Has("Brob Energy")) | OutOfLogic("Chicken Farm accessible without items"))
     connect("Overworld", "HAT STORE")
     connect("Overworld", "Cleaners")
     connect("Overworld", "Da Waaaater Zoooone")
@@ -91,10 +90,10 @@ def create_and_connect_regions(world: FuniRaccoonWorld) -> None:
 
     # --- Museum (15 items) ---
     connect("Overworld", "Museum", items(15))
+    connect("Museum", "Chamber")
 
     # --- Act 2 (25 items) — Beenie HQ is the entry hub ---
     connect("Overworld", "Beenie HQ", items(25))
-    connect("Beenie HQ", "Chamber")
     connect("Beenie HQ", "Beenie Factory")
     connect("Beenie Factory", "The Process", Has("Goo"))
     connect("The Process", "THE MACHINE", Has("Goo"))
@@ -106,30 +105,28 @@ def create_and_connect_regions(world: FuniRaccoonWorld) -> None:
     connect("Beenie HQ", "Howth", Has("Goo"))
     connect("Beenie HQ", "Underground Metro", Has("Goo") | OutOfLogic("Underground Metro accessible without Goo"))
 
-    # --- Trasco Carpark via Goo Office shortcut (25 items, no truck needed) ---
-    connect("Goo Office", "Trasco Carpark")
-    connect("Trasco Carpark", "Trasco Carpark (Truck)", Has("Kei Truck"))
-    connect("Trasco Carpark", "Trasco")
-    connect("Trasco", "Fridge World", Has("Fridge Key"))
-
     # --- Act 3 (35 items) — Driving Test is the entry, contains Kei Truck ---
     connect("Overworld", "Driving Test", items(35))
-    connect("Driving Test", "Blimbo Village", Has("Kei Truck"))
+    connect("Driving Test", "Blimbo Village", Has("Kei Truck") | OutOfLogic("Blimbo Village accessible without Kei Truck"))
     connect("Blimbo Village", "Cricket")
-    connect("Blimbo Village", "Garden World", Has("Pickaxe"))
     connect("Blimbo Village", "The Forest")
     connect("Blimbo Village", "Purgatory")
-    connect("Blimbo Village", "Trasco Carpark")
     connect("Blimbo Village", "Petrol Station")
     connect("Blimbo Village", "Bildal Mines", Has("Old Ass Rusty Ass Key"))
+    connect("Bildal Mines", "Garden World", Has("Pickaxe"))
+    connect("Bildal Mines", "Mikk Barge", Has("Pickaxe"))
+    connect("Blimbo Village", "Trasco Carpark", Has("Kei Truck Toaster") | Has("Kei Truck Boost") & Has("Kei Truck"))
+
+    # --- Trasco Carpark ---
+    connect("Trasco Carpark", "Fridge World", Has("Fridge Key"))
 
     # --- Blimbo City cluster (35 items + Kei Truck) ---
-    connect("Overworld", "Blimbo City", items(35) & Has("Kei Truck"))
+    connect("Trasco Carpark", "Blimbo City", Has("Kei Truck"))
     connect("Blimbo City", "Pub")
     connect("Blimbo City", "BLMB Reactor Core")
 
     # --- Act 4 (50 items + Kei Truck) ---
-    connect("Overworld", "Messed Up Canyon", items(50) & Has("Kei Truck"))
+    connect("Blimbo City", "Messed Up Canyon", items(50))
     connect("Messed Up Canyon", "Pharmacy")
     connect("Messed Up Canyon", "The Desert")
     connect("Messed Up Canyon", "The Well of Knowledge")
@@ -137,5 +134,5 @@ def create_and_connect_regions(world: FuniRaccoonWorld) -> None:
     connect("Messed Up Canyon", "Da Dryyyy Zoooone")
     connect("Messed Up Canyon", "Municipal Wastes")
 
-    # --- The Gully (100 items + Kei Truck) ---
-    connect("Overworld", "The Gully", items(100) & Has("Kei Truck") & Has("Progressive Cooling Rod", 3))
+    # --- The Gully (3 Prog Cooling Rods needed) ---
+    connect("Messed Up Canyon", "The Gully", Has("Progressive Cooling Rod", 3))

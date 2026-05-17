@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 ITEM_NAME_TO_ID = {
     "Moai": 1,
     "Street Lamp": 2,
-    "Funbells": 3,
+    "Dumbbell": 3,
     "Lama/Alpaca Maybe?": 4,
     "Gym": 5,
     "Kei Truck": 6,
@@ -181,7 +181,7 @@ ITEM_NAME_TO_ID = {
 DEFAULT_ITEM_CLASSIFICATIONS = {
     "Moai": ItemClassification.progression,
     "Street Lamp": ItemClassification.progression,
-    "Funbells": ItemClassification.progression,
+    "Dumbbell": ItemClassification.progression,
     "Lama/Alpaca Maybe?": ItemClassification.progression,
     "Gym": ItemClassification.progression,
     "Kei Truck": ItemClassification.progression,

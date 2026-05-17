@@ -62,10 +62,7 @@ DUMPSTER_ITEMS = [
 # don't apply OOL because the truck can carry heavy items.
 _KT_DUMBBELL_LOCATIONS: frozenset[str] = frozenset({
     # Trasco Carpark (reachable via Blimbo Village with truck)
-    "Store Trolley", "Store Coffee Shop (closed)",
-    # Trasco Carpark (Truck)
-    "Store CD Player", "Store Patrice",
-    # Trasco
+    "Store Trolley", "Store Coffee Shop (closed)", "Store CD Player", "Store Patrice",
     "Store Fridge",
     # Fridge World
     "Store Milk Klubnika",
@@ -95,7 +92,7 @@ _KT_DUMBBELL_LOCATIONS: frozenset[str] = frozenset({
     # The Desert
     "Store Fridgling",
     # Municipal Wastes
-    "Store Chairapist", "Store Real Gym", "Store Funbells",
+    "Store Chairapist", "Store Real Gym", "Store Dumbbell",
     # The Gully
     "Store Belgium Waffle",
 })
@@ -105,7 +102,7 @@ _KT_DUMBBELL_LOCATIONS: frozenset[str] = frozenset({
 # SMALL=1, MEDIUM=2, HEAVY=3, CHUNKY=4.
 _DUMBBELL_REQUIREMENTS: dict[str, int] = {
     # SMALL (weight 2) — requires 1 dumbbell
-    "Store Funbells":                            1,
+    "Store Dumbbell":                            1,
     "Store Vending Machine (accepts doubloons)": 1,
     "Store Washing Machine":                     1,
     "Store Buisness Man":                        1,
@@ -144,7 +141,7 @@ _DUMBBELL_REQUIREMENTS: dict[str, int] = {
     "Store Wriks Celler":                        1,
     "Store Door":                                1,
     "Store Goo Container":                       1,
-    # MEDIUM (weight 3) — requires 2 dumbbells
+    # MEDIUM (weight 3) — requires 2 Dumbbell
     "Store Microwave":                           2,
     "Store Crisps Undying Love":                 2,
     'Store "Cow"':                               2,
@@ -172,12 +169,12 @@ _DUMBBELL_REQUIREMENTS: dict[str, int] = {
     "Store Patrice":                             2,
     "Store Office Chair":                        2,
     "Store Desk":                                2,
-    # HEAVY (weight 4) — requires 3 dumbbells
+    # HEAVY (weight 4) — requires 3 Dumbbell
     "Store Windmill":                            3,
     "Store Ougham Stone":                        3,
     "Store Coffee Shop (closed)":                3,
     "Store Police Car":                          3,
-    # CHUNKY (weight 5) — requires all 4 dumbbells
+    # CHUNKY (weight 5) — requires all 4 Dumbbell
     "Store Gym":                                 4,
     "Store Plimbo":                              4,
     "Store Belgium Waffle":                      4,
@@ -226,16 +223,11 @@ def set_all_location_rules(world: FuniRaccoonWorld) -> None:
     rule("Store Michi Cat",   Has("Pickaxe"))
     rule("Store Broken Wall", Has("Pickaxe"))
 
-    # Cat find locations — moved to Overworld so region path is encoded in the location rule
-    rule("Find Michi Cat",    items(25) & Has("Pickaxe"))
-    rule("Find Keksz Cat",    items(25) & Has("Goo"))
-    rule("Find boingler Cat", items(35) & Has("Kei Truck") & Has("Old Ass Rusty Ass Key"))
-
     # Gym Euro at end of train tracks requires Brob Energy; OOL sphere 1
     rule("Gym: Euro at end of train tracks",
          (Has("Brob Energy")) | OutOfLogic("Accessible without items"))
 
-    # Behrman Speedway: normal logic needs Brob Energy + 4 dumbbells; OOL just needs Brob Energy
+    # Behrman Speedway: normal logic needs Brob Energy + 4 Dumbbell; OOL just needs Brob Energy
     rule("Complete Behrman Speedway in under 1 minute",
          (Has("Brob Energy") & Has("Progressive Mystical Dumbbell", 4))
          | (Has("Brob Energy") & OutOfLogic("Speedway accessible with only Brob Energy")))
@@ -250,10 +242,9 @@ def set_all_location_rules(world: FuniRaccoonWorld) -> None:
     # Act 4 is required for Funi Raccoon Game Deluxe
     rule("Store Funi Raccoon Game Deluxe", Has("Kei Truck") & items(50))
 
-    # Green, Blue, and Red Mystical Gems require 1 dumbbell
+    # Gem Dumbbell Requirements
     rule("Eat Green Mystical Gem", Has("Progressive Mystical Dumbbell", 1))
-    rule("Eat Blue Mystical Gem",  Has("Progressive Mystical Dumbbell", 1))
-    rule("Eat Red Mystical Gem",   Has("Progressive Mystical Dumbbell", 1))
+    rule("Eat Blue Mystical Gem",  Has("Progressive Mystical Dumbbell", 2))
 
     # Higher Kei Truck scores require at least one truck upgrade
     _truck_upgrade = HasFromList("Kei Truck Boost", "Kei Truck Toaster", count=1) & Has("Kei Truck")

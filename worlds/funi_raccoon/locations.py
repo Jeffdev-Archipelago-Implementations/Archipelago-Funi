@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 LOCATION_NAME_TO_ID = {
     "Store Moai": 1001,
     "Store Street Lamp": 1002,
-    "Store Funbells": 1003,
+    "Store Dumbbell": 1003,
     "Store Lama/Alpaca Maybe?": 1004,
     "Store Gym": 1005,
     "Store Vending Machine (accepts doubloons)": 1007,
@@ -262,7 +262,7 @@ LOCATION_REGION: dict[str, str] = {
     "Gym: Euro on bee sign under clouds":         "Behrman Gymnasium",
 
     # Behrman Speedway
-    "Complete Behrman Speedway in 1 minute":      "Behrman Speedway",
+    "Complete Behrman Speedway in under 1 minute":"Behrman Speedway",
 
     # Tyre World
     "Store Orphan Tyre":                          "Tyre World",
@@ -274,7 +274,7 @@ LOCATION_REGION: dict[str, str] = {
     # Chicken Farm
     "Store Chicken":                              "Chicken Farm",
     "Find Sombrero":                              "Chicken Farm",
-    "Norwich: Euro at chicken farm island":       "Chicken Farm",
+    "Norwich: Euro at chicken farm island":       "Chicken Farm", # Change this to Norwich later
     "Chicken Farm: Euro on pillar":               "Chicken Farm",
 
     # HAT STORE
@@ -286,9 +286,18 @@ LOCATION_REGION: dict[str, str] = {
 
     # Da Waaaater Zoooone
     "Store Gizmo Cat":                            "Da Waaaater Zoooone",
+    "Find Gizmo Cat":                             "Da Waaaater Zoooone",
     "Store Fan":                                  "Da Waaaater Zoooone",
     "Eat Green Mystical Gem":                     "Da Waaaater Zoooone",
     "Water Zone: Euro under stairs underwater":   "Da Waaaater Zoooone",
+    
+    # Raccoon Central Station
+    "Store Manhole Cover":                        "Raccoon Central Station",
+    "Store Old Sign":                             "Raccoon Central Station",
+    "Store Warning Sign":                         "Raccoon Central Station",
+    "Store Area Sign":                            "Raccoon Central Station",
+    "Store Funi Raccoon Game Deluxe":             "Raccoon Central Station",
+    "Store Bench":                                "Raccoon Central Station",
 
     # Museum (15 items)
     "Store Logan Left":                           "Museum",
@@ -301,8 +310,12 @@ LOCATION_REGION: dict[str, str] = {
     "Store Spoonsweet":                           "Museum",
     "Store Wriks Celler":                         "Museum",
     "Store Barrel":                               "Museum",
-    "Eat Mystical Dumbbell - Act 2":              "Museum",
     "Find Top Hat":                               "Museum",
+    
+    # Chamber
+    "Store Michi Cat":                            "Chamber",
+    "Find Michi Cat":                             "Chamber",
+    "Eat Mystical Dumbbell - Act 2":              "Chamber",
 
     # --- Act 2 (25 items) ---
     # Beenie HQ
@@ -310,22 +323,19 @@ LOCATION_REGION: dict[str, str] = {
     "Store Beenie the Birthday Boy":              "Beenie HQ",
     "Store Letter B":                             "Beenie HQ",
     "Store Patrick O'Hara":                       "Beenie HQ",
-    "Store Goo":                                  "Beenie HQ",
     "Store Beach Ball":                           "Beenie HQ",
     "Store Crayon":                               "Beenie HQ",
     "Store Funi Marketable Plushie":              "Beenie HQ",
 
-    # Chamber
-    "Store Michi Cat":                            "Chamber",
-
     # Beenie Factory
     "Store Marketable Plushie Box":               "Beenie Factory",
-    "Store Plimbo":                               "Beenie Factory",
+    "Store Goo":                                  "Beenie Factory",
 
     # The Process
     "Store Microwave":                            "The Process",
     "Store Beautiful Flower":                     "The Process",
     "Store Buisness Man":                         "The Process",
+    "Store Patrice":                              "The Process",
     "Find Jester Hat":                            "The Process",
 
     # THE MACHINE
@@ -346,7 +356,7 @@ LOCATION_REGION: dict[str, str] = {
 
     # Underground Metro
     "Store Keksz Cat":                            "Underground Metro",
-    "Store Bench":                                "Underground Metro",
+    "Find Keksz Cat":                             "Underground Metro",
 
     # Beenies Ascension
     "Store Priestess":                            "Beenies Ascension",
@@ -368,47 +378,7 @@ LOCATION_REGION: dict[str, str] = {
     "Eat Blue Mystical Gem":                      "Howth",
 
     # --- Act 3 (35 items) ---
-    # Driving Test (Act 3 entry, contains Kei Truck)
-    "Store Kei Truck":                            "Driving Test",
-
-    # Cricket
-    "Store Cricket Bat":                          "Cricket",
-    "Store Cricket":                              "Cricket",
-
-    # Garden World
-    "Store Flowian":                              "Garden World",
-    "Store Radio Blimbo":                         "Garden World",
-
-    # The Forest
-    "Store Eel Can":                              "The Forest",
-
-    # Trasco Carpark (25 items via Goo Office shortcut, no truck needed)
-    "Store Coffee Shop (closed)":                 "Trasco Carpark",
-    "Store Trolley":                              "Trasco Carpark",
-    "Store Fridge Key":                           "Trasco Carpark",
-    "Eat Mystical Dumbbell - Act 3":              "Trasco Carpark",
-    "Trasco: Euro on edge wall 1":                "Trasco Carpark",
-    "Trasco: Euro on edge wall 2":                "Trasco Carpark",
-    "Trasco: Euro on edge wall 3":                "Trasco Carpark",
-
-    # Trasco Carpark (Truck) - requires Kei Truck
-    "Store CD Player":                            "Trasco Carpark (Truck)",
-    "Store Patrice":                              "Trasco Carpark (Truck)",
-    "Get 1000 Score with Kei Truck":              "Trasco Carpark (Truck)",
-    "Get 2000 Score with Kei Truck":              "Trasco Carpark (Truck)",
-    "Get 3000 Score with Kei Truck":              "Trasco Carpark (Truck)",
-    "Get 4000 Score with Kei Truck":              "Trasco Carpark (Truck)",
-    "Get 5000 Score with Kei Truck":              "Trasco Carpark (Truck)",
-    "Purchase Kei Truck Radio":                   "Trasco Carpark (Truck)",
-    "Purchase Kei Truck Toaster":                 "Trasco Carpark (Truck)",
-    "Purchase Kei Truck Boost":                   "Trasco Carpark (Truck)",
-
-    # Trasco
-    "Store Fridge":                               "Trasco",
-
-    # Fridge World
-    "Store Milk Klubnika":                        "Fridge World",
-
+    
     # Blimbo Village (requires Kei Truck)
     "Store Blimbo Village Sign":                  "Blimbo Village",
     "Store Gas Drum":                             "Blimbo Village",
@@ -420,12 +390,19 @@ LOCATION_REGION: dict[str, str] = {
     "Store ROAD NOT DONE":                        "Blimbo Village",
     "Store Old Ass Rusty Ass Key":                "Blimbo Village",
     "Store Fone":                                 "Blimbo Village",
-    "Find Raccoon Hat":                           "Blimbo Village",
+    "Store Plimbo":                               "Blimbo Village",
     "Find Media Player Hat":                      "Blimbo Village",
-    "Eat Purple Mystical Gem":                    "Blimbo Village",
     "Village: Euro on castle":                    "Blimbo Village",
     "Village: Euro near furnace":                 "Blimbo Village",
-
+    "Purchase Kei Truck Radio":                   "Blimbo Village",
+    "Purchase Kei Truck Toaster":                 "Blimbo Village",
+    "Purchase Kei Truck Boost":                   "Blimbo Village",
+    "Get 1000 Score with Kei Truck":              "Blimbo Village",
+    "Get 2000 Score with Kei Truck":              "Blimbo Village",
+    "Get 3000 Score with Kei Truck":              "Blimbo Village",
+    "Get 4000 Score with Kei Truck":              "Blimbo Village",
+    "Get 5000 Score with Kei Truck":              "Blimbo Village",
+    
     # Petrol Station (within the Blimbo Village area)
     "Store Gas Pumpo":                            "Petrol Station",
     "Store Binocublo":                            "Petrol Station",
@@ -436,8 +413,38 @@ LOCATION_REGION: dict[str, str] = {
     # Bildal Mines (from Blimbo Village)
     "Store Pickaxe":                              "Bildal Mines",
     "Store boingler Cat":                         "Bildal Mines",
+    "Find boingler Cat":                          "Bildal Mines",
     "Store Broken Wall":                          "Bildal Mines",
 
+    # Cricket
+    "Store Cricket Bat":                          "Cricket",
+    "Store Cricket":                              "Cricket",
+
+    # Garden World
+    "Store Flowian":                              "Garden World",
+    "Store Radio Blimbo":                         "Garden World",
+    
+    # Mikk Barge
+    "Eat Purple Mystical Gem":                    "Mikk Barge",
+
+    # The Forest
+    "Store Eel Can":                              "The Forest",
+    "Find Raccoon Hat":                           "The Forest",
+
+    # Trasco Carpark (25 items via Goo Office shortcut, no truck needed)
+    "Store Coffee Shop (closed)":                 "Trasco Carpark",
+    "Store Trolley":                              "Trasco Carpark",
+    "Store Fridge Key":                           "Trasco Carpark",
+    "Store Fridge":                               "Trasco Carpark",
+    "Store CD Player":                            "Trasco Carpark",
+    "Eat Mystical Dumbbell - Act 3":              "Trasco Carpark",
+    "Trasco: Euro on edge wall 1":                "Trasco Carpark",
+    "Trasco: Euro on edge wall 2":                "Trasco Carpark",
+    "Trasco: Euro on edge wall 3":                "Trasco Carpark",
+
+    # Fridge World
+    "Store Milk Klubnika":                        "Fridge World",
+    
     # Purgatory
     "Store My Favourite Chair":                   "Purgatory",
 
@@ -454,7 +461,6 @@ LOCATION_REGION: dict[str, str] = {
     "Store Dice":                                 "Blimbo City",
     "Store Average Canadian":                     "Blimbo City",
     "Store Apple":                                "Blimbo City",
-    "Find Patty Hat":                             "Blimbo City",
     "City: Euro on watertower":                   "Blimbo City",
     "City: Euro near boat on edge of city":       "Blimbo City",
     "City: Euro at Robin P. Bobin Store":         "Blimbo City",
@@ -468,6 +474,7 @@ LOCATION_REGION: dict[str, str] = {
 
     # Pub (from Blimbo City)
     "Store Cheeky Pint":                          "Pub",
+    "Find Patty Hat":                             "Pub",
 
     # BLMB Reactor Core (from Blimbo City + Kei Truck)
     "Store Cooling Rod":                          "BLMB Reactor Core",
@@ -517,7 +524,6 @@ LOCATION_REGION: dict[str, str] = {
     "Store Chairapist":                           "Municipal Wastes",
     "Store Synthesizer":                          "Municipal Wastes",
     "Store Real Gym":                             "Municipal Wastes",
-    "Store Funbells":                             "Municipal Wastes",
     "Store Plimbo's Cooling Rod":                 "Municipal Wastes",
     "Store Lloyd":                                "Municipal Wastes",
     "Eat Mystical Dumbbell - Act 4":              "Municipal Wastes",
@@ -532,13 +538,6 @@ LOCATION_REGION: dict[str, str] = {
     # The Gully (100 items + Kei Truck)
     "Store Belgium Waffle":                       "The Gully",
     "Store Orb":                                  "The Gully",
-
-    # Raccoon Central Station
-    "Store Manhole Cover":                        "Raccoon Central Station",
-    "Store Old Sign":                             "Raccoon Central Station",
-    "Store Warning Sign":                         "Raccoon Central Station",
-    "Store Area Sign":                            "Raccoon Central Station",
-    "Store Funi Raccoon Game Deluxe":             "Raccoon Central Station",
 }
 
 
