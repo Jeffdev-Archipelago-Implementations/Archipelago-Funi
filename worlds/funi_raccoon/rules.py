@@ -236,6 +236,9 @@ def set_all_location_rules(world: FuniRaccoonWorld) -> None:
     rule("Store Patrick O'Hara",
          Has("Progressive Mystical Dumbbell", 1) & (Has("Goo") | (items(35) & Has("Kei Truck"))))
 
+    # Evil Fish is out of logic before Goo; normal logic requires Goo to store it
+    rule("Store Evil Fish", Has("Goo") | OutOfLogic("Evil Fish storable without Goo"))
+
     # Funi Marketable Plushie requires Goo to reach
     rule("Store Funi Marketable Plushie", Has("Goo"))
 
