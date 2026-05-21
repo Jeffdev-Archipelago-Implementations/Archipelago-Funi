@@ -191,7 +191,7 @@ def _goal_rule(world: FuniRaccoonWorld):
     if goal == Goal.option_museum:
         return Has("Progressive Cooling Rod", 3) & Has("Belgium Waffle") & Has("Kei Truck") & items(100)
     if goal == Goal.option_fellowship:
-        return Has("Priestess") & Has("GREENISH ABOMINATION") & items(25)
+        return Has("Priestess") & Has("GREENISH ABOMINATION") & Has("Kei Truck") & Has("Progressive Cooling Rod", 3) & items(50)
     if goal == Goal.option_lugh:
         return Has("Green Mystical Gem") & Has("Blue Mystical Gem") & Has("Purple Mystical Gem") & Has("Red Mystical Gem") & Has("Kei Truck") & items(50)
     return Has("Progressive Cooling Rod", 3) & Has("Orb") & Has("Kei Truck") & items(50)
