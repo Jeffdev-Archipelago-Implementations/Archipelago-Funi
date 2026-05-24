@@ -67,7 +67,7 @@ class FuniRaccoonWorld(World):
             "hatsanity":   self.options.hatsanity.value,
             "goal":        self.options.goal.value,
             "current_map": self.origin_region_name,
-            "options": self.options.as_dict("eurosanity", "gemsanity", "catsanity", "hatsanity", "goal"),
+            "options": self.options.as_dict("eurosanity", "gemsanity", "catsanity", "hatsanity", "goal", "dumpster_weight_blocking"),
         }
 
     @staticmethod

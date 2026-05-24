@@ -111,7 +111,6 @@ _DUMBBELL_REQUIREMENTS: dict[str, int] = {
     "Store Sign":                                1,
     "Store Pirate":                              1,
     "Store Pirate 2":                            1,
-    "Store Pirate 3":                            1,
     "Store Feral Dog":                           1,
     "Store Beenie, Our Savior":                  1,
     "Store Patrick O'Hara":                      1,
@@ -148,6 +147,7 @@ _DUMBBELL_REQUIREMENTS: dict[str, int] = {
     "Store Gas Drum":                            2,
     "Store Smoker":                              2,
     "Store Radiator":                            2,
+    "Store Pirate 3":                            2,
     "Store Bench":                               2,
     "Store Bin":                                 2,
     "Store Knifedog":                            2,
@@ -211,12 +211,15 @@ def set_all_location_rules(world: FuniRaccoonWorld) -> None:
 
     rule("Victory", _goal_rule(world))
 
-    # Dumbbell size rules for store locations (TINY items have no requirement)
-    _kt_ool = OutOfLogic("Kei Truck can carry heavy items in this region")
+    # Dumbbell size rules for store locations (TINY items have no requirement).
+    # When dumpster_weight_blocking is disabled, having the Kei Truck is in-logic as an
+    # alternative to dumbbells, but only for regions that require the truck to reach.
+    # When enabled, weight is strictly enforced everywhere.
+    weight_blocking = world.options.dumpster_weight_blocking.value
     for loc_name, count in _DUMBBELL_REQUIREMENTS.items():
         r = Has("Progressive Mystical Dumbbell", count)
-        if loc_name in _KT_DUMBBELL_LOCATIONS:
-            r |= _kt_ool
+        if loc_name in _KT_DUMBBELL_LOCATIONS and not weight_blocking:
+            r |= Has("Kei Truck")
         rule(loc_name, r)
 
     # Within Billdal Mines, Michi and Broken Wall also require the Pickaxe
@@ -243,7 +246,7 @@ def set_all_location_rules(world: FuniRaccoonWorld) -> None:
     rule("Store Funi Marketable Plushie", Has("Goo"))
 
     # Act 4 is required for Funi Raccoon Game Deluxe
-    rule("Store Funi Raccoon Game Deluxe", Has("Kei Truck") & items(50))
+    rule("Store Funi Raccoon Game Deluxe", (HasFromList("Kei Truck Boost", "Kei Truck Toaster", count=1)) & Has("Kei Truck") & Has("Progressive Cooling Rod", 1) & items(50))
 
     # Gem Dumbbell Requirements
     rule("Eat Green Mystical Gem", Has("Progressive Mystical Dumbbell", 1))

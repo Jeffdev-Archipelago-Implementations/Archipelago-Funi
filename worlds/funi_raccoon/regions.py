@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from BaseClasses import Region
-from rule_builder.rules import Has
+from rule_builder.rules import Has, HasFromList
 
 from .rules import OutOfLogic, items
 
@@ -94,7 +94,7 @@ def create_and_connect_regions(world: FuniRaccoonWorld) -> None:
 
     # --- Act 2 (25 items) — Beenie HQ is the entry hub ---
     connect("Overworld", "Beenie HQ", items(25))
-    connect("Beenie HQ", "Beenie Factory")
+    connect("Beenie HQ", "Beenie Factory", items(25))
     connect("Beenie Factory", "The Process", Has("Goo"))
     connect("The Process", "THE MACHINE", Has("Goo"))
     connect("Beenie HQ", "Fish Vore", Has("Goo") | OutOfLogic("Fish Vore accessible without Goo"))
@@ -115,7 +115,7 @@ def create_and_connect_regions(world: FuniRaccoonWorld) -> None:
     connect("Blimbo Village", "Bildal Mines", Has("Old Ass Rusty Ass Key"))
     connect("Bildal Mines", "Garden World", Has("Pickaxe"))
     connect("Bildal Mines", "Mikk Barge", Has("Pickaxe"))
-    connect("Blimbo Village", "Trasco Carpark", Has("Kei Truck Toaster") | Has("Kei Truck Boost") & Has("Kei Truck"))
+    connect("Blimbo Village", "Trasco Carpark", (HasFromList("Kei Truck Toaster", "Kei Truck Boost", count=1)) & Has("Kei Truck"))
 
     # --- Trasco Carpark ---
     connect("Trasco Carpark", "Fridge World", Has("Fridge Key"))
@@ -123,10 +123,10 @@ def create_and_connect_regions(world: FuniRaccoonWorld) -> None:
     # --- Blimbo City cluster (35 items + Kei Truck) ---
     connect("Trasco Carpark", "Blimbo City", Has("Kei Truck"))
     connect("Blimbo City", "Pub")
-    connect("Blimbo City", "BLMB Reactor Core")
+    connect("Blimbo City", "BLMB Reactor Core",(HasFromList("Kei Truck Boost", "Kei Truck Toaster", count=1)) & Has("Progressive Cooling Rod", 1))
 
     # --- Act 4 (50 items + Kei Truck) ---
-    connect("Blimbo City", "Messed Up Canyon", items(50))
+    connect("BLMB Reactor Core", "Messed Up Canyon", items(50) & Has("Progressive Cooling Rod", 1))
     connect("Messed Up Canyon", "Pharmacy")
     connect("Messed Up Canyon", "The Desert")
     connect("Messed Up Canyon", "The Well of Knowledge")

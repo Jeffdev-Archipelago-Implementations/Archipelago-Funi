@@ -46,6 +46,17 @@ class Hatsanity(DefaultOnToggle):
     display_name = "Hatsanity"
 
 
+class DumpsterWeightBlocking(DefaultOnToggle):
+    """
+    When enabled (default), the dumpster enforces weight limits strictly: truck weight skips are
+    removed from logic entirely and all dumbbell requirements always apply. You will not
+    be able to use the truck to store heavier objects.
+    When disabled, logic expects you to use the Kei Truck to bypass weight
+    requirements in areas where the truck is accessible.
+    """
+    display_name = "Dumpster Weight Blocking"
+
+
 @dataclass
 class FuniRaccoonOptions(PerGameCommonOptions):
     eurosanity: Eurosanity
@@ -53,3 +64,4 @@ class FuniRaccoonOptions(PerGameCommonOptions):
     catsanity: Catsanity
     hatsanity: Hatsanity
     goal: Goal
+    dumpster_weight_blocking: DumpsterWeightBlocking
