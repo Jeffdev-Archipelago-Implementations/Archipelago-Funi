@@ -217,6 +217,12 @@ def set_all_location_rules(world: FuniRaccoonWorld) -> None:
             r |= Has("Kei Truck")
         rule(loc_name, r)
 
+    # Bell Boy additionally requires the Kei Truck Toaster (on top of its weight rule)
+    _bell_boy = Has("Progressive Mystical Dumbbell", _DUMBBELL_REQUIREMENTS["Store Bell Boy"])
+    if "Store Bell Boy" in _KT_DUMBBELL_LOCATIONS and not weight_blocking:
+        _bell_boy |= Has("Kei Truck")
+    rule("Store Bell Boy", _bell_boy & Has("Kei Truck Toaster"))
+
     # Within Billdal Mines, boingler and Broken Wall also require the Pickaxe
     rule("Store boingler Cat",   Has("Pickaxe"))
     rule("Store Broken Wall", Has("Pickaxe"))
