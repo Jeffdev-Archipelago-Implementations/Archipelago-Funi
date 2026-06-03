@@ -105,7 +105,6 @@ _DUMBBELL_REQUIREMENTS: dict[str, int] = {
     "Store Dumbbell":                            1,
     "Store Vending Machine (accepts doubloons)": 1,
     "Store Washing Machine":                     1,
-    "Store Buisness Man":                        1,
     "Store Paracetamol 650mg":                   1,
     "Store Heavy Stone Torch":                   1,
     "Store Sign":                                1,
@@ -113,9 +112,7 @@ _DUMBBELL_REQUIREMENTS: dict[str, int] = {
     "Store Pirate 2":                            1,
     "Store Feral Dog":                           1,
     "Store Beenie, Our Savior":                  1,
-    "Store Patrick O'Hara":                      1,
     "Store Crisp":                               1,
-    "Store Divider":                             1,
     "Store My Favourite Chair":                  1,
     "Store Blimbo Village Sign":                 1,
     "Store Papa Tyre":                           1,
@@ -126,21 +123,20 @@ _DUMBBELL_REQUIREMENTS: dict[str, int] = {
     "Store Pickaxe":                             1,
     "Store Fone":                                1,
     "Store Coffee Cup":                          1,
-    "Store Kettle":                              1,
     "Store Cheeky Pint":                         1,
     "Store CD Player":                           1,
     "Store Anti Sads":                           1,
     "Store Old Sign":                            1,
     "Store Warning Sign":                        1,
-    "Store Ms. Heel":                            1,
-    "Store Mr. Heel":                            1,
     "Store Priestess":                           1,
     "Store Beenie Saves The Orphans":            1,
     "Store Milk Klubnika":                       1,
     "Store Wriks Celler":                        1,
     "Store Door":                                1,
     "Store Goo Container":                       1,
+    "Store Cheese Wife":                         1,
     # MEDIUM (weight 3) — requires 2 Dumbbell
+    "Store Patrick O'Hara":                      2,
     "Store Microwave":                           2,
     "Store Crisps Undying Love":                 2,
     'Store "Cow"':                               2,
@@ -176,7 +172,6 @@ _DUMBBELL_REQUIREMENTS: dict[str, int] = {
     "Store Police Car":                          3,
     # CHUNKY (weight 5) — requires all 4 Dumbbell
     "Store Gym":                                 4,
-    "Store Plimbo":                              4,
     "Store Belgium Waffle":                      4,
 }
 
@@ -222,9 +217,12 @@ def set_all_location_rules(world: FuniRaccoonWorld) -> None:
             r |= Has("Kei Truck")
         rule(loc_name, r)
 
-    # Within Billdal Mines, Michi and Broken Wall also require the Pickaxe
-    rule("Store Michi Cat",   Has("Pickaxe"))
+    # Within Billdal Mines, boingler and Broken Wall also require the Pickaxe
+    rule("Store boingler Cat",   Has("Pickaxe"))
     rule("Store Broken Wall", Has("Pickaxe"))
+
+    # You need Beenie HQ access to store Michi Cat
+    rule("Store Michi Cat", items(25))
 
     # Gym Euro at end of train tracks requires Brob Energy; OOL sphere 1
     rule("Gym: Euro at end of train tracks",
@@ -237,7 +235,7 @@ def set_all_location_rules(world: FuniRaccoonWorld) -> None:
     
     # Patrick O'Hara requires Goo (inner Beenie HQ path) or Kei Truck + Blimbo Village access
     rule("Store Patrick O'Hara",
-         Has("Progressive Mystical Dumbbell", 1) & (Has("Goo") | (items(35) & Has("Kei Truck"))))
+         Has("Progressive Mystical Dumbbell", 2) & (Has("Goo") | (items(35) & Has("Kei Truck"))))
 
     # Evil Fish is out of logic before Goo; normal logic requires Goo to store it
     rule("Store Evil Fish", Has("Goo") | OutOfLogic("Evil Fish storable without Goo"))
@@ -246,7 +244,7 @@ def set_all_location_rules(world: FuniRaccoonWorld) -> None:
     rule("Store Funi Marketable Plushie", Has("Goo"))
 
     # Act 4 is required for Funi Raccoon Game Deluxe
-    rule("Store Funi Raccoon Game Deluxe", (HasFromList("Kei Truck Boost", "Kei Truck Toaster", count=1)) & Has("Kei Truck") & Has("Progressive Cooling Rod", 1) & items(50))
+    rule("Store Funi Raccoon Game Deluxe", Has("Kei Truck") & Has("Progressive Cooling Rod", 1) & items(50))
 
     # Gem Dumbbell Requirements
     rule("Eat Green Mystical Gem", Has("Progressive Mystical Dumbbell", 1))

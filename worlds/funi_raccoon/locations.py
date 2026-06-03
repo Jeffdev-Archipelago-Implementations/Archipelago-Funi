@@ -379,7 +379,7 @@ LOCATION_REGION: dict[str, str] = {
 
     # --- Act 3 (35 items) ---
     
-    # Blimbo Village (requires Kei Truck)
+    # Blimbo Village
     "Store Blimbo Village Sign":                  "Blimbo Village",
     "Store Gas Drum":                             "Blimbo Village",
     "Store Ougham Stone":                         "Blimbo Village",
@@ -431,7 +431,7 @@ LOCATION_REGION: dict[str, str] = {
     "Store Eel Can":                              "The Forest",
     "Find Raccoon Hat":                           "The Forest",
 
-    # Trasco Carpark (25 items via Goo Office shortcut, no truck needed)
+    # Trasco Carpark
     "Store Coffee Shop (closed)":                 "Trasco Carpark",
     "Store Trolley":                              "Trasco Carpark",
     "Store Fridge Key":                           "Trasco Carpark",
@@ -535,7 +535,7 @@ LOCATION_REGION: dict[str, str] = {
     "Wastes: Euro on road edge":                  "Municipal Wastes",
     "Wastes: Euro on dead blimbos building":      "Municipal Wastes",
 
-    # The Gully (100 items + Kei Truck)
+    # The Gully
     "Store Belgium Waffle":                       "The Gully",
     "Store Orb":                                  "The Gully",
 }
