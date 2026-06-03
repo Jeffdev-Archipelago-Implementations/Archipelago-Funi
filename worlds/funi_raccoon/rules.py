@@ -221,7 +221,7 @@ def set_all_location_rules(world: FuniRaccoonWorld) -> None:
     _bell_boy = Has("Progressive Mystical Dumbbell", _DUMBBELL_REQUIREMENTS["Store Bell Boy"])
     if "Store Bell Boy" in _KT_DUMBBELL_LOCATIONS and not weight_blocking:
         _bell_boy |= Has("Kei Truck")
-    rule("Store Bell Boy", _bell_boy & Has("Kei Truck Toaster"))
+    rule("Store Bell Boy", _bell_boy & HasFromList("Kei Truck Toaster", "Kei Truck Boost", count=1))
 
     # Within Billdal Mines, boingler and Broken Wall also require the Pickaxe
     rule("Store boingler Cat",   Has("Pickaxe"))
