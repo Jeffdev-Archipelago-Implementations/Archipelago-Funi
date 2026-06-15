@@ -327,7 +327,7 @@ DEFAULT_ITEM_CLASSIFICATIONS = {
     "Logan Right": ItemClassification.progression_deprioritized,
     "Kei Truck Radio": ItemClassification.filler,
     "Kei Truck Toaster": ItemClassification.progression,
-    "Kei Truck Boost": ItemClassification.useful,
+    "Kei Truck Boost": ItemClassification.progression,
     "Progressive Mystical Dumbbell": ItemClassification.progression,
     "Sun Hat":          ItemClassification.filler,
     "Sombrero":         ItemClassification.filler,
