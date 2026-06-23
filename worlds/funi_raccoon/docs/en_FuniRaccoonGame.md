@@ -17,7 +17,3 @@ All Dumpster items, hats, gems, cats, dumbbell increases, and progressive coolin
 ## Where is the options page?
 
 The options yaml can be made via the Options Creator in the Archipelago launcher. It requires Archipelago v0.6.7 to run.
-
-## Disclaimer
-
-This mod was made in part with help from Claude. I am not a pro Godot programmer, and I needed a lot of help figuring out how to set this up and make it work. That being said, **all code has been vetted to ensure that its at least fairly quality, and I will always make sure I am understanding what is written when it writes things.** I welcome any and all PRs to improve the code on both the Godot mod, and this APWorld, and I make a full commitment to ensuring this project is well made and well put together. I could hide this information, but I believe it is best to be transparent about the help I used with it :) REMEMBER TO SUPPORT AND COMMISSION ARTISTS ALWAYS, DOWN WITH ARTISTIC CREATIVE GEN AI USAGE!
