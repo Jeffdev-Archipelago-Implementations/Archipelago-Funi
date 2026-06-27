@@ -184,7 +184,7 @@ def items(count: int) -> HasFromList:
 def _goal_rule(world: FuniRaccoonWorld):
     goal = world.options.goal.value
     if goal == Goal.option_museum:
-        return Has("Progressive Cooling Rod", 3) & Has("Belgium Waffle") & Has("Kei Truck") & items(100)
+        return Has("Progressive Cooling Rod", 3) & Has("Belgium Waffle") & Has("Kei Truck") & Has("Progressive Mystical Dumbbell", 4) & items(100)
     if goal == Goal.option_fellowship:
         return Has("Priestess") & Has("GREENISH ABOMINATION") & Has("Kei Truck") & Has("Progressive Cooling Rod", 3) & items(50)
     if goal == Goal.option_lugh:
