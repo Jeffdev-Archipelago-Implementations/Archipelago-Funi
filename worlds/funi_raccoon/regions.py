@@ -97,7 +97,7 @@ def create_and_connect_regions(world: FuniRaccoonWorld) -> None:
     connect("Beenie HQ", "Beenie Factory", items(25))
     connect("Beenie Factory", "The Process", Has("Goo"))
     connect("The Process", "THE MACHINE", Has("Goo"))
-    connect("Beenie HQ", "Fish Vore", Has("Goo") | OutOfLogic("Fish Vore accessible without Goo"))
+    connect("Beenie HQ", "Fish Vore", items(25))
     connect("The Process", "Goo Office", Has("Goo"))
     connect("THE MACHINE", "Beenies Ascension", Has("Goo"))
     connect("Beenie HQ", "Fields", Has("Goo") | OutOfLogic("Fields accessible without Goo"))
@@ -135,4 +135,4 @@ def create_and_connect_regions(world: FuniRaccoonWorld) -> None:
     connect("Messed Up Canyon", "Municipal Wastes")
 
     # --- The Gully (3 Prog Cooling Rods needed) ---
-    connect("Messed Up Canyon", "The Gully", Has("Progressive Cooling Rod", 3))
+    connect("Messed Up Canyon", "The Gully", Has("Progressive Cooling Rod", 3) | OutOfLogic("The Gully is accessible with just Kei Truck"))
