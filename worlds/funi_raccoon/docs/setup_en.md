@@ -11,9 +11,7 @@
     - [Funi Raccoon AP](https://github.com/Jeffdev-Archipelago-Implementations/FuniRaccoonAP/releases/latest)
 2. Open your Funi Raccoon Game installation directory. On Steam, you can find it easily by right-clicking the game and clicking `Manage` > `Browse local files`.
 3. Extract the contents of the Funi Raccoon AP mod into the main directory, so that **mod_boot.gd**, **mods.pck**, and **override.cfg** are added in the root.
-4. Open the properties for Funi Raccoon Game. On Steam, right click the game and click `properties`.
-5. In the launch options, paste `--override-cfg "%STEAMAPPS%\common\Funi Raccoon Game\override.cfg"` into it. Do not remove any characters, it should be this **exactly**.
-6. Launch and play!
+4. Launch and play!
 
 ## Joining a new MultiWorld Game
 
