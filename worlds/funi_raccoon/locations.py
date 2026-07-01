@@ -556,7 +556,6 @@ LOCATION_REGION: dict[str, str] = {
     
     # Brazil
     "Store Brazil Knight":                        "Brazil",
-    "Store Hintblo":                              "Brazil",
     "Store Real Football":                        "Brazil",
     "Store Doggy":                                "Brazil",
 }
