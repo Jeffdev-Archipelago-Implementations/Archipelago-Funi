@@ -1,20 +1,18 @@
 from dataclasses import dataclass
 
-from Options import PerGameCommonOptions, Toggle, DefaultOnToggle, Choice
+from Options import PerGameCommonOptions, Toggle, DefaultOnToggle, OptionSet, DeathLink, Range
 
-class Goal(Choice):
+class Goal(OptionSet):
     """
-    Set the specified goal you want to have to get for goaling the Archipelago.
-    Orb: The orb ending, achieved by getting 50 dumpster items, the orb, 3 progressive cooling rods, and the kei truck. (default)
-    Museum: The museum ending, achieved by getting 100 dumpster items, the belgium waffle, 3 progressive cooling rods, and the kei truck.
-    Fellowship: The fellowship ending, achieved by getting 50 dumpster items, the GREENISH ABOMINATION, the Priestess, 3 progressive cooling rods, and the kei truck.
-    Lugh: The Lugh ending, achieved by getting 50 dumpster items, all 4 mystical jewels, and the kei truck.
+    Select one or more goals you will have to complete to win the run.
+    orb: 50 dumpster items, the Orb, 3 Progressive Cooling Rods. Throw the orb in the pot.
+    museum: 100 dumpster items, the Belgium Waffle, 4 Progressive Mystical Dumbbells, 3 Progressive Cooling Rods. Throw the Belgium Waffle in the pot.
+    fellowship: 50 dumpster items, the GREENISH ABOMINATION, the Priestess, 3 Progressive Cooling Rods. Throw the GREENISH ABOMINATION in the pot.
+    lugh: 50 dumpster items, all 4 Mystical Gems. Jump into Lugh's hands in the pot.
     """
     display_name = "Goal"
-    option_orb = 0
-    option_museum = 1
-    option_fellowship = 2
-    option_lugh = 3
+    valid_keys = ["orb", "museum", "fellowship", "lugh"]
+    default = {"orb"}
 
 class Eurosanity(Toggle):
     """
@@ -46,6 +44,13 @@ class Hatsanity(DefaultOnToggle):
     display_name = "Hatsanity"
 
 
+class LughQuestLocking(Toggle):
+    """
+    When enabled, Lugh will not accept items you bring to him unless you have been sent that specific item.
+    """
+    display_name = "Lugh Quest Locking"
+    
+    
 class DumpsterWeightBlocking(DefaultOnToggle):
     """
     When enabled (default), the dumpster enforces weight limits strictly: truck weight skips are
@@ -57,6 +62,24 @@ class DumpsterWeightBlocking(DefaultOnToggle):
     display_name = "Dumpster Weight Blocking"
 
 
+class TrapToggle(Toggle):
+    """
+    When enabled, trap items (Police Trap, Phone Ratio Trap) may appear in the item pool
+    as filler, replacing some Euro drops.
+    """
+    display_name = "Trap Toggle"
+
+
+class DeathLinkAmnesty(Range):
+    """
+    Number of deaths to get in your game before a deathlink is sent to another player.
+    """
+    display_name = "DeathLink Amnesty"
+    range_start = 1
+    range_end = 10
+    default = 1
+
+
 @dataclass
 class FuniRaccoonOptions(PerGameCommonOptions):
     eurosanity: Eurosanity
@@ -65,3 +88,7 @@ class FuniRaccoonOptions(PerGameCommonOptions):
     hatsanity: Hatsanity
     goal: Goal
     dumpster_weight_blocking: DumpsterWeightBlocking
+    lugh_quest_locking: LughQuestLocking
+    trap_toggle: TrapToggle
+    death_link: DeathLink
+    death_link_amnesty: DeathLinkAmnesty

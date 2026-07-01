@@ -28,7 +28,7 @@ class FuniRaccoonWorld(World):
     glitches_item_name: str = "out_of_logic"
 
     def generate_early(self) -> None:
-        if self.options.goal.value == FuniRaccoon_options.Goal.option_lugh:
+        if "lugh" in self.options.goal.value:
             self.options.gemsanity.value = True
 
         re_gen_passthrough = getattr(self.multiworld, "re_gen_passthrough", {})
@@ -66,9 +66,12 @@ class FuniRaccoonWorld(World):
             "gemsanity":   self.options.gemsanity.value,
             "catsanity":   self.options.catsanity.value,
             "hatsanity":   self.options.hatsanity.value,
-            "goal":        self.options.goal.value,
+            "goal":        sorted(self.options.goal.value),
             "current_map": self.origin_region_name,
-            "options": self.options.as_dict("eurosanity", "gemsanity", "catsanity", "hatsanity", "goal", "dumpster_weight_blocking"),
+            "options": {
+                **self.options.as_dict("eurosanity", "gemsanity", "catsanity", "hatsanity", "dumpster_weight_blocking", "lugh_quest_locking", "trap_toggle", "death_link", "death_link_amnesty"),
+                "goal": sorted(self.options.goal.value),
+            },
         }
 
     @staticmethod

@@ -43,8 +43,8 @@ LOCATION_NAME_TO_ID = {
     "Store ROAD NOT DONE": 1045,
     "Store Microwave": 1048,
     "Store Toaster": 1049,
-    "Store Logan Left": 1050,
-    "Store Logan Right": 1051,
+    "Store Logan/Real Knight Left": 1050,
+    "Store Logan/Real Knight Right": 1051,
     "Store Evil Fish": 1052,
     "Store Feral Dog": 1053,
     "Store Windmill": 1054,
@@ -157,6 +157,15 @@ LOCATION_NAME_TO_ID = {
     "Store Book Stack": 1173,
     "Store Average Canadian": 1174,
     "Store Cheese Wife": 1175,
+    "Store Brazil Knight": 1176,
+    "Store Real Football": 1177,
+    "Store Doggy": 1178,
+    "Store Hintblo": 1179,
+    "Store Mikk Masive Sign": 1180,
+    "Store Blimbo City Sign": 1181,
+    "Store Trasco Sign": 1182,
+    "Store Friend Martin Friendship Statue": 1183,
+    
     "Get 1000 Score with Kei Truck": 2001,
     "Get 2000 Score with Kei Truck": 2002,
     "Get 3000 Score with Kei Truck": 2003,
@@ -246,8 +255,8 @@ class FuniRaccoonLocation(Location):
 
 
 # Maps each location to the region it belongs in based on the item's first
-# in-game appearance. Items that first appear in Norwich (the starting area)
-# are not listed and default to "Overworld".
+# in-game appearance. Items that first appear in Sphere 1 are not listed
+# and default to "Overworld".
 LOCATION_REGION: dict[str, str] = {
     # --- Act 1 ---
     # Behrman Gymnasium
@@ -274,7 +283,7 @@ LOCATION_REGION: dict[str, str] = {
     # Chicken Farm
     "Store Chicken":                              "Chicken Farm",
     "Find Sombrero":                              "Chicken Farm",
-    "Norwich: Euro at chicken farm island":       "Chicken Farm", # Change this to Norwich later
+    "Norwich: Euro at chicken farm island":       "Chicken Farm",
     "Chicken Farm: Euro on pillar":               "Chicken Farm",
 
     # HAT STORE
@@ -300,8 +309,8 @@ LOCATION_REGION: dict[str, str] = {
     "Store Bench":                                "Raccoon Central Station",
 
     # Museum (15 items)
-    "Store Logan Left":                           "Museum",
-    "Store Logan Right":                          "Museum",
+    "Store Logan/Real Knight Left":               "Museum",
+    "Store Logan/Real Knight Right":              "Museum",
     "Store Pawn":                                 "Museum",
     "Store Rook":                                 "Museum",
     "Store Bishop":                               "Museum",
@@ -310,6 +319,7 @@ LOCATION_REGION: dict[str, str] = {
     "Store Spoonsweet":                           "Museum",
     "Store Wriks Celler":                         "Museum",
     "Store Barrel":                               "Museum",
+    "Store Friend Martin Friendship Statue":      "Museum",
     "Find Top Hat":                               "Museum",
     
     # Chamber
@@ -426,6 +436,7 @@ LOCATION_REGION: dict[str, str] = {
     
     # Mikk Barge
     "Eat Purple Mystical Gem":                    "Mikk Barge",
+    "Store Mikk Masive Sign":                    "Mikk Barge",
 
     # The Forest
     "Store Eel Can":                              "The Forest",
@@ -437,6 +448,7 @@ LOCATION_REGION: dict[str, str] = {
     "Store Fridge Key":                           "Trasco Carpark",
     "Store Fridge":                               "Trasco Carpark",
     "Store CD Player":                            "Trasco Carpark",
+    "Store Trasco Sign":                          "Trasco Carpark",
     "Eat Mystical Dumbbell - Act 3":              "Trasco Carpark",
     "Trasco: Euro on edge wall 1":                "Trasco Carpark",
     "Trasco: Euro on edge wall 2":                "Trasco Carpark",
@@ -538,6 +550,11 @@ LOCATION_REGION: dict[str, str] = {
     # The Gully
     "Store Belgium Waffle":                       "The Gully",
     "Store Orb":                                  "The Gully",
+    
+    # Brazil
+    "Store Brazil Knight":                        "Brazil",
+    "Store Real Football":                        "Brazil",
+    "Store Doggy":                                "Brazil",
 }
 
 

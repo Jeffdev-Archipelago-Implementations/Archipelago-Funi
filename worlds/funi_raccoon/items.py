@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from BaseClasses import Item, ItemClassification
-from .options import Goal
+
 
 if TYPE_CHECKING:
     from .world import FuniRaccoonWorld
@@ -44,8 +44,8 @@ ITEM_NAME_TO_ID = {
     "ROAD NOT DONE": 45,
     "Microwave": 48,
     "Toaster": 49,
-    "Logan Left": 50,
-    "Logan Right": 51,
+    "Logan/Real Knight Left": 50,
+    "Logan/Real Knight Right": 51,
     "Evil Fish": 52,
     "Feral Dog": 53,
     "Windmill": 54,
@@ -156,6 +156,14 @@ ITEM_NAME_TO_ID = {
     "Book Stack": 173,
     "Average Canadian": 174,
     "Cheese Wife": 175,
+    "Brazil Knight": 176,
+    "Real Football": 177,
+    "Doggy": 178,
+    "Hintblo": 179,
+    "Mikk Masive Sign": 180,
+    "Blimbo City Sign": 181,
+    "Trasco Sign": 182,
+    "Friend Martin Friendship Statue": 183,
     "Kei Truck Radio": 201,
     "Kei Truck Toaster": 202,
     "Kei Truck Boost": 203,
@@ -174,6 +182,9 @@ ITEM_NAME_TO_ID = {
     "Blue Mystical Gem":   602,
     "Purple Mystical Gem": 603,
     "Red Mystical Gem":    604,
+    "Police Trap": 701,
+    "Phone Ratio Trap": 702,
+    "Brazil Train Ticket": 800,
 }
 
 # Items should have a defined default classification.
@@ -211,7 +222,7 @@ DEFAULT_ITEM_CLASSIFICATIONS = {
     "ROAD NOT DONE": ItemClassification.progression_deprioritized,
     "Microwave": ItemClassification.progression_deprioritized,
     "Toaster": ItemClassification.progression_deprioritized,
-    "Logan Left": ItemClassification.progression_deprioritized,
+    "Logan/Real Knight Left": ItemClassification.progression_deprioritized,
     "Evil Fish": ItemClassification.progression_deprioritized,
     "Feral Dog": ItemClassification.progression_deprioritized,
     "Windmill": ItemClassification.progression_deprioritized,
@@ -284,12 +295,12 @@ DEFAULT_ITEM_CLASSIFICATIONS = {
     "Old Sign": ItemClassification.progression_deprioritized,
     "Warning Sign": ItemClassification.progression_deprioritized,
     "Area Sign": ItemClassification.progression_deprioritized,
-    "Orb": ItemClassification.progression_deprioritized,
+    "Orb": ItemClassification.progression,
     "Ms. Heel": ItemClassification.progression_deprioritized,
     "Mr. Heel": ItemClassification.progression_deprioritized,
-    "Belgium Waffle": ItemClassification.progression_deprioritized,
-    "GREENISH ABOMINATION": ItemClassification.progression_deprioritized,
-    "Priestess": ItemClassification.progression_deprioritized,
+    "Belgium Waffle": ItemClassification.progression,
+    "GREENISH ABOMINATION": ItemClassification.progression,
+    "Priestess": ItemClassification.progression,
     "Beenie Saves The Orphans": ItemClassification.progression_deprioritized,
     "Eel Can": ItemClassification.progression_deprioritized,
     "Barrel": ItemClassification.progression_deprioritized,
@@ -315,7 +326,7 @@ DEFAULT_ITEM_CLASSIFICATIONS = {
     "Funi Raccoon Game Deluxe": ItemClassification.progression_deprioritized,
     "Patrice": ItemClassification.progression_deprioritized,
     "Goo Container": ItemClassification.progression_deprioritized,
-    "Butterfly": ItemClassification.progression_deprioritized,
+    "Butterfly": ItemClassification.progression,
     "Patrick O Bobble": ItemClassification.progression_deprioritized,
     "Dice": ItemClassification.progression_deprioritized,
     "Lughling": ItemClassification.progression_deprioritized,
@@ -324,7 +335,7 @@ DEFAULT_ITEM_CLASSIFICATIONS = {
     "Cheese Wife": ItemClassification.progression_deprioritized,
     "Pirate 2": ItemClassification.progression_deprioritized,
     "Pirate 3": ItemClassification.progression_deprioritized,
-    "Logan Right": ItemClassification.progression_deprioritized,
+    "Logan/Real Knight Right": ItemClassification.progression_deprioritized,
     "Kei Truck Radio": ItemClassification.filler,
     "Kei Truck Toaster": ItemClassification.progression,
     "Kei Truck Boost": ItemClassification.progression,
@@ -343,7 +354,17 @@ DEFAULT_ITEM_CLASSIFICATIONS = {
     "Red Mystical Gem":    ItemClassification.filler,
     "100 Euro": ItemClassification.filler,
     "10 Euro": ItemClassification.filler,
+    "Police Trap": ItemClassification.trap,
+    "Phone Ratio Trap": ItemClassification.trap,
+    "Brazil Train Ticket": ItemClassification.progression,
 }
+
+_LUGH_QUEST_FILLER_ITEMS: frozenset[str] = frozenset({
+    "unregistered firearm",
+    "Flowian",
+    "Anti Sads",
+    "Funi Marketable Plushie",
+})
 
 _GEMS = {
     "Green Mystical Gem",
@@ -352,6 +373,7 @@ _GEMS = {
     "Red Mystical Gem",
 }
 
+TRAP_ITEMS = ["Police Trap", "Phone Ratio Trap"]
 
 ITEM_GROUPS: dict[str, set[str]] = {
     # "Dumpster Items" is populated in world.py from rules.DUMPSTER_ITEMS,
@@ -364,12 +386,13 @@ ITEM_GROUPS: dict[str, set[str]] = {
     "Mystical Gems": set(_GEMS),
     "Euros": {"10 Euro", "100 Euro"},
     "Kei Truck Upgrades": {"Kei Truck Radio", "Kei Truck Toaster", "Kei Truck Boost"},
+    "Traps": {"Police Trap", "Phone Ratio Trap"},
 }
 
 
 def is_progression_item(world: FuniRaccoonWorld, name: str) -> bool:
     if name in _GEMS:
-        return world.options.gemsanity and world.options.goal.value == Goal.option_lugh
+        return world.options.gemsanity and "lugh" in world.options.goal.value
     return DEFAULT_ITEM_CLASSIFICATIONS[name] in (
         ItemClassification.progression,
         ItemClassification.progression_deprioritized,
@@ -381,13 +404,18 @@ class FuniRaccoonItem(Item):
 
 
 def get_random_filler_item_name(world: FuniRaccoonWorld) -> str:
+    if world.options.trap_toggle and world.random.randint(0, 2) == 0:
+        return world.random.choice(TRAP_ITEMS)
     return "100 Euro" if world.random.randint(0, 9) == 0 else "10 Euro"
 
 
 def create_item_with_correct_classification(world: FuniRaccoonWorld, name: str) -> FuniRaccoonItem:
-    classification = ItemClassification.progression if (
-        world.options.goal.value == Goal.option_lugh and name in _GEMS
-    ) else DEFAULT_ITEM_CLASSIFICATIONS[name]
+    if "lugh" in world.options.goal.value and name in _GEMS:
+        classification = ItemClassification.progression
+    elif world.options.lugh_quest_locking and name in _LUGH_QUEST_FILLER_ITEMS:
+        classification = ItemClassification.progression
+    else:
+        classification = DEFAULT_ITEM_CLASSIFICATIONS[name]
     return FuniRaccoonItem(name, classification, ITEM_NAME_TO_ID[name], world.player)
 
 
@@ -415,7 +443,7 @@ def create_all_items(world: FuniRaccoonWorld) -> None:
 
     # Mystical gems are included as progression items for Lugh,
     # otherwise only when gem sanity is on.
-    if world.options.gemsanity and world.options.goal.value != Goal.option_lugh:
+    if world.options.gemsanity and "lugh" not in world.options.goal.value:
         itempool += [world.create_item(name) for name in _GEMS]
 
     # Fill remaining location slots with filler.

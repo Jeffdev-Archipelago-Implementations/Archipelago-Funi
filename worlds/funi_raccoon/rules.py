@@ -9,7 +9,7 @@ from rule_builder.rules import Has, HasFromList, Rule
 
 from .items import ITEM_NAME_TO_ID
 from .locations import LOCATION_NAME_TO_ID
-from .options import Goal
+
 
 if TYPE_CHECKING:
     from .world import FuniRaccoonWorld
@@ -182,14 +182,22 @@ def items(count: int) -> HasFromList:
 
 
 def _goal_rule(world: FuniRaccoonWorld):
-    goal = world.options.goal.value
-    if goal == Goal.option_museum:
-        return Has("Progressive Cooling Rod", 3) & Has("Belgium Waffle") & Has("Kei Truck") & Has("Progressive Mystical Dumbbell", 4) & items(100)
-    if goal == Goal.option_fellowship:
-        return Has("Priestess") & Has("GREENISH ABOMINATION") & Has("Kei Truck") & Has("Progressive Cooling Rod", 3) & items(50)
-    if goal == Goal.option_lugh:
-        return Has("Green Mystical Gem") & Has("Blue Mystical Gem") & Has("Purple Mystical Gem") & Has("Red Mystical Gem") & Has("Kei Truck") & items(50)
-    return Has("Progressive Cooling Rod", 3) & Has("Orb") & Has("Kei Truck") & items(50)
+    goals = world.options.goal.value
+    rules = []
+    if "orb" in goals:
+        rules.append(Has("Progressive Cooling Rod", 3) & Has("Orb") & Has("Kei Truck") & items(50))
+    if "museum" in goals:
+        rules.append(Has("Progressive Cooling Rod", 3) & Has("Belgium Waffle") & Has("Kei Truck") & Has("Progressive Mystical Dumbbell", 4) & items(100))
+    if "fellowship" in goals:
+        rules.append(Has("Priestess") & Has("GREENISH ABOMINATION") & Has("Kei Truck") & Has("Progressive Cooling Rod", 3) & items(50))
+    if "lugh" in goals:
+        rules.append(Has("Green Mystical Gem") & Has("Blue Mystical Gem") & Has("Purple Mystical Gem") & Has("Red Mystical Gem") & Has("Kei Truck") & items(50))
+    if not rules:
+        return Has("Progressive Cooling Rod", 3) & Has("Orb") & Has("Kei Truck") & items(50)
+    result = rules[0]
+    for r in rules[1:]:
+        result = result | r
+    return result
 
 
 def set_all_rules(world: FuniRaccoonWorld) -> None:
@@ -248,6 +256,14 @@ def set_all_location_rules(world: FuniRaccoonWorld) -> None:
 
     # Funi Marketable Plushie requires Goo to reach
     rule("Store Funi Marketable Plushie", Has("Goo"))
+
+    # Chicken Farm items require Chicken to collect (the Norwich euro in that region does not)
+    rule("Store Chicken",              Has("Chicken"))
+    rule("Find Sombrero",              Has("Chicken"))
+    rule("Chicken Farm: Euro on pillar", Has("Chicken"))
+
+    # Lughling requires Butterfly
+    rule("Store Lughling", Has("Butterfly"))
 
     # Act 4 is required for Funi Raccoon Game Deluxe
     rule("Store Funi Raccoon Game Deluxe", Has("Kei Truck") & Has("Progressive Cooling Rod", 1) & items(50))
