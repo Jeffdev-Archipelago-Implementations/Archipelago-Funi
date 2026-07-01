@@ -165,6 +165,7 @@ LOCATION_NAME_TO_ID = {
     "Store Blimbo City Sign": 1181,
     "Store Trasco Sign": 1182,
     "Store Friend Martin Friendship Statue": 1183,
+    "Store Funi Raccoon": 1184,
     
     "Get 1000 Score with Kei Truck": 2001,
     "Get 2000 Score with Kei Truck": 2002,
@@ -320,6 +321,7 @@ LOCATION_REGION: dict[str, str] = {
     "Store Wriks Celler":                         "Museum",
     "Store Barrel":                               "Museum",
     "Store Friend Martin Friendship Statue":      "Museum",
+    "Store Funi Raccoon":                         "Museum",
     "Find Top Hat":                               "Museum",
     
     # Chamber
