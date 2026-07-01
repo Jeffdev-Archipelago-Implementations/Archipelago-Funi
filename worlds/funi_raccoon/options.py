@@ -29,14 +29,6 @@ class Gemsanity(DefaultOnToggle):
     display_name = "Gemsanity"
 
 
-class Catsanity(DefaultOnToggle):
-    """
-    Include the Find Cat locations as randomizer checks.
-    Storing cats at the dumpster is always included.
-    """
-    display_name = "Catsanity"
-
-
 class Hatsanity(DefaultOnToggle):
     """
     Include the hat locations as randomizer checks.
@@ -62,7 +54,7 @@ class DumpsterWeightBlocking(DefaultOnToggle):
     display_name = "Dumpster Weight Blocking"
 
 
-class TrapToggle(Toggle):
+class TrapToggle(DefaultOnToggle):
     """
     When enabled, trap items (Police Trap, Phone Ratio Trap) may appear in the item pool
     as filler, replacing some Euro drops.
@@ -84,7 +76,6 @@ class DeathLinkAmnesty(Range):
 class FuniRaccoonOptions(PerGameCommonOptions):
     eurosanity: Eurosanity
     gemsanity: Gemsanity
-    catsanity: Catsanity
     hatsanity: Hatsanity
     goal: Goal
     dumpster_weight_blocking: DumpsterWeightBlocking

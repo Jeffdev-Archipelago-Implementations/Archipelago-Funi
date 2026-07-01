@@ -564,7 +564,6 @@ def get_location_names_with_ids(location_names: list[str]) -> dict[str, int | No
 
 _EURO_LOCATIONS  = {n for n, i in LOCATION_NAME_TO_ID.items() if 8001 <= i <= 8999}
 _GEM_LOCATIONS   = {n for n, i in LOCATION_NAME_TO_ID.items() if 7001 <= i <= 7999}
-_CAT_LOCATIONS   = {n for n, i in LOCATION_NAME_TO_ID.items() if 5001 <= i <= 5999}
 _HAT_LOCATIONS   = {n for n, i in LOCATION_NAME_TO_ID.items() if 6001 <= i <= 6999}
 
 
@@ -574,8 +573,6 @@ def get_excluded_locations(world: FuniRaccoonWorld) -> set[str]:
         excluded |= _EURO_LOCATIONS
     if not world.options.gemsanity:
         excluded |= _GEM_LOCATIONS
-    if not world.options.catsanity:
-        excluded |= _CAT_LOCATIONS
     if not world.options.hatsanity:
         excluded |= _HAT_LOCATIONS
     return excluded

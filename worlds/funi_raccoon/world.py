@@ -64,12 +64,11 @@ class FuniRaccoonWorld(World):
         return {
             "eurosanity":  self.options.eurosanity.value,
             "gemsanity":   self.options.gemsanity.value,
-            "catsanity":   self.options.catsanity.value,
             "hatsanity":   self.options.hatsanity.value,
             "goal":        sorted(self.options.goal.value),
             "current_map": self.origin_region_name,
             "options": {
-                **self.options.as_dict("eurosanity", "gemsanity", "catsanity", "hatsanity", "dumpster_weight_blocking", "lugh_quest_locking", "trap_toggle", "death_link", "death_link_amnesty"),
+                **self.options.as_dict("eurosanity", "gemsanity", "hatsanity", "dumpster_weight_blocking", "lugh_quest_locking", "trap_toggle", "death_link", "death_link_amnesty"),
                 "goal": sorted(self.options.goal.value),
             },
         }
