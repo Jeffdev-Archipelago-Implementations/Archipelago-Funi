@@ -162,9 +162,9 @@ LOCATION_NAME_TO_ID = {
     "Store Average Canadian": 1174,
     "Store Cheese Wife": 1175,
     "Store Brazil Knight": 1176,
-    "Store Hintblo": 1177,
+    "Store Doggy": 1177,
     "Store Real Football": 1178,
-    "Store Doggy": 1179,
+    "Store Hintblo": 1179,
     "Store Funi Raccoon": 1180,
     
     "Get 1000 Score with Kei Truck": 2001,
@@ -245,6 +245,8 @@ LOCATION_NAME_TO_ID = {
     "Desert: Euro on top of fridge land skull":     8044,
     "Desert: Euro on blue house roof in fridge land": 8045,
     "Desert: Euro in BLMB nuclear reactor":         8046,
+    "Brazil: Euro on middle hill":                  8047,
+    "Hat Store: Euro from saving Toastie":          8048,
 
     # --- Random Extras ---
     "Complete Behrman Speedway in under 1 minute": 9001,
@@ -290,6 +292,7 @@ LOCATION_REGION: dict[str, str] = {
     # HAT STORE
     "Store Mr. Heel":                             "HAT STORE",
     "Store Ms. Heel":                             "HAT STORE",
+    "Hat Store: Euro from saving Toastie":        "HAT STORE",
 
     # Cleaners
     "Store Washing Machine":                      "Cleaners",
@@ -448,7 +451,9 @@ LOCATION_REGION: dict[str, str] = {
     "Store Coffee Shop (closed)":                 "Trasco Carpark",
     "Store Trolley":                              "Trasco Carpark",
     "Store Fridge Key":                           "Trasco Carpark",
-    "Store Fridge":                               "Trasco Carpark",
+    # Store Fridge is reachable from Trasco Carpark or by taking the train to Brazil,
+    # so it's hosted in the always-open station with an explicit rule in rules.py.
+    "Store Fridge":                               "Raccoon Central Station",
     "Store CD Player":                            "Trasco Carpark",
     "Store Trasco Sign":                          "Trasco Carpark",
     "Eat Mystical Dumbbell - Act 3":              "Trasco Carpark",
@@ -558,6 +563,7 @@ LOCATION_REGION: dict[str, str] = {
     "Store Brazil Knight":                        "Brazil",
     "Store Real Football":                        "Brazil",
     "Store Doggy":                                "Brazil",
+    "Brazil: Euro on middle hill":                "Brazil",
 }
 
 

@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING, override
 
 from BaseClasses import CollectionState
 from NetUtils import JSONMessagePart
-from rule_builder.rules import Has, HasFromList, Rule
+from rule_builder.rules import CanReachRegion, Has, HasFromList, Rule
 
 from .items import ITEM_NAME_TO_ID
 from .locations import LOCATION_NAME_TO_ID
@@ -57,6 +57,9 @@ DUMPSTER_ITEMS = [
     name for name, item_id in ITEM_NAME_TO_ID.items()
     if (item_id + 1000) in _STORE_LOCATION_IDS
 ]
+# The Kei Truck has no "Store Kei Truck" location but still counts toward the
+# dumpster item score in-game.
+DUMPSTER_ITEMS.append("Kei Truck")
 
 # Store locations in regions where the Kei Truck is accessible — weight requirements
 # don't apply OOL because the truck can carry heavy items.
@@ -185,15 +188,15 @@ def _goal_rule(world: FuniRaccoonWorld):
     goals = world.options.goal.value
     rules = []
     if "orb" in goals:
-        rules.append(Has("Progressive Cooling Rod", 3) & Has("Orb") & Has("Kei Truck") & items(50))
+        rules.append(Has("Progressive Cooling Rod", 3) & Has("Orb") & Has("Kei Truck") & items(world.options.act4_threshold.value))
     if "museum" in goals:
         rules.append(Has("Progressive Cooling Rod", 3) & Has("Belgium Waffle") & Has("Kei Truck") & Has("Progressive Mystical Dumbbell", 4) & items(100))
     if "fellowship" in goals:
-        rules.append(Has("Priestess") & Has("GREENISH ABOMINATION") & Has("Kei Truck") & Has("Progressive Cooling Rod", 3) & items(50))
+        rules.append(Has("Priestess") & Has("GREENISH ABOMINATION") & Has("Kei Truck") & Has("Progressive Cooling Rod", 3) & items(world.options.act4_threshold.value))
     if "lugh" in goals:
-        rules.append(Has("Green Mystical Gem") & Has("Blue Mystical Gem") & Has("Purple Mystical Gem") & Has("Red Mystical Gem") & Has("Kei Truck") & items(50))
+        rules.append(Has("Green Mystical Gem") & Has("Blue Mystical Gem") & Has("Purple Mystical Gem") & Has("Red Mystical Gem") & Has("Kei Truck") & items(world.options.act4_threshold.value))
     if not rules:
-        return Has("Progressive Cooling Rod", 3) & Has("Orb") & Has("Kei Truck") & items(50)
+        return Has("Progressive Cooling Rod", 3) & Has("Orb") & Has("Kei Truck") & items(world.options.act4_threshold.value)
     result = rules[0]
     for r in rules[1:]:
         result = result | r
@@ -225,6 +228,14 @@ def set_all_location_rules(world: FuniRaccoonWorld) -> None:
             r |= Has("Kei Truck")
         rule(loc_name, r)
 
+    # Store Fridge sits in Trasco Carpark but is also reachable by taking the train
+    # to Brazil. It's hosted in Raccoon Central Station (always open), so gate it on
+    # reaching either area, on top of its weight rule.
+    _fridge = Has("Progressive Mystical Dumbbell", _DUMBBELL_REQUIREMENTS["Store Fridge"])
+    if "Store Fridge" in _KT_DUMBBELL_LOCATIONS and not weight_blocking:
+        _fridge |= Has("Kei Truck")
+    rule("Store Fridge", _fridge & (CanReachRegion("Trasco Carpark") | CanReachRegion("Brazil")))
+
     # Bell Boy additionally requires the Kei Truck Toaster (on top of its weight rule)
     _bell_boy = Has("Progressive Mystical Dumbbell", _DUMBBELL_REQUIREMENTS["Store Bell Boy"])
     if "Store Bell Boy" in _KT_DUMBBELL_LOCATIONS and not weight_blocking:
@@ -236,7 +247,7 @@ def set_all_location_rules(world: FuniRaccoonWorld) -> None:
     rule("Store Broken Wall", Has("Pickaxe"))
 
     # You need Beenie HQ access to store Michi Cat
-    rule("Store Michi Cat", items(25))
+    rule("Store Michi Cat", items(world.options.act2_threshold.value))
 
     # Gym Euro at end of train tracks requires Brob Energy; OOL sphere 1
     rule("Gym: Euro at end of train tracks",
@@ -249,7 +260,7 @@ def set_all_location_rules(world: FuniRaccoonWorld) -> None:
     
     # Patrick O'Hara requires Goo (inner Beenie HQ path) or Kei Truck + Blimbo Village access
     rule("Store Patrick O'Hara",
-         Has("Progressive Mystical Dumbbell", 2) & (Has("Goo") | (items(35) & Has("Kei Truck"))))
+         Has("Progressive Mystical Dumbbell", 2) & (Has("Goo") | (items(world.options.act3_threshold.value) & Has("Kei Truck"))))
 
     # Evil Fish is out of logic before Goo; normal logic requires Goo to store it
     rule("Store Evil Fish", Has("Goo") | OutOfLogic("Evil Fish storable without Goo"))
@@ -266,7 +277,8 @@ def set_all_location_rules(world: FuniRaccoonWorld) -> None:
     rule("Store Lughling", Has("Butterfly"))
 
     # Act 4 is required for Funi Raccoon Game Deluxe
-    rule("Store Funi Raccoon Game Deluxe", Has("Kei Truck") & Has("Progressive Cooling Rod", 1) & items(50))
+    rule("Store Funi Raccoon Game Deluxe",
+         Has("Kei Truck") & Has("Progressive Cooling Rod", 1) & items(world.options.act4_threshold.value))
 
     # Gem Dumbbell Requirements
     rule("Eat Green Mystical Gem", Has("Progressive Mystical Dumbbell", 1))

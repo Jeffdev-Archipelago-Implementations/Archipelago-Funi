@@ -5,10 +5,10 @@ from Options import PerGameCommonOptions, Toggle, DefaultOnToggle, OptionSet, De
 class Goal(OptionSet):
     """
     Select one or more goals you will have to complete to win the run.
-    orb: 50 dumpster items, the Orb, 3 Progressive Cooling Rods. Throw the orb in the pot.
-    museum: 100 dumpster items, the Belgium Waffle, 4 Progressive Mystical Dumbbells, 3 Progressive Cooling Rods. Throw the Belgium Waffle in the pot.
-    fellowship: 50 dumpster items, the GREENISH ABOMINATION, the Priestess, 3 Progressive Cooling Rods. Throw the GREENISH ABOMINATION in the pot.
-    lugh: 50 dumpster items, all 4 Mystical Gems. Jump into Lugh's hands in the pot.
+    orb: Act 4 access, the Orb, 3 Progressive Cooling Rods. Throw the orb in the pot.
+    museum: Act 4 access, 100 dumpster items, the Belgium Waffle, 4 Progressive Mystical Dumbbells, 3 Progressive Cooling Rods. Throw the Belgium Waffle in the pot.
+    fellowship: Act 4 access, the GREENISH ABOMINATION, the Priestess, 3 Progressive Cooling Rods. Throw the GREENISH ABOMINATION in the pot.
+    lugh: Act 4 access, all 4 Mystical Gems. Jump into Lugh's hands at the Gully.
     """
     display_name = "Goal"
     valid_keys = ["orb", "museum", "fellowship", "lugh"]
@@ -61,15 +61,58 @@ class TrapToggle(DefaultOnToggle):
     """
     display_name = "Trap Toggle"
 
+class MuseumThreshold(Range):
+    """
+    Number of dumpster items required to unlock the Museum.
+    NOTE: Changing these can sometimes lead to weird generation problems, but usually does not. If you run into problems, try generating with slightly different values.
+    If you DO run into generation problems, let Jeff know.
+    """
+    display_name = "Museum Threshold"
+    range_start = 5
+    range_end = 25
+    default = 15
 
-class DeathLinkAmnesty(Range):
+
+class Act2Threshold(Range):
     """
-    Number of deaths to get in your game before a deathlink is sent to another player.
+    Number of dumpster items required to unlock Act 2 (Beenie HQ cluster).'
+    NOTE: Changing these can sometimes lead to weird generation problems, but usually does not. If you run into problems, try generating with slightly different values.
+    If you DO run into generation problems, let Jeff know.
     """
-    display_name = "DeathLink Amnesty"
-    range_start = 1
-    range_end = 10
-    default = 1
+    display_name = "Act 2 Threshold"
+    range_start = 10
+    range_end = 50
+    default = 25
+
+
+class Act3Threshold(Range):
+    """
+    Number of dumpster items required to unlock Act 3 (Driving Test/Blimbo City, contains the Kei Truck).
+    NOTE: Changing these can sometimes lead to weird generation problems, but usually does not. If you run into problems, try generating with slightly different values.
+    If you DO run into generation problems, let Jeff know.
+    """
+    display_name = "Act 3 Threshold"
+    range_start = 15
+    range_end = 75
+    default = 35
+
+
+class Act4Threshold(Range):
+    """
+    Number of dumpster items required to unlock Act 4 (post-apocalypse areas, also requires the Kei Truck).
+    NOTE: Changing these can sometimes lead to weird generation problems, but usually does not. If you run into problems, try generating with slightly different values.
+    If you DO run into generation problems, let Jeff know.
+    """
+    display_name = "Act 4 Threshold"
+    range_start = 20
+    range_end = 100
+    default = 50
+    
+class RaccoonColorRando(Toggle):
+    """
+    When enabled, the color of Raccoon will be randomized every time you enter a new area.
+    """
+    display_name = "Raccoon Color Randomization"
 
 
 @dataclass
@@ -81,5 +124,8 @@ class FuniRaccoonOptions(PerGameCommonOptions):
     dumpster_weight_blocking: DumpsterWeightBlocking
     lugh_quest_locking: LughQuestLocking
     trap_toggle: TrapToggle
-    death_link: DeathLink
-    death_link_amnesty: DeathLinkAmnesty
+    museum_threshold: MuseumThreshold
+    act2_threshold: Act2Threshold
+    act3_threshold: Act3Threshold
+    act4_threshold: Act4Threshold
+    color_rando: RaccoonColorRando

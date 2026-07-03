@@ -3,6 +3,7 @@ from typing import Any
 
 from BaseClasses import ItemClassification
 from worlds.AutoWorld import World
+from Options import OptionError
 
 from . import items, locations, regions, rules, web_world
 from . import options as FuniRaccoon_options
@@ -26,10 +27,35 @@ class FuniRaccoonWorld(World):
 
     ut_can_gen_without_yaml = True
     glitches_item_name: str = "out_of_logic"
-
+        
     def generate_early(self) -> None:
         if "lugh" in self.options.goal.value:
             self.options.gemsanity.value = True
+            
+        museum = self.options.museum_threshold.value
+        act2 = self.options.act2_threshold.value
+        act3 = self.options.act3_threshold.value
+        act4 = self.options.act4_threshold.value
+
+        if act2 <= museum:
+            raise OptionError(
+                f"Act 2 Threshold ({act2}) must be strictly greater than Museum Threshold ({museum})."
+            )
+        if act3 <= act2:
+            raise OptionError(
+                f"Act 3 Threshold ({act3}) must be strictly greater than Act 2 Threshold ({act2})."
+            )
+        if act4 <= act3:
+            raise OptionError(
+                f"Act 4 Threshold ({act4}) must be strictly greater than Act 3 Threshold ({act3})."
+            )
+
+        max_dumpster_items = len(self.item_name_groups["Dumpster Items"])
+        if act4 > max_dumpster_items:
+            raise OptionError(
+                f"Act 4 Threshold ({act4}) cannot be greater than the total pool of "
+                f"Dumpster Items ({max_dumpster_items})."
+            )
 
         re_gen_passthrough = getattr(self.multiworld, "re_gen_passthrough", {})
         if re_gen_passthrough and self.game in re_gen_passthrough:
@@ -68,7 +94,7 @@ class FuniRaccoonWorld(World):
             "goal":        sorted(self.options.goal.value),
             "current_map": self.origin_region_name,
             "options": {
-                **self.options.as_dict("eurosanity", "gemsanity", "hatsanity", "dumpster_weight_blocking", "lugh_quest_locking", "trap_toggle", "death_link", "death_link_amnesty"),
+                **self.options.as_dict("eurosanity", "gemsanity", "hatsanity", "dumpster_weight_blocking", "lugh_quest_locking", "trap_toggle", "museum_threshold", "act2_threshold", "act3_threshold", "act4_threshold", "color_rando"),
                 "goal": sorted(self.options.goal.value),
             },
         }

@@ -14,6 +14,15 @@ Funi Raccoon Game is a silly 3D collectathon about a Raccoon stealing things and
 
 All Dumpster items, hats, gems, cats, dumbbell increases, and progressive cooling rods can be found, as well as filler euro increases.
 
+## FAQ
+
+What are the Function keybinds and what do they do?
+F1: Display all keybinds and their usages
+F2: Display current progress towards set goals
+F3: Change if item popups in the middle of the screen should appear/disappear
+F4: Filter out messages to only be relevant to yourself, rather than all messages
+F6: Change if Archipelago text client messages should show in the bottom left at alls
+
 ## Where is the options page?
 
 The options yaml can be made via the Options Creator in the Archipelago launcher. It requires Archipelago v0.6.7 to run.

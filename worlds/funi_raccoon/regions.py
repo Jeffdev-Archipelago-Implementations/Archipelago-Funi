@@ -11,11 +11,10 @@ if TYPE_CHECKING:
     from .world import FuniRaccoonWorld
 
 # Item-count thresholds that unlock floors/clusters (based on dumpster score):
-#   15  - Museum opens
-#   25  - Beenie HQ (Act 2 cluster); Trasco Carpark via Goo Office shortcut
-#   35  - Driving Test/Blimbo City (Act 3 entry, contains Kei Truck)
-#   50  - Post-apocalypse areas (Act 4) accessible (also requires Kei Truck)
-#   100 - The Gully accessible (also requires Kei Truck)
+#   museum_threshold (default 15) - Museum opens
+#   act2_threshold   (default 25) - Beenie HQ (Act 2 cluster); Trasco Carpark via Goo Office shortcut
+#   act3_threshold   (default 35) - Driving Test/Blimbo City (Act 3 entry, contains Kei Truck)
+#   act4_threshold   (default 50) - Post-apocalypse areas (Act 4) accessible (also requires Kei Truck)
 
 ALL_REGIONS = [
     # Act 1 (Norwich/Rackheath starting area)
@@ -91,26 +90,31 @@ def create_and_connect_regions(world: FuniRaccoonWorld) -> None:
     connect("Overworld", "Raccoon Central Station")
     connect("Raccoon Central Station", "Brazil", Has("Brazil Train Ticket"))
 
-    # --- Museum (15 items) ---
-    connect("Overworld", "Museum", items(15))
+    museum_threshold = world.options.museum_threshold.value
+    act2_threshold = world.options.act2_threshold.value
+    act3_threshold = world.options.act3_threshold.value
+    act4_threshold = world.options.act4_threshold.value
+
+    # --- Museum ---
+    connect("Overworld", "Museum", items(museum_threshold))
     connect("Museum", "Chamber")
 
-    # --- Act 2 (25 items) — Beenie HQ is the entry hub ---
-    connect("Overworld", "Beenie HQ", items(25))
-    connect("Beenie HQ", "Beenie Factory", items(25))
+    # --- Act 2 — Beenie HQ is the entry hub ---
+    connect("Overworld", "Beenie HQ", items(act2_threshold))
+    connect("Beenie HQ", "Beenie Factory", items(act2_threshold))
     connect("Beenie Factory", "The Process", Has("Goo"))
     connect("The Process", "THE MACHINE", Has("Goo"))
-    connect("Beenie HQ", "Fish Vore", items(25))
+    connect("Beenie HQ", "Fish Vore", items(act2_threshold))
     connect("The Process", "Goo Office", Has("Goo"))
     connect("THE MACHINE", "Beenies Ascension", Has("Goo"))
     connect("Beenie HQ", "Fields", Has("Goo") | OutOfLogic("Fields accessible without Goo"))
-    connect("Overworld", "Fellowship", Has("Goo") & items(25))
+    connect("Overworld", "Fellowship", Has("Goo") & items(act2_threshold))
     connect("Beenie HQ", "Howth",
             Has("Goo") & Has("Funi Marketable Plushie") if world.options.lugh_quest_locking else Has("Goo"))
     connect("Beenie HQ", "Underground Metro", Has("Goo") | OutOfLogic("Underground Metro accessible without Goo"))
 
-    # --- Act 3 (35 items) — Driving Test is the entry, contains Kei Truck ---
-    connect("Overworld", "Driving Test", items(35))
+    # --- Act 3 — Driving Test is the entry, contains Kei Truck ---
+    connect("Overworld", "Driving Test", items(act3_threshold))
     connect("Driving Test", "Blimbo Village", Has("Kei Truck") | OutOfLogic("Blimbo Village accessible without Kei Truck"))
     connect("Blimbo Village", "Cricket")
     connect("Blimbo Village", "The Forest")
@@ -125,13 +129,13 @@ def create_and_connect_regions(world: FuniRaccoonWorld) -> None:
     # --- Trasco Carpark ---
     connect("Trasco Carpark", "Fridge World", Has("Fridge Key"))
 
-    # --- Blimbo City cluster (35 items + Kei Truck) ---
+    # --- Blimbo City cluster (Act 3 items + Kei Truck) ---
     connect("Trasco Carpark", "Blimbo City", Has("Kei Truck"))
     connect("Blimbo City", "Pub")
     connect("Blimbo City", "BLMB Reactor Core", Has("Progressive Cooling Rod", 1))
 
-    # --- Act 4 (50 items + Kei Truck) ---
-    connect("BLMB Reactor Core", "Messed Up Canyon", items(50) & Has("Progressive Cooling Rod", 1))
+    # --- Act 4 (Act 4 items + Kei Truck) ---
+    connect("BLMB Reactor Core", "Messed Up Canyon", items(act4_threshold) & Has("Progressive Cooling Rod", 1))
     connect("Messed Up Canyon", "Pharmacy")
     connect("Messed Up Canyon", "The Desert")
     connect("Messed Up Canyon", "The Well of Knowledge")
