@@ -260,6 +260,18 @@ def set_all_location_rules(world: FuniRaccoonWorld) -> None:
         _bell_boy |= Has("Kei Truck")
     rule("Store Bell Boy", _bell_boy & HasFromList("Kei Truck Toaster", "Kei Truck Boost", count=1))
 
+    # The moai head euros are gated behind both Kei Truck upgrades.
+    _moai_upgrade_rule = Has("Kei Truck") & Has("Kei Truck Toaster") & Has("Kei Truck Boost")
+    for moai_location in (
+        "Desert: Euro in moai head pool 1",
+        "Desert: Euro in moai head pool 2",
+        "Desert: Euro in moai head pool 3",
+        "Desert: Euro in moai head pool 4",
+        "Desert: Euro in moai head pool 5",
+        "Desert: Euro in moai head pool 6",
+    ):
+        rule(moai_location, _moai_upgrade_rule)
+
     # Within Billdal Mines, boingler and Broken Wall also require the Pickaxe
     rule("Store boingler Cat",   Has("Pickaxe"))
     rule("Store Broken Wall", Has("Pickaxe"))
@@ -279,6 +291,11 @@ def set_all_location_rules(world: FuniRaccoonWorld) -> None:
     # Patrick O'Hara requires Goo (inner Beenie HQ path) or Kei Truck + Blimbo Village access
     rule("Store Patrick O'Hara",
          Has("Progressive Mystical Dumbbell", 2) & (Has("Goo") | (items(world.options.act3_threshold.value) & Has("Kei Truck"))))
+
+    # Crisps Undying Love requires the unregistered firearm to be available.
+    rule("Store Crisps Undying Love",
+         Has("Progressive Mystical Dumbbell", _DUMBBELL_REQUIREMENTS["Store Crisps Undying Love"])
+         & Has("unregistered firearm"))
 
     # Evil Fish is out of logic before Goo; normal logic requires Goo to store it
     rule("Store Evil Fish", Has("Goo") | OutOfLogic("Evil Fish storable without Goo"))
