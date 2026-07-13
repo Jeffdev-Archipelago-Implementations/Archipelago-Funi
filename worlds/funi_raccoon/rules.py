@@ -34,11 +34,11 @@ class OutOfLogic(Rule["FuniRaccoonWorld"], game="Funi Raccoon Game"):
             yield self.glitches_item_name, self.player
 
         @override
-        def explain_json(self) -> list[JSONMessagePart]:
+        def explain_json(self, state: CollectionState | None = None) -> list[JSONMessagePart]:
             return [{"text": f"Glitch: {self.description}", "color": "magenta"}]
 
         @override
-        def explain_str(self) -> str:
+        def explain_str(self, state: CollectionState | None = None) -> str:
             return f"Glitch: {self.description}"
 
     @override
@@ -66,7 +66,7 @@ DUMPSTER_ITEMS.append("Kei Truck")
 _KT_DUMBBELL_LOCATIONS: frozenset[str] = frozenset({
     # Trasco Carpark (reachable via Blimbo Village with truck)
     "Store Trolley", "Store Coffee Shop (closed)", "Store CD Player", "Store Patrice",
-    "Store Fridge",
+    "Store Fridge", "Store Trasco Sign"
     # Fridge World
     "Store Milk Klubnika",
     # Blimbo Village
@@ -79,7 +79,7 @@ _KT_DUMBBELL_LOCATIONS: frozenset[str] = frozenset({
     # Purgatory
     "Store My Favourite Chair",
     # Blimbo City
-    "Store Coffee Cup", "Store Radiator", "Store Bin", "Store Suitcase", "Store Bell Boy",
+    "Store Coffee Cup", "Store Radiator", "Store Bin", "Store Suitcase", "Store Bell Boy", "Store Blimbo City Sign",
     # Pub
     "Store Cheeky Pint",
     # BLMB Reactor Core
@@ -115,6 +115,7 @@ _DUMBBELL_REQUIREMENTS: dict[str, int] = {
     "Store Pirate 2":                            1,
     "Store Pirate 3":                            1,
     "Store Feral Dog":                           1,
+    "Store Buisness Man":                        1,
     "Store Beenie, Our Savior":                  1,
     "Store Crisp":                               1,
     "Store My Favourite Chair":                  1,
@@ -140,6 +141,7 @@ _DUMBBELL_REQUIREMENTS: dict[str, int] = {
     "Store Goo Container":                       1,
     "Store Cheese Wife":                         1,
     # MEDIUM (weight 3) — requires 2 Dumbbell
+    "Store Crack Head":                          2,
     "Store Patrick O'Hara":                      2,
     "Store Microwave":                           2,
     "Store Crisps Undying Love":                 2,
@@ -173,9 +175,13 @@ _DUMBBELL_REQUIREMENTS: dict[str, int] = {
     "Store Ougham Stone":                        3,
     "Store Coffee Shop (closed)":                3,
     "Store Police Car":                          3,
+    "Store Trasco Sign":                         3,
+    "Store Mikk Masive Sign":                    3,
     # CHUNKY (weight 5) — requires all 4 Dumbbell
     "Store Gym":                                 4,
     "Store Belgium Waffle":                      4,
+    "Store Friend Martin Friendship Statue":     4,
+    "Store Blimbo City Sign":                    4,
 }
 
 
@@ -235,6 +241,18 @@ def set_all_location_rules(world: FuniRaccoonWorld) -> None:
     if "Store Fridge" in _KT_DUMBBELL_LOCATIONS and not weight_blocking:
         _fridge |= Has("Kei Truck")
     rule("Store Fridge", _fridge & (CanReachRegion("Trasco Carpark") | CanReachRegion("Brazil")))
+
+    # Store Windmill sits in Fields but is also storable from Blimbo Village once
+    # Act 3 is open. It's hosted in Beenie HQ (no Goo gate), so gate it on reaching
+    # either area, on top of its weight rule.
+    rule("Store Windmill",
+         Has("Progressive Mystical Dumbbell", _DUMBBELL_REQUIREMENTS["Store Windmill"])
+         & (CanReachRegion("Fields") | CanReachRegion("Blimbo Village")))
+
+    # Crack Head normally needs 2 dumbbells, but breaking him lets you store him early
+    rule("Store Crack Head",
+         Has("Progressive Mystical Dumbbell", _DUMBBELL_REQUIREMENTS["Store Crack Head"])
+         | OutOfLogic("Crack Head can be broken and stored without dumbbells"))
 
     # Bell Boy additionally requires the Kei Truck Toaster (on top of its weight rule)
     _bell_boy = Has("Progressive Mystical Dumbbell", _DUMBBELL_REQUIREMENTS["Store Bell Boy"])

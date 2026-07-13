@@ -379,7 +379,10 @@ LOCATION_REGION: dict[str, str] = {
 
     # Fields
     "Store Feral Dog":                            "Fields",
-    "Store Windmill":                             "Fields",
+    # Store Windmill is storable from Fields or from Blimbo Village once Act 3 is
+    # open, so it's hosted in Beenie HQ (skipping the Goo gate into Fields) with an
+    # explicit rule in rules.py.
+    "Store Windmill":                             "Beenie HQ",
     "Store Crisp":                                "Fields",
     "Store Crisps Undying Love":                  "Fields",
 
