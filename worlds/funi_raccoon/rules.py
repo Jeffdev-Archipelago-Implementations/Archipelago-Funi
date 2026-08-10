@@ -234,17 +234,13 @@ def set_all_location_rules(world: FuniRaccoonWorld) -> None:
             r |= Has("Kei Truck")
         rule(loc_name, r)
 
-    # Store Fridge sits in Trasco Carpark but is also reachable by taking the train
-    # to Brazil. It's hosted in Raccoon Central Station (always open), so gate it on
-    # reaching either area, on top of its weight rule.
+    # Store Fridge is mainly in Trasco Carpark but is also reachable by taking the train to Brazil.
     _fridge = Has("Progressive Mystical Dumbbell", _DUMBBELL_REQUIREMENTS["Store Fridge"])
     if "Store Fridge" in _KT_DUMBBELL_LOCATIONS and not weight_blocking:
         _fridge |= Has("Kei Truck")
     rule("Store Fridge", _fridge & (CanReachRegion("Trasco Carpark") | CanReachRegion("Brazil")))
 
-    # Store Windmill sits in Fields but is also storable from Blimbo Village once
-    # Act 3 is open. It's hosted in Beenie HQ (no Goo gate), so gate it on reaching
-    # either area, on top of its weight rule.
+    # Store Windmill sits in Fields but is also in Blimbo Village
     rule("Store Windmill",
          Has("Progressive Mystical Dumbbell", _DUMBBELL_REQUIREMENTS["Store Windmill"])
          & (CanReachRegion("Fields") | CanReachRegion("Blimbo Village")))
@@ -260,7 +256,7 @@ def set_all_location_rules(world: FuniRaccoonWorld) -> None:
         _bell_boy |= Has("Kei Truck")
     rule("Store Bell Boy", _bell_boy & HasFromList("Kei Truck Toaster", "Kei Truck Boost", count=1))
 
-    # The moai head euros are gated behind both Kei Truck upgrades.
+    # The moai head euros are logically gated behind both Kei Truck upgrades.
     _moai_upgrade_rule = Has("Kei Truck") & Has("Kei Truck Toaster") & Has("Kei Truck Boost")
     for moai_location in (
         "Desert: Euro in moai head pool 1",
@@ -324,6 +320,9 @@ def set_all_location_rules(world: FuniRaccoonWorld) -> None:
     for score_check in ("Get 2000 Score with Kei Truck", "Get 3000 Score with Kei Truck",
                         "Get 4000 Score with Kei Truck", "Get 5000 Score with Kei Truck"):
         rule(score_check, _truck_upgrade)
+        
+    # The Orb shop requires Orb to sent to open up
+    rule("Store Orb", Has("Orb"))
 
 
 def set_completion_condition(world: FuniRaccoonWorld) -> None:

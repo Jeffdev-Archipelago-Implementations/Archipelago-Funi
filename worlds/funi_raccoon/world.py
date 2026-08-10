@@ -21,7 +21,7 @@ class FuniRaccoonWorld(World):
 
     location_name_to_id = locations.LOCATION_NAME_TO_ID
     item_name_to_id = items.ITEM_NAME_TO_ID
-    item_name_groups = {**items.ITEM_GROUPS, "Dumpster Items": set(rules.DUMPSTER_ITEMS)}
+    item_name_groups = {**items.ITEM_GROUPS, "Dumpster Items": rules.DUMPSTER_ITEMS}
 
     origin_region_name = "Overworld"
 

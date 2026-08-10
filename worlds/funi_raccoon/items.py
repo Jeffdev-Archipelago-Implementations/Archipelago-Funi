@@ -370,34 +370,33 @@ DEFAULT_ITEM_CLASSIFICATIONS = {
     "Brazil Train Ticket": ItemClassification.progression,
 }
 
-_LUGH_QUEST_FILLER_ITEMS: frozenset[str] = frozenset({
+_LUGH_QUEST_ITEMS = [
     "unregistered firearm",
     "Flowian",
     "Anti Sads",
     "Funi Marketable Plushie",
-})
+]
 
-_GEMS = {
+_GEMS = [
     "Green Mystical Gem",
     "Blue Mystical Gem",
     "Purple Mystical Gem",
     "Red Mystical Gem",
-}
+]
 
 TRAP_ITEMS = ["Police Trap", "Phone Ratio Trap"]
 
-ITEM_GROUPS: dict[str, set[str]] = {
-    # "Dumpster Items" is populated in world.py from rules.DUMPSTER_ITEMS,
-    # which is derived from the Store-location IDs (not item classification).
-    "Cats": {"Michelle", "Concrete", "Gizmo", "Keksz", "Michi", "boingler"},
-    "Hats": {
+ITEM_GROUPS: dict[str, list[str]] = {
+    # "Dumpster Items" is set in world.py from rules.DUMPSTER_ITEMS
+    "Cats": ["Michelle", "Concrete", "Gizmo", "Keksz", "Michi", "boingler"],
+    "Hats": [
         "Sun Hat", "Sombrero", "Top Hat", "Jester Hat",
         "Raccoon Hat", "Media Player Hat", "Fridge Crown", "Patty Hat",
-    },
-    "Mystical Gems": set(_GEMS),
-    "Euros": {"10 Euro", "100 Euro"},
-    "Kei Truck Upgrades": {"Kei Truck Radio", "Kei Truck Toaster", "Kei Truck Boost"},
-    "Traps": {"Police Trap", "Phone Ratio Trap"},
+    ],
+    "Mystical Gems": _GEMS,
+    "Euros": ["10 Euro", "100 Euro"],
+    "Kei Truck Upgrades": ["Kei Truck Radio", "Kei Truck Toaster", "Kei Truck Boost"],
+    "Traps": ["Police Trap", "Phone Ratio Trap"],
 }
 
 
@@ -423,7 +422,7 @@ def get_random_filler_item_name(world: FuniRaccoonWorld) -> str:
 def create_item_with_correct_classification(world: FuniRaccoonWorld, name: str) -> FuniRaccoonItem:
     if "lugh" in world.options.goal.value and name in _GEMS:
         classification = ItemClassification.progression
-    elif world.options.lugh_quest_locking and name in _LUGH_QUEST_FILLER_ITEMS:
+    elif world.options.lugh_quest_locking and name in _LUGH_QUEST_ITEMS:
         classification = ItemClassification.progression
     else:
         classification = DEFAULT_ITEM_CLASSIFICATIONS[name]
@@ -438,12 +437,8 @@ def create_all_items(world: FuniRaccoonWorld) -> None:
         if is_progression_item(world, name)
     ]
 
-    # Progressive Cooling Rod needs 3 copies total (Victory requires all 3).
-    # The loop above already created 1, so add 2 more.
+    # Create extras of these
     itempool += [world.create_item("Progressive Cooling Rod") for _ in range(2)]
-
-    # Progressive Mystical Dumbbell needs 4 copies total (SMALL needs 1, MEDIUM 2, HEAVY 3; CHUNKY 4).
-    # The loop above already created 1, so add 3 more.
     itempool += [world.create_item("Progressive Mystical Dumbbell") for _ in range(3)]
 
     # Always include one of each hat when hat sanity is on.
@@ -452,8 +447,7 @@ def create_all_items(world: FuniRaccoonWorld) -> None:
     if world.options.hatsanity:
         itempool += [world.create_item(name) for name in _HATS]
 
-    # Mystical gems are included as progression items for Lugh,
-    # otherwise only when gem sanity is on.
+
     if world.options.gemsanity and "lugh" not in world.options.goal.value:
         itempool += [world.create_item(name) for name in _GEMS]
 
