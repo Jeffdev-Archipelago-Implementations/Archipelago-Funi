@@ -212,7 +212,7 @@ def _goal_rule(world: FuniRaccoonWorld):
         return Has("Progressive Cooling Rod", 3) & Has("Orb") & Has("Kei Truck") & items(world.options.act4_threshold.value)
     result = rules[0]
     for r in rules[1:]:
-        result = result | r
+        result = result & r
     return result
 
 
