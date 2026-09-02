@@ -286,10 +286,9 @@ def set_all_location_rules(world: FuniRaccoonWorld) -> None:
     rule("Gym: Euro at end of train tracks",
          (Has("Brob Energy")) | OutOfLogic("Accessible without items"))
 
-    # Behrman Speedway: normal logic needs Brob Energy + 4 Dumbbell; OOL just needs Brob Energy
+    # Behrman Speedway: normal logic needs Brob Energy + 4 Dumbbell
     rule("Complete Behrman Speedway in under 1 minute",
-         (Has("Brob Energy") & Has("Progressive Mystical Dumbbell", 4))
-         | (Has("Brob Energy") & OutOfLogic("Speedway accessible with only Brob Energy")))
+         (Has("Brob Energy") & Has("Progressive Mystical Dumbbell", 4)))
     
     # Patrick O'Hara requires Goo (inner Beenie HQ path) or Kei Truck + Blimbo Village access
     rule("Store Patrick O'Hara",
