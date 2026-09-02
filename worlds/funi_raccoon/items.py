@@ -53,6 +53,7 @@ ITEM_NAME_TO_ID = {
     "Goo": 56,
     "Beenie the Birthday Boy": 57,
     "Fan": 59,
+    "Factory Sign": 60,
     "Letter B": 61,
     "Beenie, Our Savior": 62,
     "Candle": 63,
@@ -165,6 +166,11 @@ ITEM_NAME_TO_ID = {
     "Real Football": 178,
     "Hintblo": 179,
     "Funi Raccoon": 180,
+    "Good Engine": 181,
+    "Outdoor Chair": 182,
+    "Lightning Rod": 183,
+    "Robin P. Bobin": 184,
+    "Gacha Machine": 185, # DOES NOT HAVE AN INTERNAL ID, THE MOD SETS THIS
     "Kei Truck Radio": 201,
     "Kei Truck Toaster": 202,
     "Kei Truck Boost": 203,
@@ -186,6 +192,11 @@ ITEM_NAME_TO_ID = {
     "Police Trap": 701,
     "Phone Ratio Trap": 702,
     "Brazil Train Ticket": 800,
+    "Scooter Vehicle": 900,
+    "Tony Vehicle": 901,
+    "Fork Vehicle": 902,
+    "Horse Vehicle": 903,
+    "Trolly Vehicle": 904
 }
 
 # Items should have a defined default classification.
@@ -231,6 +242,7 @@ DEFAULT_ITEM_CLASSIFICATIONS = {
     "Goo": ItemClassification.progression,
     "Beenie the Birthday Boy": ItemClassification.progression_deprioritized_skip_balancing,
     "Fan": ItemClassification.progression_deprioritized_skip_balancing,
+    "Factory Sign": ItemClassification.progression_deprioritized_skip_balancing,
     "Letter B": ItemClassification.progression_deprioritized_skip_balancing,
     "Beenie, Our Savior": ItemClassification.progression_deprioritized_skip_balancing,
     "Candle": ItemClassification.progression_deprioritized_skip_balancing,
@@ -343,10 +355,15 @@ DEFAULT_ITEM_CLASSIFICATIONS = {
     "Real Football": ItemClassification.progression_deprioritized_skip_balancing,
     "Hintblo": ItemClassification.progression_deprioritized_skip_balancing,
     "Funi Raccoon": ItemClassification.progression_deprioritized_skip_balancing,
-
+    "Good Engine": ItemClassification.progression_deprioritized_skip_balancing,
+    "Outdoor Chair": ItemClassification.progression_deprioritized_skip_balancing,
+    "Lightning Rod": ItemClassification.progression_deprioritized_skip_balancing,
+    "Robin P. Bobin": ItemClassification.progression_deprioritized_skip_balancing,
+    "Gacha Machine": ItemClassification.progression_deprioritized_skip_balancing,
     "Pirate 2": ItemClassification.progression_deprioritized_skip_balancing,
     "Pirate 3": ItemClassification.progression_deprioritized_skip_balancing,
     "Logan/Real Knight Right": ItemClassification.progression_deprioritized_skip_balancing,
+
     "Kei Truck Radio": ItemClassification.filler,
     "Kei Truck Toaster": ItemClassification.progression,
     "Kei Truck Boost": ItemClassification.progression,
@@ -359,15 +376,24 @@ DEFAULT_ITEM_CLASSIFICATIONS = {
     "Media Player Hat": ItemClassification.filler,
     "Fridge Crown":     ItemClassification.filler,
     "Patty Hat":        ItemClassification.filler,
-    "Green Mystical Gem":  ItemClassification.filler,
-    "Blue Mystical Gem":   ItemClassification.filler,
-    "Purple Mystical Gem": ItemClassification.filler,
+
+    # Can change based on settings, these four can be a goal condition
+    "Green Mystical Gem":  ItemClassification.filler, 
+    "Blue Mystical Gem":   ItemClassification.filler, 
+    "Purple Mystical Gem": ItemClassification.filler, 
     "Red Mystical Gem":    ItemClassification.filler,
+
     "100 Euro": ItemClassification.filler,
     "10 Euro": ItemClassification.filler,
     "Police Trap": ItemClassification.trap,
     "Phone Ratio Trap": ItemClassification.trap,
     "Brazil Train Ticket": ItemClassification.progression,
+
+    "Scooter Vehicle": ItemClassification.filler,
+    "Tony Vehicle": ItemClassification.progression, # Required for Good Engine
+    "Fork Vehicle": ItemClassification.filler,
+    "Horse Vehicle": ItemClassification.filler,
+    "Trolly Vehicle": ItemClassification.filler,
 }
 
 _LUGH_QUEST_FILLER_ITEMS: frozenset[str] = frozenset({
@@ -397,6 +423,7 @@ ITEM_GROUPS: dict[str, set[str]] = {
     "Mystical Gems": set(_GEMS),
     "Euros": {"10 Euro", "100 Euro"},
     "Kei Truck Upgrades": {"Kei Truck Radio", "Kei Truck Toaster", "Kei Truck Boost"},
+    "Vehicles": { "Scooter Vehicle", "Tony Vehicle", "Fork Vehicle", "Horse Vehicle", "Trolly Vehicle" },
     "Traps": {"Police Trap", "Phone Ratio Trap"},
 }
 
@@ -456,6 +483,14 @@ def create_all_items(world: FuniRaccoonWorld) -> None:
     # otherwise only when gem sanity is on.
     if world.options.gemsanity and "lugh" not in world.options.goal.value:
         itempool += [world.create_item(name) for name in _GEMS]
+
+    # Vehicles are filler apart from Tony (which the loop above already created),
+    # so add the remaining ones explicitly to guarantee one of each is placed.
+    itempool += [
+        world.create_item(name)
+        for name in sorted(ITEM_GROUPS["Vehicles"])
+        if not is_progression_item(world, name)
+    ]
 
     # Fill remaining location slots with filler.
     number_of_unfilled_locations = len(world.multiworld.get_unfilled_locations(world.player))

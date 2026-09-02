@@ -56,6 +56,7 @@ ALL_REGIONS = [
     # Act 3 Blimbo City cluster
     "Blimbo City",
     "Pub",
+    "The Forklift Problem",
     "BLMB Reactor Core",
     # Act 4 (post-apocalypse)
     "Messed Up Canyon",
@@ -132,6 +133,7 @@ def create_and_connect_regions(world: FuniRaccoonWorld) -> None:
     # --- Blimbo City cluster (Act 3 items + Kei Truck) ---
     connect("Trasco Carpark", "Blimbo City", Has("Kei Truck"))
     connect("Blimbo City", "Pub")
+    connect("Blimbo City", "The Forklift Problem")
     connect("Blimbo City", "BLMB Reactor Core", Has("Progressive Cooling Rod", 1))
 
     # --- Act 4 (Act 4 items + Kei Truck) ---

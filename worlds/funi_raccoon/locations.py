@@ -52,6 +52,7 @@ LOCATION_NAME_TO_ID = {
     "Store Goo": 1056,
     "Store Beenie the Birthday Boy": 1057,
     "Store Fan": 1059,
+    "Store Factory Sign": 1060,
     "Store Letter B": 1061,
     "Store Beenie, Our Savior": 1062,
     "Store Candle": 1063,
@@ -166,6 +167,11 @@ LOCATION_NAME_TO_ID = {
     "Store Real Football": 1178,
     "Store Hintblo": 1179,
     "Store Funi Raccoon": 1180,
+    "Store Good Engine": 1181,
+    "Store Outdoor Chair": 1182,
+    "Store Lightning Rod": 1183,
+    "Store Robin P. Bobin": 1184,
+    "Store Gacha Machine": 1185,
     
     "Get 1000 Score with Kei Truck": 2001,
     "Get 2000 Score with Kei Truck": 2002,
@@ -246,10 +252,12 @@ LOCATION_NAME_TO_ID = {
     "Desert: Euro on blue house roof in fridge land": 8045,
     "Desert: Euro in BLMB nuclear reactor":         8046,
     "Brazil: Euro on middle hill":                  8047,
-    "Hat Store: Euro from saving Toastie":          8048,
+    "Hat Store: Euro reward after saving Toastie":  8048,
 
     # --- Random Extras ---
     "Complete Behrman Speedway in under 1 minute": 9001,
+    "Unlock Tony/Fork Vehicle": 9002,
+    "Unlock Horse Vehicle":     9003,
 }
 
 
@@ -292,7 +300,7 @@ LOCATION_REGION: dict[str, str] = {
     # HAT STORE
     "Store Mr. Heel":                             "HAT STORE",
     "Store Ms. Heel":                             "HAT STORE",
-    "Hat Store: Euro from saving Toastie":        "HAT STORE",
+    "Hat Store: Euro reward after saving Toastie": "HAT STORE",
 
     # Cleaners
     "Store Washing Machine":                      "Cleaners",
@@ -341,6 +349,7 @@ LOCATION_REGION: dict[str, str] = {
     "Store Beach Ball":                           "Beenie HQ",
     "Store Crayon":                               "Beenie HQ",
     "Store Funi Marketable Plushie":              "Beenie HQ",
+    "Store Factory Sign":                         "Beenie HQ",
 
     # Beenie Factory
     "Store Marketable Plushie Box":               "Beenie Factory",
@@ -427,6 +436,11 @@ LOCATION_REGION: dict[str, str] = {
     "Store Police Car":                           "Petrol Station",
     "Store Knifedog":                             "Petrol Station",
     "Store Bomb":                                 "Petrol Station",
+    "Store Outdoor Chair":                        "Petrol Station",
+    "Store Lightning Rod":                        "Petrol Station",
+    "Store Gacha Machine":                        "Petrol Station",
+    "Store Good Engine":                          "Petrol Station", # Also requires Tony Vehicle
+    "Unlock Horse Vehicle":                       "Petrol Station",
 
     # Bildal Mines (from Blimbo Village)
     "Store Pickaxe":                              "Bildal Mines",
@@ -444,7 +458,7 @@ LOCATION_REGION: dict[str, str] = {
     
     # Mikk Barge
     "Eat Purple Mystical Gem":                    "Mikk Barge",
-    "Store Mikk Masive Sign":                    "Mikk Barge",
+    "Store Mikk Masive Sign":                     "Mikk Barge",
 
     # The Forest
     "Store Eel Can":                              "The Forest",
@@ -494,6 +508,10 @@ LOCATION_REGION: dict[str, str] = {
     "City: Euro under city on girders 3":         "Blimbo City",
     "City: Euro under city on girders 4":         "Blimbo City",
     "City: Euro near cheese wheel":               "Blimbo City",
+
+    # The Forklift Problem (from Blimbo City)
+    "Store Robin P. Bobin":                       "The Forklift Problem",
+    "Unlock Tony/Fork Vehicle":                   "The Forklift Problem",
 
     # Pub (from Blimbo City)
     "Store Cheeky Pint":                          "Pub",

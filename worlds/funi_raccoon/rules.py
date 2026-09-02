@@ -66,7 +66,7 @@ DUMPSTER_ITEMS.append("Kei Truck")
 _KT_DUMBBELL_LOCATIONS: frozenset[str] = frozenset({
     # Trasco Carpark (reachable via Blimbo Village with truck)
     "Store Trolley", "Store Coffee Shop (closed)", "Store CD Player", "Store Patrice",
-    "Store Fridge", "Store Trasco Sign"
+    "Store Fridge", "Store Trasco Sign",
     # Fridge World
     "Store Milk Klubnika",
     # Blimbo Village
@@ -74,6 +74,7 @@ _KT_DUMBBELL_LOCATIONS: frozenset[str] = frozenset({
     "Store CHEESE", "Store Door", "Store Fone", "Store Ougham Stone",
     # Petrol Station
     "Store Gas Pumpo", "Store Police Car", "Store Knifedog",
+    "Store Outdoor Chair", "Store Lightning Rod",
     # Bildal Mines
     "Store Pickaxe",
     # Purgatory
@@ -82,6 +83,8 @@ _KT_DUMBBELL_LOCATIONS: frozenset[str] = frozenset({
     "Store Coffee Cup", "Store Radiator", "Store Bin", "Store Suitcase", "Store Bell Boy", "Store Blimbo City Sign",
     # Pub
     "Store Cheeky Pint",
+    # The Forklift Problem
+    "Store Robin P. Bobin",
     # BLMB Reactor Core
     "Store Demon Core",
     # Garden World
@@ -140,6 +143,7 @@ _DUMBBELL_REQUIREMENTS: dict[str, int] = {
     "Store Door":                                1,
     "Store Goo Container":                       1,
     "Store Cheese Wife":                         1,
+    "Store Outdoor Chair":                       1,
     # MEDIUM (weight 3) — requires 2 Dumbbell
     "Store Crack Head":                          2,
     "Store Patrick O'Hara":                      2,
@@ -170,6 +174,8 @@ _DUMBBELL_REQUIREMENTS: dict[str, int] = {
     "Store Patrice":                             2,
     "Store Office Chair":                        2,
     "Store Desk":                                2,
+    "Store Lightning Rod":                       2,
+    "Store Robin P. Bobin":                      2,
     # HEAVY (weight 4) — requires 3 Dumbbell
     "Store Windmill":                            3,
     "Store Ougham Stone":                        3,
@@ -177,6 +183,7 @@ _DUMBBELL_REQUIREMENTS: dict[str, int] = {
     "Store Police Car":                          3,
     "Store Trasco Sign":                         3,
     "Store Mikk Masive Sign":                    3,
+    "Store Factory Sign":                        3,
     # CHUNKY (weight 5) — requires all 4 Dumbbell
     "Store Gym":                                 4,
     "Store Belgium Waffle":                      4,
@@ -310,6 +317,9 @@ def set_all_location_rules(world: FuniRaccoonWorld) -> None:
 
     # Lughling requires Butterfly
     rule("Store Lughling", Has("Butterfly"))
+
+    # The Good Engine is only obtainable with the Tony vehicle
+    rule("Store Good Engine", Has("Tony Vehicle"))
 
     # Act 4 is required for Funi Raccoon Game Deluxe
     rule("Store Funi Raccoon Game Deluxe",
