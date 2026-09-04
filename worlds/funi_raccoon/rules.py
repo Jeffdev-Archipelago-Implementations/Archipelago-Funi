@@ -207,7 +207,7 @@ def _goal_rule(world: FuniRaccoonWorld):
     if "fellowship" in goals:
         rules.append(Has("Priestess") & Has("GREENISH ABOMINATION") & Has("Kei Truck") & Has("Progressive Cooling Rod", 3) & items(world.options.act4_threshold.value))
     if "lugh" in goals:
-        rules.append(Has("Green Mystical Gem") & Has("Blue Mystical Gem") & Has("Purple Mystical Gem") & Has("Red Mystical Gem") & Has("Kei Truck") & items(world.options.act4_threshold.value))
+        rules.append(Has("Green Mystical Jewel") & Has("Blue Mystical Jewel") & Has("Purple Mystical Jewel") & Has("Red Mystical Jewel") & Has("Kei Truck") & items(world.options.act4_threshold.value))
     if not rules:
         return Has("Progressive Cooling Rod", 3) & Has("Orb") & Has("Kei Truck") & items(world.options.act4_threshold.value)
     result = rules[0]
@@ -322,8 +322,8 @@ def set_all_location_rules(world: FuniRaccoonWorld) -> None:
          Has("Kei Truck") & Has("Progressive Cooling Rod", 1) & items(world.options.act4_threshold.value))
 
     # Gem Dumbbell Requirements
-    rule("Eat Green Mystical Gem", Has("Progressive Mystical Dumbbell", 1))
-    rule("Eat Blue Mystical Gem",  Has("Progressive Mystical Dumbbell", 2))
+    rule("Eat Green Mystical Jewel", Has("Progressive Mystical Dumbbell", 1))
+    rule("Eat Blue Mystical Jewel",  Has("Progressive Mystical Dumbbell", 2))
 
     # Higher Kei Truck scores require at least one truck upgrade
     _truck_upgrade = HasFromList("Kei Truck Boost", "Kei Truck Toaster", count=1) & Has("Kei Truck")

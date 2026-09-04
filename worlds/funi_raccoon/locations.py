@@ -163,8 +163,8 @@ LOCATION_NAME_TO_ID = {
     "Store Average Canadian": 1174,
     "Store Cheese Wife": 1175,
     "Store Brazil Knight": 1176,
-    "Store Doggy": 1177,
-    "Store Real Football": 1178,
+    "Store Real Football": 1177,
+    "Store Doggy": 1178,
     "Store Hintblo": 1179,
     "Store Funi Raccoon": 1180,
     "Store Good Engine": 1181,
@@ -199,10 +199,10 @@ LOCATION_NAME_TO_ID = {
     "Find Media Player Hat": 6006,
     "Find Fridge Crown":     6007,
     "Find Patty Hat":        6008,
-    "Eat Green Mystical Gem":  7001,
-    "Eat Blue Mystical Gem":   7002,
-    "Eat Purple Mystical Gem": 7003,
-    "Eat Red Mystical Gem":    7004,
+    "Eat Green Mystical Jewel":  7001,
+    "Eat Blue Mystical Jewel":   7002,
+    "Eat Purple Mystical Jewel": 7003,
+    "Eat Red Mystical Jewel":    7004,
     
     # --- Euro collectibles ---
     "Norwich: Euro at train station":               8001,
@@ -230,7 +230,6 @@ LOCATION_NAME_TO_ID = {
     "City: Euro under city on girders 4":           8023,
     "City: Euro near cheese wheel":                 8024,
     "Village: Euro on castle":                      8025,
-    "Village: Euro near furnace":                   8026,
     "Wastes: Euro on top of breakfast building":    8027,
     "Wastes: Euro on top of chinese building":      8028,
     "Wastes: Euro on lower end of chinese building": 8029,
@@ -309,7 +308,7 @@ LOCATION_REGION: dict[str, str] = {
     "Store Gizmo Cat":                            "Da Waaaater Zoooone",
     "Find Gizmo Cat":                             "Da Waaaater Zoooone",
     "Store Fan":                                  "Da Waaaater Zoooone",
-    "Eat Green Mystical Gem":                     "Da Waaaater Zoooone",
+    "Eat Green Mystical Jewel":                   "Da Waaaater Zoooone",
     "Water Zone: Euro under stairs underwater":   "Da Waaaater Zoooone",
     
     # Raccoon Central Station
@@ -400,7 +399,7 @@ LOCATION_REGION: dict[str, str] = {
     # Howth
     "Store Street Lamp":                          "Howth",
     "Store Kettle":                               "Howth",
-    "Eat Blue Mystical Gem":                      "Howth",
+    "Eat Blue Mystical Jewel":                    "Howth",
 
     # --- Act 3 (35 items) ---
     
@@ -418,7 +417,6 @@ LOCATION_REGION: dict[str, str] = {
     "Store Plimbo":                               "Blimbo Village",
     "Find Media Player Hat":                      "Blimbo Village",
     "Village: Euro on castle":                    "Blimbo Village",
-    "Village: Euro near furnace":                 "Blimbo Village",
     "Purchase Kei Truck Radio":                   "Blimbo Village",
     "Purchase Kei Truck Toaster":                 "Blimbo Village",
     "Purchase Kei Truck Boost":                   "Blimbo Village",
@@ -438,6 +436,7 @@ LOCATION_REGION: dict[str, str] = {
     "Store Lightning Rod":                        "Petrol Station",
     "Store Gacha Machine":                        "Petrol Station",
     "Store Good Engine":                          "Petrol Station", # Also requires Tony Vehicle
+    "Store Coffee Shop (closed)":                 "Petrol Station",
     "Unlock Horse Vehicle":                       "Petrol Station",
 
     # Bildal Mines (from Blimbo Village)
@@ -455,7 +454,7 @@ LOCATION_REGION: dict[str, str] = {
     "Store Radio Blimbo":                         "Garden World",
     
     # Mikk Barge
-    "Eat Purple Mystical Gem":                    "Mikk Barge",
+    "Eat Purple Mystical Jewel":                  "Mikk Barge",
     "Store Mikk Masive Sign":                     "Mikk Barge",
 
     # The Forest
@@ -463,7 +462,6 @@ LOCATION_REGION: dict[str, str] = {
     "Find Raccoon Hat":                           "The Forest",
 
     # Trasco Carpark
-    "Store Coffee Shop (closed)":                 "Trasco Carpark",
     "Store Trolley":                              "Trasco Carpark",
     "Store Fridge Key":                           "Trasco Carpark",
     # Store Fridge is reachable from Trasco Carpark or by taking the train to Brazil,
@@ -557,7 +555,7 @@ LOCATION_REGION: dict[str, str] = {
     "Store Lughling":                             "Cliffs of Nowher",
 
     # Da Dryyyy Zoooone
-    "Eat Red Mystical Gem":                       "Da Dryyyy Zoooone",
+    "Eat Red Mystical Jewel":                     "Da Dryyyy Zoooone",
 
     # Municipal Wastes
     "Store Chairapist":                           "Municipal Wastes",
