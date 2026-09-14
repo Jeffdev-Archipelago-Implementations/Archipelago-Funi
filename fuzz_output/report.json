@@ -1,1 +1,1 @@
-{"stats": {"total": 794, "success": 261, "failure": 0, "timeout": 7, "ignored": 526}, "errors": {"funi_raccoon": {"<class 'TimeoutError'>": [8, 42, 83, 349, 479, 524, 525]}}}
+{"stats": {"total": 277, "success": 86, "failure": 0, "timeout": 0, "ignored": 191}, "errors": {}}

@@ -185,10 +185,10 @@ ITEM_NAME_TO_ID = {
     "Media Player Hat": 506,
     "Fridge Crown":     507,
     "Patty Hat":        508,
-    "Green Mystical Gem":  601,
-    "Blue Mystical Gem":   602,
-    "Purple Mystical Gem": 603,
-    "Red Mystical Gem":    604,
+    "Green Mystical Jewel":  601,
+    "Blue Mystical Jewel":   602,
+    "Purple Mystical Jewel": 603,
+    "Red Mystical Jewel":    604,
     "Police Trap": 701,
     "Phone Ratio Trap": 702,
     "Brazil Train Ticket": 800,
@@ -378,10 +378,10 @@ DEFAULT_ITEM_CLASSIFICATIONS = {
     "Patty Hat":        ItemClassification.filler,
 
     # Can change based on settings, these four can be a goal condition
-    "Green Mystical Gem":  ItemClassification.filler, 
-    "Blue Mystical Gem":   ItemClassification.filler, 
-    "Purple Mystical Gem": ItemClassification.filler, 
-    "Red Mystical Gem":    ItemClassification.filler,
+    "Green Mystical Jewel":  ItemClassification.filler, 
+    "Blue Mystical Jewel":   ItemClassification.filler, 
+    "Purple Mystical Jewel": ItemClassification.filler, 
+    "Red Mystical Jewel":    ItemClassification.filler,
 
     "100 Euro": ItemClassification.filler,
     "10 Euro": ItemClassification.filler,
@@ -404,10 +404,10 @@ _LUGH_QUEST_ITEMS = [
 ]
 
 _GEMS = [
-    "Green Mystical Gem",
-    "Blue Mystical Gem",
-    "Purple Mystical Gem",
-    "Red Mystical Gem",
+    "Green Mystical Jewel",
+    "Blue Mystical Jewel",
+    "Purple Mystical Jewel",
+    "Red Mystical Jewel",
 ]
 
 TRAP_ITEMS = ["Police Trap", "Phone Ratio Trap"]
@@ -419,7 +419,7 @@ ITEM_GROUPS: dict[str, list[str]] = {
         "Sun Hat", "Sombrero", "Top Hat", "Jester Hat",
         "Raccoon Hat", "Media Player Hat", "Fridge Crown", "Patty Hat",
     ],
-    "Mystical Gems": _GEMS,
+    "Mystical Jewels": _GEMS,
     "Euros": ["10 Euro", "100 Euro"],
     "Kei Truck Upgrades": ["Kei Truck Radio", "Kei Truck Toaster", "Kei Truck Boost"],
     "Vehicles": ["Scooter Vehicle", "Tony Vehicle", "Fork Vehicle", "Horse Vehicle", "Trolly Vehicle"],
