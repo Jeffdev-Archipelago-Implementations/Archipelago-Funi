@@ -81,7 +81,7 @@ def create_and_connect_regions(world: FuniRaccoonWorld) -> None:
 
     # --- Act 1 ---
     connect("Overworld", "Behrman Gymnasium")
-    connect("Overworld", "Behrman Speedway", Has("Brob Energy") | OutOfLogic("Speedway accessible without items"))
+    connect("Overworld", "Behrman Speedway")
     connect("Overworld", "Tyre World")
     connect("Overworld", "Chicken Farm", (Has("Brob Energy")) | OutOfLogic("Chicken Farm accessible without items"))
     connect("Overworld", "HAT STORE")
@@ -119,7 +119,6 @@ def create_and_connect_regions(world: FuniRaccoonWorld) -> None:
     connect("Driving Test", "Blimbo Village", Has("Kei Truck") | OutOfLogic("Blimbo Village accessible without Kei Truck"))
     connect("Blimbo Village", "Cricket")
     connect("Blimbo Village", "The Forest")
-    connect("Blimbo Village", "Purgatory")
     connect("Blimbo Village", "Petrol Station")
     connect("Blimbo Village", "Bildal Mines", Has("Old Ass Rusty Ass Key"))
     connect("Bildal Mines", "Garden World", Has("Pickaxe"))
@@ -133,6 +132,7 @@ def create_and_connect_regions(world: FuniRaccoonWorld) -> None:
     # --- Blimbo City cluster (Act 3 items + Kei Truck) ---
     connect("Trasco Carpark", "Blimbo City", Has("Kei Truck"))
     connect("Blimbo City", "Pub")
+    connect("Blimbo City", "Purgatory")
     connect("Blimbo City", "The Forklift Problem")
     connect("Blimbo City", "BLMB Reactor Core", Has("Progressive Cooling Rod", 1))
 

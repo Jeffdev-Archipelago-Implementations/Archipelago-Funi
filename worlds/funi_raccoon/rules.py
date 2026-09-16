@@ -313,8 +313,8 @@ def set_all_location_rules(world: FuniRaccoonWorld) -> None:
     # Lughling requires Butterfly
     rule("Store Lughling", Has("Butterfly"))
 
-    # The Good Engine is only obtainable with the Tony vehicle
-    rule("Store Good Engine", Has("Tony Vehicle"))
+    # The Good Engine is only obtainable with the Tony vehicle and Kei Truck access
+    rule("Store Good Engine", Has("Tony Vehicle") & Has("Kei Truck"))
 
     # Act 4 is required for Funi Raccoon Game Deluxe
     rule("Store Funi Raccoon Game Deluxe",
@@ -324,12 +324,19 @@ def set_all_location_rules(world: FuniRaccoonWorld) -> None:
     rule("Eat Green Mystical Jewel", Has("Progressive Mystical Dumbbell", 1))
     rule("Eat Blue Mystical Jewel",  Has("Progressive Mystical Dumbbell", 2))
 
-    # Higher Kei Truck scores require at least one truck upgrade
+    # All Kei Truck Scores REQUIRE Kei Truck, and 2000-5000 requires kei truck boost/toaster
+    rule("Get 1000 Score with Kei Truck", Has("Kei Truck"))
+    
     _truck_upgrade = HasFromList("Kei Truck Boost", "Kei Truck Toaster", count=1) & Has("Kei Truck")
     for score_check in ("Get 2000 Score with Kei Truck", "Get 3000 Score with Kei Truck",
                         "Get 4000 Score with Kei Truck", "Get 5000 Score with Kei Truck"):
         rule(score_check, _truck_upgrade)
         
+    # All of these hard require kei truck, because you need to be able to go to city to do infinite euro grinding
+    rule("Purchase Kei Truck Toaster", Has("Kei Truck"))
+    rule("Purchase Kei Truck Boost", Has("Kei Truck"))
+    rule("Purchase Kei Truck Radio", Has("Kei Truck"))
+   
     # The Orb shop requires Orb to sent to open up
     rule("Store Orb", Has("Orb"))
 
