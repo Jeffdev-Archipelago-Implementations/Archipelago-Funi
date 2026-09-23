@@ -6,7 +6,7 @@
 
 ### Setup
 
-0. Create a yaml and generate a game with the Funi Raccoon Game APWorld. **You must be on Archipelago v0.6.7 to do this.**
+0. Create a yaml and generate a game with the [Funi Raccoon Game APWorld](https://github.com/Jeffdev-Archipelago-Implementations/Archipleago-Funi/releases/latest). **You must be on Archipelago v0.6.7 to do this.**
 1. Download the latest release of Funi Raccoon AP on Github:
     - [Funi Raccoon AP](https://github.com/Jeffdev-Archipelago-Implementations/FuniRaccoonAP/releases/latest)
 2. Open your Funi Raccoon Game installation directory. On Steam, you can find it easily by right-clicking the game and clicking `Manage` > `Browse local files`.
