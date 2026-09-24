@@ -207,7 +207,7 @@ def _goal_rule(world: FuniRaccoonWorld):
     if "fellowship" in goals:
         rules.append(Has("Priestess") & Has("GREENISH ABOMINATION") & Has("Kei Truck") & Has("Progressive Cooling Rod", 3) & items(world.options.act4_threshold.value))
     if "lugh" in goals:
-        rules.append(Has("Green Mystical Jewel") & Has("Blue Mystical Jewel") & Has("Purple Mystical Jewel") & Has("Red Mystical Jewel") & Has("Kei Truck") & items(world.options.act4_threshold.value))
+        rules.append(Has("Progressive Mystical Jewel", 4) & Has("Kei Truck") & items(world.options.act4_threshold.value))
     if not rules:
         return Has("Progressive Cooling Rod", 3) & Has("Orb") & Has("Kei Truck") & items(world.options.act4_threshold.value)
     result = rules[0]
@@ -336,9 +336,6 @@ def set_all_location_rules(world: FuniRaccoonWorld) -> None:
     rule("Purchase Kei Truck Toaster", Has("Kei Truck"))
     rule("Purchase Kei Truck Boost", Has("Kei Truck"))
     rule("Purchase Kei Truck Radio", Has("Kei Truck"))
-   
-    # The Orb shop requires Orb to sent to open up
-    rule("Store Orb", Has("Orb"))
 
 
 def set_completion_condition(world: FuniRaccoonWorld) -> None:
