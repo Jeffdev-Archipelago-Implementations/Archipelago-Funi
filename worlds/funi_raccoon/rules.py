@@ -275,8 +275,7 @@ def set_all_location_rules(world: FuniRaccoonWorld) -> None:
     ):
         rule(moai_location, _moai_upgrade_rule)
 
-    # Within Billdal Mines, boingler and Broken Wall also require the Pickaxe
-    rule("Store boingler Cat",   Has("Pickaxe"))
+    # Within Billdal Mines, Broken Wall also require the Pickaxe
     rule("Store Broken Wall", Has("Pickaxe"))
 
     # You need Beenie HQ access to store Michi Cat
