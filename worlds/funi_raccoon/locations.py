@@ -307,7 +307,9 @@ LOCATION_REGION: dict[str, str] = {
     # Da Waaaater Zoooone
     "Store Gizmo Cat":                            "Da Waaaater Zoooone",
     "Find Gizmo Cat":                             "Da Waaaater Zoooone",
-    "Store Fan":                                  "Da Waaaater Zoooone",
+    # Store Fan is reachable from Da Waaaater Zoooone or Goo Office, so it's hosted
+    # in the Overworld with an explicit rule in rules.py.
+    "Store Fan":                                  "Overworld",
     "Eat Green Mystical Jewel":                   "Da Waaaater Zoooone",
     "Water Zone: Euro under stairs underwater":   "Da Waaaater Zoooone",
     
@@ -397,7 +399,9 @@ LOCATION_REGION: dict[str, str] = {
     "Store GREENISH ABOMINATION":                 "Fellowship",
 
     # Howth
-    "Store Street Lamp":                          "Howth",
+    # Store Street Lamp is reachable from Howth or Petrol Station, so it's hosted
+    # in the Beenie HQ with an explicit rule in rules.py.
+    "Store Street Lamp":                          "Beenie HQ",
     "Store Kettle":                               "Howth",
     "Eat Blue Mystical Jewel":                    "Howth",
 
@@ -413,7 +417,9 @@ LOCATION_REGION: dict[str, str] = {
     "Store Under Construction":                   "Blimbo Village",
     "Store ROAD NOT DONE":                        "Blimbo Village",
     "Store Old Ass Rusty Ass Key":                "Blimbo Village",
-    "Store Plimbo":                               "Blimbo Village",
+    # Store Plimbo is reachable from Blimbo Village or Underground Metro, so it's hosted
+    # in the Beenie HQ with an explicit rule in rules.py.
+    "Store Plimbo":                               "Beenie HQ",
     "Find Media Player Hat":                      "Blimbo Village",
     "Village: Euro on castle":                    "Blimbo Village",
     "Purchase Kei Truck Radio":                   "Blimbo Village",
@@ -450,7 +456,9 @@ LOCATION_REGION: dict[str, str] = {
 
     # Garden World
     "Store Flowian":                              "Garden World",
-    "Store Radio Blimbo":                         "Garden World",
+    # Store Radio Blimbo is reachable from Garden World or BLMB Reactor Core, so it's hosted
+    # in Blimbo Village (common to both) with an explicit rule in rules.py.
+    "Store Radio Blimbo":                         "Blimbo Village",
     
     # Mikk Barge
     "Eat Purple Mystical Jewel":                  "Mikk Barge",

@@ -467,6 +467,8 @@ def create_all_items(world: FuniRaccoonWorld) -> None:
 
     if world.options.gemsanity:
         itempool += [world.create_item("Progressive Mystical Jewel") for _ in range(4)]
+        
+    itempool.append(world.create_item("Kei Truck Radio"))
 
     # Vehicles are filler apart from Tony (which the loop above already created),
     # so add the remaining ones explicitly to guarantee one of each is placed.
